@@ -2,24 +2,13 @@
 
 This car service center app demonstrates multiple Foundation features coupled with Bluemix services to create an app that works seamlessly for the customer.
 
-**Scenario**: Motor Service Corp. developing an app for Customer Service Reps & Mechanics to improve customer service at service centers
-
-**Adapters**:
-Mash up data from CRM, Automotive DB, and Scheduling DB to show mechanic next appointments, customer info, and info about their cars.
-
-**Security**:
-Allow easy repetitive access to app with touch ID
-
-**Offline Sync**:
-Mechanic can continue to access next work orders, and record work details while working on a car, even if he loses connectivity temporarily
-
-**Connectivity to Backend from the Cloud**:
-Uses secure gateway to open a secure communication channel to on-prem CRM
-
-**App Responsiveness**:
-Read & Write to CRM with DashDB for Caching, and Message Hub for queueing
-
-**Live Update**:
+- **Scenario**: Motor Service Corp. developing an app for Customer Service Reps & Mechanics to improve customer service at service centers
+- **Adapters**: Mash up data from CRM, Automotive DB, and Scheduling DB to show mechanic next appointments, customer info, and info about their cars.
+- **Security**: Allow easy repetitive access to app with touch ID
+- **Offline Sync**: Mechanic can continue to access next work orders, and record work details while working on a car, even if he loses connectivity temporarily
+- **Connectivity to Backend from the Cloud**: Uses secure gateway to open a secure communication channel to on-prem CRM
+- **App Responsiveness**: Read & Write to CRM with DashDB for Caching, and Message Hub for queueing
+- **Live Update**:
 One app for 2 types of employees - mechanic & Customer service rep. The app has shared functionality between the two (around appointments), and some differences (mechanics file details of their work)
 
 --------------------------------
