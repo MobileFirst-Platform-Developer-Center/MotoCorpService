@@ -39,6 +39,7 @@ One app for 2 types of employees - mechanic & Customer service rep. The app has 
 1.  Make sure this meets the definition of done (in task)
 2.  Do a code review if necessary
 3.  Check your branch with `$git branch`
+4. `$ git add` relevant files
 3. `$ git status` to see what pages needed to be changes
 4. `$ git commit -m "issue number as well as significant message (i.e. #1 adding jsonstore integration) "`
 5. `$ git push` to your branch
