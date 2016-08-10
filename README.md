@@ -34,9 +34,9 @@ One app for 2 types of employees - mechanic & Customer service rep. The app has 
 
 ## Development Environment Setup
 
-1. Install mfpdev cli
+1. Install [mfpdev cli](npm install -g mfpdev-cli) `npm install -g mfpdev-cli`
 2. Install [node.js](https://nodejs.org/en/)
-2. Install ionic on the command line `$ npm install -g cordova ionic`
+2. Install [ionic](http://ionicframework.com/getting-started/) on the command line `$ npm install -g cordova ionic`
 3. `git clone git@github.ibm.com:cord-americas/MotoCorpService.git` this repository
 4. `$ cd MotoCorp` into the app folder
 5. `$ ionic platform add ios` add the ios platform
