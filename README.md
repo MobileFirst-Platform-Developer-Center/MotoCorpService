@@ -37,7 +37,7 @@ One app for 2 types of employees - mechanic & Customer service rep. The app has 
 1. Install mfpdev cli
 2. Install [node.js](https://nodejs.org/en/)
 2. Install ionic on the command line `$ npm install -g cordova ionic`
-3. `git clone` this repository
+3. `git clone git@github.ibm.com:cord-americas/MotoCorpService.git` this repository
 4. `$ cd MotoCorp` into the app folder
 5. `$ ionic platform add ios` add the ios platform
 6. `$ ionic build ios` build ios platform
@@ -49,8 +49,9 @@ One app for 2 types of employees - mechanic & Customer service rep. The app has 
 
 1.  Make sure this meets the definition of done (in task)
 2.  Do a code review if necessary
+3.  Check your branch with `git branch`
 3. `git status` to see what pages needed to be changes
-4. `git commit -m "(#1) issue number as well as signifiant message`
+4. `git commit -m "(#1) issue number as well as signifiant message"`
 5. `git push` to your branch
 6.  Do a pull request into master branch when all necessary changes are added
 7.  Review task with team to close the issue
