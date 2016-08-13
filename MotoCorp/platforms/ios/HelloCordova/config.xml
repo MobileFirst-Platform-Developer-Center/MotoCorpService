@@ -3,18 +3,6 @@
     <feature name="LocalStorage">
         <param name="ios-package" value="CDVLocalStorage" />
     </feature>
-    <feature name="HandleOpenUrl">
-        <param name="ios-package" value="CDVHandleOpenURL" />
-        <param name="onload" value="true" />
-    </feature>
-    <feature name="IntentAndNavigationFilter">
-        <param name="ios-package" value="CDVIntentAndNavigationFilter" />
-        <param name="onload" value="true" />
-    </feature>
-    <feature name="GestureHandler">
-        <param name="ios-package" value="CDVGestureHandler" />
-        <param name="onload" value="true" />
-    </feature>
     <name>HelloCordova</name>
     <description>
         An Ionic Framework and Cordova project.
@@ -31,8 +19,6 @@
     <preference name="KeyboardDisplayRequiresUserAction" value="true" />
     <preference name="MediaPlaybackRequiresUserAction" value="false" />
     <preference name="SuppressesIncrementalRendering" value="false" />
-    <preference name="SuppressesLongPressGesture" value="false" />
-    <preference name="Suppresses3DTouchGesture" value="false" />
     <preference name="GapBetweenPages" value="0" />
     <preference name="PageLength" value="0" />
     <preference name="PaginationBreakingMode" value="page" />
@@ -43,4 +29,5 @@
     <preference name="FadeSplashScreenDuration" value="2000" />
     <preference name="android-minSdkVersion" value="16" />
     <preference name="SplashScreen" value="screen" />
+    <preference name="Orientation" value="Landscape" />
 </widget>
