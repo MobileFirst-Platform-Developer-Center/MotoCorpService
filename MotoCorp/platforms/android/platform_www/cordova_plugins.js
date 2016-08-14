@@ -32,6 +32,44 @@ module.exports = [
             "cordova.plugins.Keyboard"
         ],
         "runs": true
+    },
+    {
+        "id": "cordova-plugin-dialogs.notification",
+        "file": "plugins/cordova-plugin-dialogs/www/notification.js",
+        "pluginId": "cordova-plugin-dialogs",
+        "merges": [
+            "navigator.notification"
+        ]
+    },
+    {
+        "id": "cordova-plugin-dialogs.notification_android",
+        "file": "plugins/cordova-plugin-dialogs/www/android/notification.js",
+        "pluginId": "cordova-plugin-dialogs",
+        "merges": [
+            "navigator.notification"
+        ]
+    },
+    {
+        "id": "cordova-plugin-globalization.GlobalizationError",
+        "file": "plugins/cordova-plugin-globalization/www/GlobalizationError.js",
+        "pluginId": "cordova-plugin-globalization",
+        "clobbers": [
+            "window.GlobalizationError"
+        ]
+    },
+    {
+        "id": "cordova-plugin-globalization.globalization",
+        "file": "plugins/cordova-plugin-globalization/www/globalization.js",
+        "pluginId": "cordova-plugin-globalization",
+        "clobbers": [
+            "navigator.globalization"
+        ]
+    },
+    {
+        "id": "cordova-plugin-mfp.mfp",
+        "file": "plugins/cordova-plugin-mfp/bootstrap.js",
+        "pluginId": "cordova-plugin-mfp",
+        "runs": true
     }
 ];
 module.exports.metadata = 
@@ -42,7 +80,11 @@ module.exports.metadata =
     "cordova-plugin-splashscreen": "3.2.2",
     "cordova-plugin-statusbar": "2.1.3",
     "cordova-plugin-whitelist": "1.2.2",
-    "ionic-plugin-keyboard": "2.2.1"
+    "ionic-plugin-keyboard": "2.2.1",
+    "cordova-plugin-dialogs": "1.2.1",
+    "cordova-plugin-globalization": "1.0.3",
+    "cordova-plugin-okhttp": "2.0.0",
+    "cordova-plugin-mfp": "8.0.2016072217"
 };
 // BOTTOM OF METADATA
 });

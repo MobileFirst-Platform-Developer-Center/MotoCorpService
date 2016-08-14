@@ -46,5 +46,37 @@
         },
         "is_top_level": true,
         "variables": {}
+    },
+    "cordova-plugin-mfp": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-mfp"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-dialogs": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-dialogs"
+        },
+        "is_top_level": false,
+        "variables": {}
+    },
+    "cordova-plugin-globalization": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-globalization"
+        },
+        "is_top_level": false,
+        "variables": {}
+    },
+    "cordova-plugin-okhttp": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-okhttp"
+        },
+        "is_top_level": false,
+        "variables": {}
     }
 }

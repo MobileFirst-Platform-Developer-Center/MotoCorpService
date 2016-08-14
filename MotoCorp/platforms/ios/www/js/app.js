@@ -76,3 +76,21 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/search');
 });
+
+function wlCommonInit() {
+    console.log(">> wlCommonInit() ..." );  
+    var serverUrl = WL.App.getServerUrl(function(success){
+        console.log(success);
+    }, function(fail){
+        console.log(fail);
+    });
+    WLAuthorizationManager.obtainAccessToken().then(
+        function (accessToken) {
+          console.log(">> Success - Connected to MobileFirst Server");          
+        },
+        function (error) {
+          console.log(">> Failed to connect to MobileFirst Server");  
+          console.log(error);        
+        }
+    );
+}

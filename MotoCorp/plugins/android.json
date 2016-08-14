@@ -24,7 +24,20 @@
         },
         "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "com.ionicframework.starter"
+        },
+        "cordova-plugin-mfp": {
+            "PACKAGE_NAME": "com.ionicframework.starter"
         }
     },
-    "dependent_plugins": {}
+    "dependent_plugins": {
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "com.ionicframework.starter"
+        },
+        "cordova-plugin-globalization": {
+            "PACKAGE_NAME": "com.ionicframework.starter"
+        },
+        "cordova-plugin-okhttp": {
+            "PACKAGE_NAME": "com.ionicframework.starter"
+        }
+    }
 }

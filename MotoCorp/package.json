@@ -27,6 +27,11 @@
       "platform": "android",
       "version": "latest",
       "locator": "android@latest"
+    },
+    {
+      "platform": "ios",
+      "version": "latest",
+      "locator": "ios@latest"
     }
   ]
 }
