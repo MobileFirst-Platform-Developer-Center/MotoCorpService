@@ -13,6 +13,16 @@ One app for 2 types of employees - mechanic & Customer service rep. The app has 
 
 --------------------------------
 
+## Architecture Diagram 
+
+Blue Arrows: MFP Device > Server Calls
+
+Red Arrows: MFP Adapter > Backend Calls
+
+![architecture](https://github.ibm.com/cord-americas/MotoCorpService/blob/pictures/architecture.png)
+
+--------------------------------
+
 ## Contacts
 
 * Scrum Master: Theodora Cheng, tcheng@us.ibm.com
