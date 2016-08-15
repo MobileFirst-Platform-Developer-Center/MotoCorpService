@@ -57,5 +57,12 @@ angular.module('starter.controllers', [])
 .controller('SearchCtrl', function($scope,$stateParams){
 })
 
+.controller('SignInCtrl', function($scope,$stateParams){
+
+  $scope.name = "Rob";
+})
+
 .controller('PlaylistCtrl', function($scope, $stateParams) {
 });
+
+

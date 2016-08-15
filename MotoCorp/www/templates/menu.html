@@ -3,42 +3,39 @@
     <ion-nav-bar class="bar-stable">
       <ion-nav-back-button>
       </ion-nav-back-button>
-
-<!--This is the hamburger menu button that shows up in the main screen. I'm hiding it
-    right now since the slide menu is always shown-->
     
-      <!--<ion-nav-buttons side="left">
+      <ion-nav-buttons side="left">
         <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
         </button>
-      </ion-nav-buttons>-->
+      </ion-nav-buttons>
     </ion-nav-bar>
     <ion-nav-view name="menuContent"></ion-nav-view>
   </ion-side-menu-content>
 
-<!--Always show the left side menu-->
-  <ion-side-menu expose-aside-when="large">
-    <!--<ion-header-bar class="bar-stable">
-      <h1 class="title">Customer Search</h1>
-    </ion-header-bar>-->
+  <ion-side-menu side="left">
+   <ion-header-bar class="bar-stable">
+      <!--<h1 class="title">Customer Search</h1>-->
+    </ion-header-bar>
 
-<!--Search bar-->
+<!--Search bar
     <ion-header-bar class="bar bar-stable item-input-inset"> 
       <label class="item-input-wrapper search">
         <i class="icon ion-search placeholder-icon"></i>
         <input placeholder="Enter License Plate Number..." ng-keyup="searchList($event)" type="text"> 
       </label>
     </ion-header-bar>
+-->
 
 <!--These are the items in the left menu-->
     <ion-content>
       <ion-list>
-        <!--<ion-item menu-close ng-click="login()">
+        <ion-item menu-close href="#/app/signin">
           Login
         </ion-item>
         <ion-item menu-close href="#/app/search">
           Search
         </ion-item>
-        <ion-item menu-close href="#/app/browse">
+        <!--<ion-item menu-close href="#/app/browse">
           Browse
         </ion-item>
         <ion-item menu-close href="#/app/playlists">

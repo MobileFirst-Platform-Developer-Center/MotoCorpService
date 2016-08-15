@@ -35,11 +35,11 @@
 		6E88545C8DFA4C738309374D /* CDVViewController+SplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 34A5D845F6594C168EC65976 /* CDVViewController+SplashScreen.m */; };
 		76EC38FAA67D470CA0175F85 /* CDVStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 09334A2211684E0F8E6B1536 /* CDVStatusBar.m */; };
 		4B602A319E55483F9ADDBAEF /* IonicKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = C1C8D9C6FB5C4054A084EDBC /* IonicKeyboard.m */; };
-		1C977204612049A883035A7B /* IBMMobileFirstPlatformFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B1DC1BFB7294468A167833D /* IBMMobileFirstPlatformFoundation.framework */; };
-		292027F571174BF586680AD3 /* IBMMobileFirstPlatformFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1B1DC1BFB7294468A167833D /* IBMMobileFirstPlatformFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		68AD68E3D2AF430781ACE3E8 /* IBMMobileFirstPlatformFoundationHybrid.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4AB34407F9C4E5CAC756C55 /* IBMMobileFirstPlatformFoundationHybrid.framework */; };
-		96CDA3085F4144EDA327345E /* IBMMobileFirstPlatformFoundationJSONStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E60F511E9A8D4A579B5F303A /* IBMMobileFirstPlatformFoundationJSONStore.framework */; };
-		7B8CAC6AD61B4F8399F376E5 /* sqlcipher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1273B95315904D1399239EFF /* sqlcipher.framework */; };
+		369C271639454B388E57F57D /* IBMMobileFirstPlatformFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD4E397ABA9847749D847B87 /* IBMMobileFirstPlatformFoundation.framework */; };
+		2C1B20476B964DB1AC0C187C /* IBMMobileFirstPlatformFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AD4E397ABA9847749D847B87 /* IBMMobileFirstPlatformFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		7A56CE489B644EADAE100FCE /* IBMMobileFirstPlatformFoundationHybrid.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 115B8F70342741DF8BF6E327 /* IBMMobileFirstPlatformFoundationHybrid.framework */; };
+		C1599E0A08F2438D94A3189C /* IBMMobileFirstPlatformFoundationJSONStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43D1BA6DC78140ECBB319774 /* IBMMobileFirstPlatformFoundationJSONStore.framework */; };
+		D888B97354474EAA8A7E9ECA /* sqlcipher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21CD28BABE0F4265B689735A /* sqlcipher.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,10 +108,10 @@
 		F75563295C6E47CEB9E556B4 /* CDVStatusBar.h */ = {isa = PBXFileReference; name = "CDVStatusBar.h"; path = "cordova-plugin-statusbar/CDVStatusBar.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 		C1C8D9C6FB5C4054A084EDBC /* IonicKeyboard.m */ = {isa = PBXFileReference; name = "IonicKeyboard.m"; path = "ionic-plugin-keyboard/IonicKeyboard.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
 		9B860AFFC39F4ADDB3353F54 /* IonicKeyboard.h */ = {isa = PBXFileReference; name = "IonicKeyboard.h"; path = "ionic-plugin-keyboard/IonicKeyboard.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
-		1B1DC1BFB7294468A167833D /* IBMMobileFirstPlatformFoundation.framework */ = {isa = PBXFileReference; name = "IBMMobileFirstPlatformFoundation.framework"; path = "HelloCordova/Plugins/cordova-plugin-mfp/IBMMobileFirstPlatformFoundation.framework"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
-		C4AB34407F9C4E5CAC756C55 /* IBMMobileFirstPlatformFoundationHybrid.framework */ = {isa = PBXFileReference; name = "IBMMobileFirstPlatformFoundationHybrid.framework"; path = "HelloCordova/Plugins/cordova-plugin-mfp/IBMMobileFirstPlatformFoundationHybrid.framework"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
-		E60F511E9A8D4A579B5F303A /* IBMMobileFirstPlatformFoundationJSONStore.framework */ = {isa = PBXFileReference; name = "IBMMobileFirstPlatformFoundationJSONStore.framework"; path = "HelloCordova/Plugins/cordova-plugin-mfp/IBMMobileFirstPlatformFoundationJSONStore.framework"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
-		1273B95315904D1399239EFF /* sqlcipher.framework */ = {isa = PBXFileReference; name = "sqlcipher.framework"; path = "HelloCordova/Plugins/cordova-plugin-mfp/sqlcipher.framework"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		AD4E397ABA9847749D847B87 /* IBMMobileFirstPlatformFoundation.framework */ = {isa = PBXFileReference; name = "IBMMobileFirstPlatformFoundation.framework"; path = "HelloCordova/Plugins/cordova-plugin-mfp/IBMMobileFirstPlatformFoundation.framework"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		115B8F70342741DF8BF6E327 /* IBMMobileFirstPlatformFoundationHybrid.framework */ = {isa = PBXFileReference; name = "IBMMobileFirstPlatformFoundationHybrid.framework"; path = "HelloCordova/Plugins/cordova-plugin-mfp/IBMMobileFirstPlatformFoundationHybrid.framework"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		43D1BA6DC78140ECBB319774 /* IBMMobileFirstPlatformFoundationJSONStore.framework */ = {isa = PBXFileReference; name = "IBMMobileFirstPlatformFoundationJSONStore.framework"; path = "HelloCordova/Plugins/cordova-plugin-mfp/IBMMobileFirstPlatformFoundationJSONStore.framework"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		21CD28BABE0F4265B689735A /* sqlcipher.framework */ = {isa = PBXFileReference; name = "sqlcipher.framework"; path = "HelloCordova/Plugins/cordova-plugin-mfp/sqlcipher.framework"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,10 +126,10 @@
 				3B1D03878C594B97902CE7D5 /* libc++.tbd in Frameworks */,
 				34DDEF074A2348078BF9E4DD /* Security.framework in Frameworks */,
 				0C3EAACF243B41119E429D01 /* SystemConfiguration.framework in Frameworks */,
-				1C977204612049A883035A7B /* IBMMobileFirstPlatformFoundation.framework in Frameworks */,
-				68AD68E3D2AF430781ACE3E8 /* IBMMobileFirstPlatformFoundationHybrid.framework in Frameworks */,
-				96CDA3085F4144EDA327345E /* IBMMobileFirstPlatformFoundationJSONStore.framework in Frameworks */,
-				7B8CAC6AD61B4F8399F376E5 /* sqlcipher.framework in Frameworks */,
+				369C271639454B388E57F57D /* IBMMobileFirstPlatformFoundation.framework in Frameworks */,
+				7A56CE489B644EADAE100FCE /* IBMMobileFirstPlatformFoundationHybrid.framework in Frameworks */,
+				C1599E0A08F2438D94A3189C /* IBMMobileFirstPlatformFoundationJSONStore.framework in Frameworks */,
+				D888B97354474EAA8A7E9ECA /* sqlcipher.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,10 +210,10 @@
 				EAC80B0EDD4C4612BEAA8EF0 /* libc++.tbd */,
 				ECA6BB24299F46E58E54C216 /* Security.framework */,
 				D76A061ED1FC4B01B16507A5 /* SystemConfiguration.framework */,
-				1B1DC1BFB7294468A167833D /* IBMMobileFirstPlatformFoundation.framework */,
-				C4AB34407F9C4E5CAC756C55 /* IBMMobileFirstPlatformFoundationHybrid.framework */,
-				E60F511E9A8D4A579B5F303A /* IBMMobileFirstPlatformFoundationJSONStore.framework */,
-				1273B95315904D1399239EFF /* sqlcipher.framework */,
+				AD4E397ABA9847749D847B87 /* IBMMobileFirstPlatformFoundation.framework */,
+				115B8F70342741DF8BF6E327 /* IBMMobileFirstPlatformFoundationHybrid.framework */,
+				43D1BA6DC78140ECBB319774 /* IBMMobileFirstPlatformFoundationJSONStore.framework */,
+				21CD28BABE0F4265B689735A /* sqlcipher.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -527,7 +527,7 @@
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				292027F571174BF586680AD3 /* IBMMobileFirstPlatformFoundation.framework in Embed Frameworks */,
+				2C1B20476B964DB1AC0C187C /* IBMMobileFirstPlatformFoundation.framework in Embed Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			name = "Embed Frameworks";
