@@ -1,5 +1,23 @@
-<ion-view view-title="Customer Profile">
+<ion-view view-title="Customer Search" >
+ 
   <ion-content>
     <!--<h1>Search</h1>-->
+
+    <!--Search bar-->
+    <ion-header-bar class="bar bar-stable item-input-inset"> 
+      <label class="item-input-wrapper search">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input placeholder="Enter License Plate Number..." ng-keyup="searchList($event)" type="text"> 
+      </label>
+    </ion-header-bar>
+
+
+    <ion-list>
+        <ion-item ng-repeat="customer in customers" href="#/app/customer/{{customer.id}}">
+          <h2>{{customer.name}}</h2>
+          <h3>{{customer.plate}}</h3>
+        </ion-item>
+      </ion-list>
+
   </ion-content>
 </ion-view>

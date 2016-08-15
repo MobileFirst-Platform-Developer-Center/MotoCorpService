@@ -1,8 +1,7 @@
-angular.module('starter.controllers', [])
+var app = angular.module('starter.controllers', []);
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
-  
+app.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -41,9 +40,9 @@ angular.module('starter.controllers', [])
       $scope.closeLogin();
     }, 1000);
   };
-})
+});
 
-.controller('PlaylistsCtrl', function($scope) {
+app.controller('PlaylistsCtrl', function($scope) {
   $scope.playlists = [
     { title: 'Reggae', id: 1 },
     { title: 'Chill', id: 2 },
@@ -52,10 +51,36 @@ angular.module('starter.controllers', [])
     { title: 'Rap', id: 5 },
     { title: 'Cowbell', id: 6 }
   ];
-})
-
-.controller('SearchCtrl', function($scope,$stateParams){
-})
-
-.controller('PlaylistCtrl', function($scope, $stateParams) {
 });
+
+
+var customers = [
+    { name: 'Jack Reacher', plate: 'ETY-5678', id: 1 },
+    { name: 'Joe Blow', plate: 'POA-1234', id: 2 }
+  ];
+
+function getCustomer(customerId) {
+  for (var i = 0; i < customers.length; i++) {
+    if (customers[i].id == customerId) {
+      return customers[i];
+    }
+  }
+  return undefined;
+}
+
+app.controller('SearchCtrl', function($scope){
+  $scope.customers = customers;
+});
+
+app.controller('SignInCtrl', function($scope){
+  
+});
+
+app.controller('CustomerCtrl', function($scope,$state){
+  $scope.customer = getCustomer($state.params.customerId);
+});
+
+app.controller('PlaylistCtrl', function($scope, $stateParams) {
+});
+
+

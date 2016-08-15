@@ -46,14 +46,12 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     
   })
 
-  .state('app.browse', {
-      url: '/browse',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/browse.html'
-        }
-      }
+  .state('signin', {
+      url: '/signin',
+      templateUrl: 'templates/signin.html',
+      controller: 'SignInCtrl'
     })
+
     .state('app.playlists', {
       url: '/playlists',
       views: {
@@ -74,7 +72,8 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/search');
+  $urlRouterProvider.otherwise('/signin');
+  // $urlRouterProvider.otherwise('app/search');
 });
 
 function wlCommonInit() {

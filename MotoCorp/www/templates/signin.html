@@ -1,0 +1,18 @@
+<ion-modal-view>
+    <ion-content padding="true" scroll="false">
+        <div class="">
+            <img src="img/car.jpg" width="30%" height="auto" style="display: block; margin-left: auto; margin-right: auto;">
+        </div>
+        <form ng-submit="doLogin()">
+            <h1 id="acmeCars-heading2" style="color:#EE6B41;font-weight:600;text-align:center;" class=" ">MotorCorp Service Center</h1>
+            <label class="item item-input " >
+                <input type="email"  ng-model="loginData.username" placeholder="email" >
+            </label>
+            <label class="item item-input ">
+                <input type="password" ng-model="loginData.password" placeholder="password">
+            </label>    
+        </form>
+        <div ng-click="doLogin()" id="acmeCars-button1" class=" button button-positive  button-block ">Log In</div>
+        <div ng-click="doLogin()" id="acmeCars-button1" class=" button button-positive  button-block ">Sign Up</div>
+    </ion-content>
+</ion-modal-view>
