@@ -68,8 +68,21 @@ function getCustomer(customerId) {
   return undefined;
 }
 
+
 app.controller('SearchCtrl', function($scope){
   $scope.customers = customers;
+  $scope.data = {};
+  $scope.found = {};
+  
+  $scope.searchPlate = function(plate){
+    for (var i = 0; i < customers.length; i++) {
+    if (customers[i].plate == plate) {
+      $scope.found = customers[i];
+      return $scope.found;
+    }
+  }
+  };
+  
 });
 
 app.controller('SignInCtrl', function($scope){
