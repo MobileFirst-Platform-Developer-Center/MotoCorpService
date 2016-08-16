@@ -28,6 +28,9 @@ Red Arrows: MFP Adapter > Backend Calls
 * Scrum Master: Theodora Cheng, tcheng@us.ibm.com
 * Manager: Jim McGarrahan, mcgarr@us.ibm.com
 * Offering Manager: Carmel Schindelhaim, carmels@il.ibm.com
+* Developer: Cesar Lourenco Botti Filho, cesarlb@br.ibm.com
+* Developer: Rob Puryear, sdpuryea@us.ibm.com
+* Developer: Yoel Nunez, ynunez@us.ibm.com
 
 --------------------------------
 
