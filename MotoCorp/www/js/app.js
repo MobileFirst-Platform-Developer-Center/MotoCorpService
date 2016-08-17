@@ -4,9 +4,14 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers'])
 
-.run(function($ionicPlatform) {
+function wlCommonInit() {
+	angular.bootstrap(document, ['starter']);
+}
+
+var app = angular.module('starter', ['ionic', 'starter.controllers']);
+
+app.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -19,90 +24,52 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
-
-      
     }
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
-  $stateProvider
-
-    .state('app', {
+app.config(function($stateProvider, $urlRouterProvider) {
+  $stateProvider.state('app', {
     url: '/app',
     abstract: true,
-    templateUrl: 'templates/menu.html',
+    templateUrl: 'pages/menu.html',
     controller: 'AppCtrl'
-  })
-
-  .state('app.search', {
+  }).state('app.search', {
     url: '/search',
     views: {
       'menuContent': {
-        templateUrl: 'templates/search.html',
+        templateUrl: 'pages/search.html',
         controller: 'SearchCtrl'
       }
     }
-  })
-
-  .state('app.customer', {
+  }).state('app.customer', {
     url: '/customer/:customerId',
     views: {
       'menuContent': {
-        templateUrl: 'templates/customer.html',
+        templateUrl: 'pages/customer.html',
         controller: 'CustomerCtrl'
       }
     }
-  })
-
-  .state('app.signin', {
+  }).state('app.signin', {
       url: '/signin',
       views: {
         'menuContent': {
-          templateUrl: 'templates/signin.html',
+          templateUrl: 'pages/signin.html',
           controller: 'SignInCtrl'
         }
       }
-    })
-
-    .state('app.playlists', {
-      url: '/playlists',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/playlists.html',
-          controller: 'PlaylistsCtrl'
-        }
-      }
-    })
-
-  .state('app.single', {
-    url: '/playlists/:playlistId',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/playlist.html',
-        controller: 'PlaylistCtrl'
-      }
-    }
-  });
+    });
+    
   // if none of the above states are matched, use this as the fallback
   // $urlRouterProvider.otherwise('/signin');
-  $urlRouterProvider.otherwise('app/search');
+  // $urlRouterProvider.otherwise('app/search');
 });
 
-function wlCommonInit() {
-    console.log(">> wlCommonInit() ..." );  
-    var serverUrl = WL.App.getServerUrl(function(success){
-        console.log(success);
-    }, function(fail){
-        console.log(fail);
+
+app.run(function($rootScope, $state){
+    $rootScope.$on('login-challenge', function(){
+        $state.go('app.signin');
     });
-    WLAuthorizationManager.obtainAccessToken().then(
-        function (accessToken) {
-          console.log(">> Success - Connected to MobileFirst Server");          
-        },
-        function (error) {
-          console.log(">> Failed to connect to MobileFirst Server");  
-          console.log(error);        
-        }
-    );
-}
+    
+    $state.go('app.signin');
+});
