@@ -41,9 +41,8 @@ Red Arrows: MFP Adapter > Backend Calls
 2. Install [ionic](http://ionicframework.com/getting-started/) on the command line `$ npm install -g cordova ionic`
 3. `$ git clone git@github.ibm.com:cord-americas/MotoCorpService.git` this repository
 4. `$ cd MotoCorp` into the app folder
-5. `$ ionic platform add ios` add the ios platform
-6. `$ ionic build ios` build ios platform
-7. `$ ionic emulate ios` emulate the app
+5. `$ cordova platform add ios` add the ios platform
+6. `$ cordova build ios; cordova emulate ios` build ios platform and emulate
 
 --------------------------------
 
