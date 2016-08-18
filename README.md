@@ -13,7 +13,7 @@ One app for 2 types of employees - mechanic & Customer service rep. The app has 
 
 --------------------------------
 
-## Architecture Diagram 
+## Architecture Diagram
 
 Blue Arrows: MFP Device > Server Calls
 
@@ -42,7 +42,8 @@ Red Arrows: MFP Adapter > Backend Calls
 3. `$ git clone git@github.ibm.com:cord-americas/MotoCorpService.git` this repository
 4. `$ cd MotoCorp` into the app folder
 5. `$ cordova platform add ios` add the ios platform
-6. `$ cordova build ios; cordova emulate ios` build ios platform and emulate
+6. `$ cordova plugin add cordova-plugin-mfp` add the mfp plugin
+7. `$ cordova build ios; cordova emulate ios` build ios platform and emulate
 
 --------------------------------
 
