@@ -1,6 +1,6 @@
 app.controller('SignInCtrl', function($scope, $state, Auth){
     var authInProgress = false;
-    
+
 	$scope.doLogin = function () {
 		if (!authInProgress) {
 			Auth.login($scope, this.username.toLowerCase(), this.password.toLowerCase());
@@ -14,7 +14,6 @@ app.controller('SignInCtrl', function($scope, $state, Auth){
 
 	$scope.$on('login-error', function (event, error) {
 		alert(error.message);
-
 		authInProgress = false;
 	});
 });

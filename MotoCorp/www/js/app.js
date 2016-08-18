@@ -50,14 +50,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
         controller: 'CustomerCtrl'
       }
     }
-  }).state('app.signin', {
+  }).state('signin', {
       url: '/signin',
-      views: {
-        'menuContent': {
-          templateUrl: 'pages/signin.html',
-          controller: 'SignInCtrl'
-        }
-      }
+      templateUrl: 'pages/signin.html',
+      controller: 'SignInCtrl'
     });
     
   // if none of the above states are matched, use this as the fallback
@@ -68,8 +64,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 app.run(function($rootScope, $state){
     $rootScope.$on('login-challenge', function(){
-        $state.go('app.signin');
+        $state.go('signin');
     });
     
-    $state.go('app.signin');
+    $state.go('signin');
 });
