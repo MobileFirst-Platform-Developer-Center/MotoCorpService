@@ -53,6 +53,7 @@ function getCustomer(customerId) {
 
 
 app.controller('SearchCtrl', function($scope){
+  // this is where we change where we get the customers from
   $scope.customers = customers;
   $scope.data = {};
   $scope.found = {};

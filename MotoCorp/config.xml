@@ -49,7 +49,7 @@
         </mfp:security>
     </mfp:android>
     <mfp:ios>
-        <mfp:sdkChecksum>1265379934</mfp:sdkChecksum>
+        <mfp:sdkChecksum>2417110129</mfp:sdkChecksum>
         <mfp:appChecksum>0</mfp:appChecksum>
         <mfp:security>
             <mfp:testWebResourcesChecksum enabled="false" ignoreFileExtensions="png, jpg, jpeg, gif, mp4, mp3" />
@@ -76,7 +76,7 @@
         </mfp:windows10>
         <mfp:appChecksum>0</mfp:appChecksum>
     </mfp:windows>
-    <mfp:platformVersion>8.0.0.00-20160722-1316</mfp:platformVersion>
+    <mfp:platformVersion>8.0.0.00-20160803-1114</mfp:platformVersion>
     <mfp:clientCustomInit enabled="false" />
     <mfp:server runtime="mfp" url="https://unbreakable-ky-server.mybluemix.net:443" />
     <mfp:directUpdateAuthenticityPublicKey />
