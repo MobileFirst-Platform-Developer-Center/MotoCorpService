@@ -57,32 +57,75 @@ import com.worklight.adapters.rest.api.WLServerAPIProvider;
 
 @OAuthSecurity(enabled=false)
 @Api(value = "Sample Adapter Resource")
+@Produces(MediaType.TEXT_PLAIN)
 @Path("/customers")
 public class CustomerInfoResource {
+
+    private static CloseableHttpClient client;
+	private static HttpHost host;
+
+
+    public static void init() {
+      client = HttpClientBuilder.create().build();
+      host = new HttpHost("mobilefirstplatform.ibmcloud.com");
+    }
     
     WLServerAPI api = WLServerAPIProvider.getWLServerAPI();
-   	
-    @ApiOperation(value = "Query Parameter Example", notes = "Example of passing query parameters to a resource. Returns a greeting containing the name that was passed in the query parameter.")
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "Greeting message returned") })
-	@GET
-	@Produces("application/json")
-    public String getCustomers(){
     
-        HttpClientBuilder builder = HttpClientBuilder.create();
-        HttpClient httpClient = builder.build();
+    /*
+	 * Path for method:
+	 * "<server address>/mfp/api/adapters/teste/resource/unprotected"
+	 */
 
+	@ApiOperation(value = "Unprotected Resource", notes = "Example of an unprotected resource, this resource is accessible without a valid token.")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "A constant string is returned") })
+	@GET
+	@Path("/unprotected")
+	@Produces(MediaType.TEXT_PLAIN)
+	@OAuthSecurity(enabled = false)
+	public String unprotected() {
+		return "Hello from unprotected resource!";
+	}
+     
+    /*
+	 * Path for method:
+	 * "<server address>/mfp/api/adapters/teste/resource/unprotected"
+	 */
 
-        //String credentials =  "basic-auth-username:password";
-
-        //HttpGet get = new HttpGet("https://localhost:8080/customers");
-        HttpGet get = new HttpGet("");
-        get.addHeader("Content-Type","application/json");
-        //get.addHeader("Authorization", "Basic " + new String(Base64.encodeBase64(credentials.getBytes())));
-
-        try {
-            httpClient.execute(get);
-        } catch (IOException ignored) {}
-        
-        return "holla";
+	@ApiOperation(value = "Unprotected Resource", notes = "Example of an unprotected resource, this resource is accessible without a valid token.")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "A constant string is returned") })
+	@GET
+	@Path("/unprotectedGET")
+	@Produces("application/json")
+	@OAuthSecurity(enabled = false)
+    public void get(@Context HttpServletResponse response, @QueryParam("tag") String tag)
+        throws IOException, IllegalStateException, SAXException {
+      if(tag!=null && !tag.isEmpty()){
+        execute(new HttpGet("/blog/atom/"+ tag +".xml"), response);
+      }
+      else{
+        execute(new HttpGet("/feed.xml"), response);
+      }
     }
+    
+    
+    	public void execute(HttpUriRequest req, HttpServletResponse resultResponse)
+			throws IOException,
+			IllegalStateException, SAXException {
+		HttpResponse RSSResponse = client.execute(host, req);
+		ServletOutputStream os = resultResponse.getOutputStream();
+		if (RSSResponse.getStatusLine().getStatusCode() == HttpStatus.SC_OK){
+			resultResponse.addHeader("Content-Type", "application/json");
+			String json = XML.toJson(RSSResponse.getEntity().getContent());
+			os.write(json.getBytes(Charset.forName("UTF-8")));
+
+		}else{
+			resultResponse.setStatus(RSSResponse.getStatusLine().getStatusCode());
+			RSSResponse.getEntity().getContent().close();
+			os.write(RSSResponse.getStatusLine().getReasonPhrase().getBytes());
+		}
+		os.flush();
+		os.close();
+	}
+
 }
