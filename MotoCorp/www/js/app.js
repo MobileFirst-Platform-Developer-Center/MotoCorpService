@@ -54,7 +54,17 @@ app.config(function($stateProvider, $urlRouterProvider) {
       url: '/signin',
       templateUrl: 'pages/signin.html',
       controller: 'SignInCtrl'
+    })
+    .state('app.newvisit', {
+      url: '/newvisit',
+      views: {
+      'menuContent': {
+        templateUrl: 'pages/newvisit.html',
+        controller: 'VisitCtrl'
+      }
+    }
     });
+
     
   // if none of the above states are matched, use this as the fallback
   // $urlRouterProvider.otherwise('/signin');
