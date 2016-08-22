@@ -13,13 +13,13 @@ app.listen(PORT);
 console.log('Running on http://localhost:' + PORT);
 
 
-//read the customer info file 
-var customerDB = fs.readFileSync("customers.json");
+//read the customer info file
+var customerDB = fs.readFileSync("./customers.json");
 var customers = JSON.parse(customerDB);
 
 function saveCustomers(newCustomers){
   // save new customer info
-  var customerFile = 'customers.json';
+  var customerFile = './customers.json';
   fs.writeFile(customerFile, JSON.stringify(newCustomers, null, 4), function(err) {
       if(err) {
         console.log(err);
@@ -72,7 +72,7 @@ app.get('/customers/:id', function(req,res){
 app.delete('/customers/:id', function(req, res){
   var customerId = parseInt(req.params.id,10);
   var matchedCustomer = _.findWhere(customers,{id:customerId});
-  
+
 	if (!matchedCustomer) {
 		res.status(404).json({"Error": "No customer found"});
 	} else {

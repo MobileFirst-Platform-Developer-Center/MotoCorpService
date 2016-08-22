@@ -1,10 +1,20 @@
 {
-  "name": "docker-centos-hello",
-  "private": true,
-  "version": "0.0.1",
-  "description": "Node.js Hello world app on CentOS using docker",
-  "author": "Daniel Gasienica <daniel@gasienica.ch>",
+  "name": "motonode",
+  "version": "1.0.0",
+  "description": "simple node app",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon server.js"
+  },  
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "express": "3.2.4"
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "underscore": "^1.8.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.10.1"
   }
+
 }

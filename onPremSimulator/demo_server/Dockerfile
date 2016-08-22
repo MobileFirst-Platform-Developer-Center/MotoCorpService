@@ -13,4 +13,7 @@ RUN cd /src; npm install --production
 COPY . /src
 
 EXPOSE  8080
-CMD ["node", "/src/index.js"]
+
+CMD cd /src && node server.js
+
+#CMD ["node", "/src/server.js"]

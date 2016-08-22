@@ -14,4 +14,8 @@ docker run  --name onprem_crm  -p 49160:8080 -d centos-node-hello
 curl -i $DOCKER_HOST_IP:49160
 #e.g.:
 curl -i 192.168.99.100:49160
+
+
+# Debuging
+docker run  --name onprem_crm  -p 49160:8080 -it centos-node-hello /bin/bash
 ```
