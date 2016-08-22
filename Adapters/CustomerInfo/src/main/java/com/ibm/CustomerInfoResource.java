@@ -68,12 +68,8 @@ import com.worklight.adapters.rest.api.WLServerAPIProvider;
 public class CustomerInfoResource {
 
     private static CloseableHttpClient client;
-	private static HttpHost host;
-
-
     public static void init() {
       client = HttpClientBuilder.create().build();
-      host = new HttpHost("localhost", 8080);
     }
     
     WLServerAPI api = WLServerAPIProvider.getWLServerAPI();
@@ -89,7 +85,7 @@ public class CustomerInfoResource {
 	@Produces("application/json")
 	@OAuthSecurity(enabled = false)
     public String getCustomers() throws Exception{
-        String url = "http://localhost:8080/customers";
+        String url = "http://cap-sg-prd-2.integration.ibmcloud.com:15330/customers";
         HttpGet request = new HttpGet(url); 
         CloseableHttpClient client = HttpClients.createDefault();
         CloseableHttpResponse response = client.execute(request);
