@@ -69,12 +69,23 @@ app.controller('SearchCtrl', function($scope){
 });
 
 var customers = [
-    { name: 'Jack Reacher', plate: 'ETY-5678', id: 1 },
-    { name: 'Joe Blow', plate: 'POA-1234', id: 2 }
+    { name: 'Jack Reacher', plate: '1234', make: 'Honda', model: 'Accord', 
+    vin: '1234567890', visits: [{date: '01/01/16', type: "oil change"}, {date: '06/11/16', type: "tire rotation"}, {date: '08/01/16', type:"tune up"}], id: 1 },
+    { name: 'Joe Blow', plate: '9876', make: 'Honda', model: 'Accord', 
+    vin: '1234567890', visits: [{date: '01/01/16', type: "oil change"}, {date: '06/11/16', type: "tire rotation"}], id: 2 }
   ];
 
 app.controller('CustomerCtrl', function($scope,$state){
   $scope.customer = getCustomer($state.params.customerId);
 });
+
+app.controller('VisitCtrl', function($scope,$state){
+  $scope.date = new Date();
+
+  $scope.newVisit = function(){
+    alert($scope.date);
+  };
+});
+
 
 
