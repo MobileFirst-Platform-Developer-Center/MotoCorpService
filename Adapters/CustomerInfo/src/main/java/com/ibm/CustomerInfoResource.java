@@ -50,6 +50,12 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.HttpClient;
 import org.apache.wink.json4j.utils.XML;
 import org.xml.sax.SAXException;
+import org.apache.http.util.EntityUtils;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.HttpEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+
 
 import com.worklight.adapters.rest.api.WLServerAPI;
 import com.worklight.adapters.rest.api.WLServerAPIProvider;
@@ -62,70 +68,30 @@ import com.worklight.adapters.rest.api.WLServerAPIProvider;
 public class CustomerInfoResource {
 
     private static CloseableHttpClient client;
-	private static HttpHost host;
-
-
     public static void init() {
       client = HttpClientBuilder.create().build();
-      host = new HttpHost("mobilefirstplatform.ibmcloud.com");
     }
     
     WLServerAPI api = WLServerAPIProvider.getWLServerAPI();
-    
-    /*
-	 * Path for method:
-	 * "<server address>/mfp/api/adapters/teste/resource/unprotected"
-	 */
-
-	@ApiOperation(value = "Unprotected Resource", notes = "Example of an unprotected resource, this resource is accessible without a valid token.")
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "A constant string is returned") })
-	@GET
-	@Path("/unprotected")
-	@Produces(MediaType.TEXT_PLAIN)
-	@OAuthSecurity(enabled = false)
-	public String unprotected() {
-		return "Hello from unprotected resource!";
-	}
      
     /*
 	 * Path for method:
-	 * "<server address>/mfp/api/adapters/teste/resource/unprotected"
+	 * "<server address>/mfp/api/adapters/CustomerInfo/resource/customers"
 	 */
 
-	@ApiOperation(value = "Unprotected Resource", notes = "Example of an unprotected resource, this resource is accessible without a valid token.")
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "A constant string is returned") })
+	@ApiOperation(value = "Customers", notes = "Getting all the customer info.")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "A JSONObject is returned") })
 	@GET
-	@Path("/unprotectedGET")
 	@Produces("application/json")
 	@OAuthSecurity(enabled = false)
-    public void get(@Context HttpServletResponse response, @QueryParam("tag") String tag)
-        throws IOException, IllegalStateException, SAXException {
-      if(tag!=null && !tag.isEmpty()){
-        execute(new HttpGet("/blog/atom/"+ tag +".xml"), response);
-      }
-      else{
-        execute(new HttpGet("/feed.xml"), response);
-      }
+    public String getCustomers() throws Exception{
+        String url = "http://cap-sg-prd-2.integration.ibmcloud.com:15330/customers";
+        HttpGet request = new HttpGet(url); 
+        CloseableHttpClient client = HttpClients.createDefault();
+        CloseableHttpResponse response = client.execute(request);
+        HttpEntity entity = response.getEntity();
+        String responseString = EntityUtils.toString(entity);
+        return responseString;
     }
-    
-    
-    	public void execute(HttpUriRequest req, HttpServletResponse resultResponse)
-			throws IOException,
-			IllegalStateException, SAXException {
-		HttpResponse RSSResponse = client.execute(host, req);
-		ServletOutputStream os = resultResponse.getOutputStream();
-		if (RSSResponse.getStatusLine().getStatusCode() == HttpStatus.SC_OK){
-			resultResponse.addHeader("Content-Type", "application/json");
-			String json = XML.toJson(RSSResponse.getEntity().getContent());
-			os.write(json.getBytes(Charset.forName("UTF-8")));
-
-		}else{
-			resultResponse.setStatus(RSSResponse.getStatusLine().getStatusCode());
-			RSSResponse.getEntity().getContent().close();
-			os.write(RSSResponse.getStatusLine().getReasonPhrase().getBytes());
-		}
-		os.flush();
-		os.close();
-	}
 
 }
