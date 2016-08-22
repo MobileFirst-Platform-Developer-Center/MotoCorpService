@@ -87,7 +87,7 @@ public class CustomerInfoResource {
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "A JSONObject is returned") })
 	@GET
 	@Produces("application/json")
-	@OAuthSecurity(enabled = false)
+	//@OAuthSecurity(enabled = false)
     public String getCustomers() throws Exception{
         String url = "http://cap-sg-prd-2.integration.ibmcloud.com:15330/customers";
         HttpGet request = new HttpGet(url); 
@@ -102,7 +102,7 @@ public class CustomerInfoResource {
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "A JSONObject is returned") })
     @POST
 	@Produces("application/json")
-	@OAuthSecurity(enabled = false)
+	//@OAuthSecurity(enabled = false)
     public Response postCustomers() throws Exception{
         String url = "http://cap-sg-prd-2.integration.ibmcloud.com:15330/customers";
         String payload = "{\n    \"name\": \"Pete\",\n    \"plate\": \"EYW8\"\n}";
