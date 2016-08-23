@@ -1,0 +1,32 @@
+<ion-view view-title="New Customer">
+
+  <ion-content padding="true" scroll="false">  
+
+    <div class="list">
+    <label class="item item-input item-stacked-label">
+      <span class="input-label list-name">Name</span>
+      <input type="text" value={{customer.name}}>
+    </label>
+    <label class="item item-input item-stacked-label">
+      <span class="input-label list-name">License Plate</span>
+      <input type="text" value={{customer.plate}}>
+    </label>
+    <label class="item item-input item-stacked-label">
+      <span class="input-label list-name">Make</span>
+      <input type="text" value={{customer.make}}>
+    </label>
+    <label class="item item-input item-stacked-label">
+      <span class="input-label list-name">Model</span>
+      <input type="text" value={{customer.model}}>
+    </label>
+    <label class="item item-input item-stacked-label">
+      <span class="input-label list-name">VIN</span>
+      <input type="text" value={{customer.vin}}>
+    </label>
+
+<div ng-click="newCustomer()" class=" button button-positive button-block ">Add Customer</div>
+
+</div>
+
+  </ion-content>
+</ion-view>
