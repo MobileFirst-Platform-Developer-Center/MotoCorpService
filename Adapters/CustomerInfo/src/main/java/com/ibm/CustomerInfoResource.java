@@ -124,7 +124,7 @@ public class CustomerInfoResource {
         return Response.ok(result).build();
     }
     
-    @ApiOperation(value = "Customer Appointment", notes = "Putting new customer appointments")
+    @ApiOperation(value = "Customer Appointment", notes = "Put new customer appointments")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "A JSONObject is returned") })
     @PUT
 	@Produces("application/json")
