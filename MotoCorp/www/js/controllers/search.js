@@ -57,14 +57,14 @@ app.controller('SearchCtrl', function($scope){
   $scope.customers = customers;
   $scope.data = {};
   $scope.found = {};
-  
-  $scope.searchPlate = function(plate){
+
+  $scope.searchPlate = function(plate){ 
     for (var i = 0; i < customers.length; i++) {
     if (customers[i].plate == plate) {
       $scope.found = customers[i];
       return $scope.found;
+     }
     }
-  }
   };
 });
 
@@ -77,6 +77,10 @@ var customers = [
 
 app.controller('CustomerCtrl', function($scope,$state){
   $scope.customer = getCustomer($state.params.customerId);
+  $scope.newCustomer = function(){
+    alert("New Customer Created");
+  };
+
 });
 
 app.controller('VisitCtrl', function($scope,$state){
@@ -85,6 +89,25 @@ app.controller('VisitCtrl', function($scope,$state){
   $scope.newVisit = function(){
     alert($scope.date);
   };
+
+  $scope.test = null;
+
+  $scope.getAdapter = function(){
+    var resourceRequest = new WLResourceRequest("/adapters/CustomerInfo/customers",
+                WLResourceRequest.GET
+            );
+    resourceRequest.send().then(
+                  function(response){
+                     $scope.test = JSON.parse(response.responseText);
+                     $scope.$apply(); 
+                  },
+                  function(error){
+                      console.log(error);
+                  }
+              );
+  }; // end getAdapter
+
+
 });
 
 
