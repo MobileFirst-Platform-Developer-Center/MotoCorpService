@@ -33,6 +33,8 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.PUT;
 
 import com.ibm.mfp.adapter.api.ConfigurationAPI;
 import com.ibm.mfp.adapter.api.OAuthSecurity;
@@ -58,10 +60,11 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.entity.ByteArrayEntity;
+import org.apache.http.client.methods.HttpPut;
 
 import com.worklight.adapters.rest.api.WLServerAPI;
 import com.worklight.adapters.rest.api.WLServerAPIProvider;
-
+import com.ibm.json.java.JSONObject;
 
 @OAuthSecurity(enabled=false)
 @Api(value = "Sample Adapter Resource")
@@ -98,14 +101,17 @@ public class CustomerInfoResource {
         return responseString;
     }
     
-    @ApiOperation(value = "Customers", notes = "Posting new customer info.")
+    @ApiOperation(value = "Customers", notes = "Posting new customer info w/token.")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "A JSONObject is returned") })
-    @POST
+	@POST
 	@Produces("application/json")
-	//@OAuthSecurity(enabled = false)
-    public Response postCustomers() throws Exception{
-        String url = "http://cap-sg-prd-2.integration.ibmcloud.com:15330/customers";
-        String payload = "{\n    \"name\": \"Pete\",\n    \"plate\": \"EYW8\"\n}";
+	@Consumes("application/json")
+	@OAuthSecurity(enabled = false)
+    public Response postCustomers( JSONObject profile
+    		) throws Exception{
+        
+		String url = "http://cap-sg-prd-2.integration.ibmcloud.com:15330/customers";
+		String payload = profile.toString();
         
         HttpPost request = new HttpPost(url);
         request.addHeader("Content-Type","application/json");
@@ -117,6 +123,28 @@ public class CustomerInfoResource {
         String result = EntityUtils.toString(response.getEntity());
         return Response.ok(result).build();
     }
-		
+    
+    @ApiOperation(value = "Customer Appointment", notes = "Put new customer appointments")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "A JSONObject is returned") })
+    @PUT
+	@Produces("application/json")
+	@Consumes("application/json")
+	@OAuthSecurity(enabled = false)
+    public Response putsAppointments( JSONObject appointment
+    		) throws Exception{
+        
+		String url = "http://cap-sg-prd-2.integration.ibmcloud.com:15330/customers";
+        //String payload = "{\n    \"name\": \"Pete\",\n    \"plate\": \"EYW8\"\n}";
+		String payload = appointment.toString();
+        
+        HttpPut request = new HttpPut(url);
+        request.addHeader("Content-Type","application/json");
+        
+        HttpEntity entity = new ByteArrayEntity(payload.getBytes("UTF-8"));
+        request.setEntity(entity);
 
+        HttpResponse response = client.execute(request);
+        String result = EntityUtils.toString(response.getEntity());
+        return Response.ok(result).build();
+    }
 }
