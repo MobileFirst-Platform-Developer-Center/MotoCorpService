@@ -51,6 +51,15 @@ app.config(function($stateProvider, $urlRouterProvider) {
       templateUrl: 'app/views/login.html',
       controller: 'LoginCtrl'
     })
+    .state('app.newcustomer', {
+      url: '/newcustomer',
+      views: {
+      'menuContent': {
+        templateUrl: 'pages/newcustomer.html',
+        controller: 'CustomerCtrl'
+      }
+    }
+    })
     .state('app.newvisit', {
       url: '/newvisit',
       views: {
@@ -66,6 +75,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
   // $urlRouterProvider.otherwise('/signin');
   // $urlRouterProvider.otherwise('app/search');
 });
+
 
 
 app.run(function($rootScope, $state){
