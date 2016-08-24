@@ -90,7 +90,7 @@ public class CustomerInfoResource {
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "A JSONObject is returned") })
 	@GET
 	@Produces("application/json")
-	//@OAuthSecurity(enabled = false)
+	@OAuthSecurity(enabled = false)
     public String getCustomers() throws Exception{
         String url = "http://cap-sg-prd-2.integration.ibmcloud.com:15330/customers";
         HttpGet request = new HttpGet(url); 
@@ -101,18 +101,19 @@ public class CustomerInfoResource {
         return responseString;
     }
     
-    @ApiOperation(value = "Customers", notes = "Posting new customer info w/token.")
+    @ApiOperation(value = "Customers", notes = "Post new customers")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "A JSONObject is returned") })
 	@POST
 	@Produces("application/json")
 	@Consumes("application/json")
 	@OAuthSecurity(enabled = false)
-    public Response postCustomers( JSONObject profile
+    public Response newCustomer( 
+    			JSONObject newCust
     		) throws Exception{
         
-		String url = "http://cap-sg-prd-2.integration.ibmcloud.com:15330/customers";
-		String payload = profile.toString();
-        
+		String url = "http://cap-sg-prd-2.integration.ibmcloud.com:15330/customers/";
+		String payload = newCust.toString();
+        //sample customer {"name": "Jack Reacher", "plate": "ETS-9876", "make": "Honda","model": "Accord","vin": "1234567890"}
         HttpPost request = new HttpPost(url);
         request.addHeader("Content-Type","application/json");
         
@@ -138,6 +139,91 @@ public class CustomerInfoResource {
 		String payload = appointment.toString();
         
         HttpPut request = new HttpPut(url);
+        request.addHeader("Content-Type","application/json");
+        
+        HttpEntity entity = new ByteArrayEntity(payload.getBytes("UTF-8"));
+        request.setEntity(entity);
+
+        HttpResponse response = client.execute(request);
+        String result = EntityUtils.toString(response.getEntity());
+        return Response.ok(result).build();
+    }
+    
+    @ApiOperation(value = "Customer", notes = "Get customer by ID")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "A JSONObject is returned") })
+    @GET
+	@Produces("application/json")
+	@Path("/custID")
+	@OAuthSecurity(enabled = false)
+    public String getCustomerByID( @QueryParam("custID") String custID
+    		) throws Exception{
+        String url = "http://cap-sg-prd-2.integration.ibmcloud.com:15330/customers/" + custID;
+        HttpGet request = new HttpGet(url); 
+        CloseableHttpClient client = HttpClients.createDefault();
+        CloseableHttpResponse response = client.execute(request);
+        HttpEntity entity = response.getEntity();
+        String responseString = EntityUtils.toString(entity);
+        return responseString;
+    }
+    
+    @ApiOperation(value = "Customer", notes = "Get customer visits by custID")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "A JSONObject is returned") })
+    @GET
+	@Produces("application/json")
+	@Path("/custID/visits")
+	@OAuthSecurity(enabled = false)
+    public String getCustomerVisitsByID( @QueryParam("custID") String custID
+    		) throws Exception{
+        String url = "http://cap-sg-prd-2.integration.ibmcloud.com:15330/customers/" + custID + "/visits";
+        HttpGet request = new HttpGet(url); 
+        CloseableHttpClient client = HttpClients.createDefault();
+        CloseableHttpResponse response = client.execute(request);
+        HttpEntity entity = response.getEntity();
+        String responseString = EntityUtils.toString(entity);
+        return responseString;
+    }
+    
+    @ApiOperation(value = "Customer", notes = "Search customers by plate or id")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "A JSONObject is returned") })
+    @POST
+	@Produces("application/json")
+	@Consumes("application/json")
+	@Path("/search")
+	@OAuthSecurity(enabled = false)
+    public Response searchCustomers( JSONObject searchFilter
+    		) throws Exception{
+        
+		String url = "http://cap-sg-prd-2.integration.ibmcloud.com:15330/customers/_search";
+        //sample searchFilter = { "plate": "ETS-9876"}
+		String payload = searchFilter.toString();
+        
+        HttpPost request = new HttpPost(url);
+        request.addHeader("Content-Type","application/json");
+        
+        HttpEntity entity = new ByteArrayEntity(payload.getBytes("UTF-8"));
+        request.setEntity(entity);
+
+        HttpResponse response = client.execute(request);
+        String result = EntityUtils.toString(response.getEntity());
+        return Response.ok(result).build();
+    }
+    
+    @ApiOperation(value = "Customer", notes = "Create new visit for customer by custID")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "A JSONObject is returned") })
+    @POST
+	@Produces("application/json")
+	@Consumes("application/json")
+	@Path("/newVisit")
+	@OAuthSecurity(enabled = false)
+    public Response newVisit( 
+    			JSONObject newVisit,
+    			@QueryParam("custID") String custID
+    		) throws Exception{
+        
+		String url = "http://cap-sg-prd-2.integration.ibmcloud.com:15330/customers/" + custID + "/visits/";
+		String payload = newVisit.toString();
+        //sample customer {"name": "Jack Reacher", "plate": "ETS-9876", "make": "Honda","model": "Accord","vin": "1234567890"}
+        HttpPost request = new HttpPost(url);
         request.addHeader("Content-Type","application/json");
         
         HttpEntity entity = new ByteArrayEntity(payload.getBytes("UTF-8"));
