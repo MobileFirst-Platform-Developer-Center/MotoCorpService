@@ -10,9 +10,25 @@ docker stop onprem_crm && docker rm onprem_crm
 
 docker run  --name onprem_crm  -p 49160:8080 -d centos-node-hello
 
+# redeploy production:
+docker stop onprem_crm && docker rm onprem_crm && docker run  --name onprem_crm  -p 49160:8080 -d centos-node-hello
+
+# test production
+#list cusotmers
+curl -X GET http://cap-sg-prd-2.integration.ibmcloud.com:15330/customers/
+
+curl -X PUT -H "Content-Type: application/json" -d '{ "name": "New Name - B" }' http://cap-sg-prd-2.integration.ibmcloud.com:15330/customers/1 -vv
+
+```
+
+### Tests
+```bash
+
+
 #test interative mode
 docker stop onprem_crm_test && docker rm onprem_crm_test
 docker run  --name onprem_crm_test  -p 49161:8080 -it centos-node-hello /bin/bash
+
 
 
 docker build --no-cache -t centos-node-hello ./demo_server/ && docker stop onprem_crm_test && docker rm onprem_crm_test && docker run  --name onprem_crm_test  -p 49161:8080 -d centos-node-hello
