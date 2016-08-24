@@ -17,7 +17,6 @@ docker stop onprem_crm && docker rm onprem_crm && docker run  --name onprem_crm 
 #list cusotmers
 curl -X GET http://cap-sg-prd-2.integration.ibmcloud.com:15330/customers/
 
-curl -X GET http://cap-sg-prd-2.integration.ibmcloud.com:15330/customers/
 
 curl -X PUT -H "Content-Type: application/json" -d '{ "name": "New Name - B" }' http://cap-sg-prd-2.integration.ibmcloud.com:15330/customers/1 -vv
 
