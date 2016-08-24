@@ -27,6 +27,7 @@ function saveCustomers(newCustomers) {
 			console.log("JSON saved to " + customerFile);
 		}
 	});
+	//customers = fs.readFileSync("./customers.json");
 }
 
 /* Main page */
@@ -68,6 +69,40 @@ app.get('/customers/:id', function (req, res) {
 	}
 });
 
+app.get('/customers/:id/visits/', function (req, res) {
+	var customerId = parseInt(req.params.id, 10);
+	var matchedCustomer = _.findWhere(customers, {id: customerId});
+	// if you found a match, return the customer, if not, send 404
+	if (matchedCustomer) {
+		//if visit is missing create one
+		res.send((_.defaults(matchedCustomer, {visits: []})).visits);
+	} else {
+		res.status(404).send("Customer not found");
+	}
+});
+
+app.get('/customers/:customerId/visits/:visitId', function (req, res) {
+	var customerId = parseInt(req.params.customerId, 10); //why the default 10?
+	var visitId = parseInt(req.params.visitId, 10); //why the default 10?
+	var payloadDelta = req.body;
+	var customerIdx = _.findIndex(customers, {id: customerId});
+
+
+		if (customerIdx < 0 ) {
+			res.status(404).send("Customer not found");
+		} else {
+			var visitIdx = _.findIndex(customers[customerIdx].visits, {id: visitId});
+			if(visitIdx <0 ) {
+				res.status(404).send("Visit not found");
+			} else {
+				var customerVisits = (_.defaults(customers[customerIdx], {visits: []})).visits;
+				res.json(customerVisits[visitIdx]);
+			}
+		}
+
+});
+
+
 /* Delete customer */
 app.delete('/customers/:id', function (req, res) {
 	var customerId = parseInt(req.params.id, 10);
@@ -79,45 +114,76 @@ app.delete('/customers/:id', function (req, res) {
 		customers = _.without(customers, matchedCustomer);
 		// save new customer file
 		saveCustomers(customers);
-		// display all customers
-		res.json(customers);
+		// display all customers - success is 200
+		res.sendStatus(200);
 	}
 });
 
-/* Update customer */
+app.put('/customers/:customerId/visits/:visitId', function (req, res) {
+	var customerId = parseInt(req.params.customerId, 10); //why the default 10?
+	var visitId = parseInt(req.params.visitId, 10); //why the default 10?
+	var payloadDelta = req.body;
+	var customerIdx = _.findIndex(customers, {id: customerId});
+	updateOrCreateCustomerVisit(customerId, visitId, payloadDelta);
+	res.json(_.findWhere(customers[customerIdx].visits, {id: visitId}));
+});
+
+function updateOrCreateCustomerVisit(customerId, visitId, payloadDelta ){
+	var matchedCustomerIdx = _.findIndex(customers, {id: customerId});
+	if (matchedCustomerIdx < 0) {
+		return res.status(404).send("Customer not found");
+	}
+	var customerVisits = (_.defaults(customers[matchedCustomerIdx], {visits: []})).visits;
+	var visitIdx = _.findIndex(customerVisits, {id: visitId});
+		if(visitIdx <0 ){
+			//new array
+			customers[matchedCustomerIdx].visits.push( _.extend(payloadDelta,{id: visitId}));
+		} else {
+			//visit exist:
+			var currentVisit = customers[matchedCustomerIdx].visits[visitIdx];
+			customers[matchedCustomerIdx].visits[visitIdx]=  _.extend(currentVisit,payloadDelta);
+		}
+		saveCustomers(customers);
+}
+
+
+/* Update customer - accept delta updates */
 app.put('/customers/:id', function (req, res) {
 	var customerId = parseInt(req.params.id, 10);
-	var matchedCustomer = _.findWhere(customers, {id: customerId});
-
-	var amendedCustomer = {};
-
-	if (!matchedCustomer) {
+	var matchedCustomerIdx = _.findIndex(customers, {id: customerId});
+	if (matchedCustomerIdx < 0) {
 		return res.status(404).send();
 	}
+	var payloadDelta = req.body;
+	//extend handles the nested scenario.
+	customers[matchedCustomerIdx] = _.extend(customers[matchedCustomerIdx], payloadDelta);
+	// save the new customers to file
+	saveCustomers(customers);
+	res.json(_.findWhere(customers, {id: customerId}));
+	// current customer not all
 
-	var required = ['name', 'plate'];
 
-	var payload = req.body;
-
+	//Required evaluation do not makes much sense if it is an update.
 	// removed
+	//var required = ['name', 'plate'];
+	/*
 	delete payload.id;
 
 	for (var key in payload) {
-		var value = payload[key];
-
 		var isRequired = required.indexOf(key);
 
 		if (isRequired >= 0 && _.isEmpty(value)) {
 			return res.status(400).send("Missing `" + key + "`.");
 		}
-
-		amendedCustomer[key] = value;
 	}
-
+	*/
 	// replace the matchedCustomer with the ammendedCustomer
-	_.extend(matchedCustomer, amendedCustomer);
-	// save the new customers to file
-	saveCustomers(customers);
-	// return all customers
-	res.json(customers);
+	//_.extend(matchedCustomer, amendedCustomer);
+
+
+});
+
+app.post('/customers/_search', function (req, res) {
+	var payloadSearch = req.body;
+	return res.json(_.filter(customers, payloadSearch));
 });
