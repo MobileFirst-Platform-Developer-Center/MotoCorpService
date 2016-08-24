@@ -90,7 +90,7 @@ public class CustomerInfoResource {
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "A JSONObject is returned") })
 	@GET
 	@Produces("application/json")
-	@OAuthSecurity(enabled = false)
+	//@OAuthSecurity(enabled = false)
     public String getCustomers() throws Exception{
         String url = "http://cap-sg-prd-2.integration.ibmcloud.com:15330/customers";
         HttpGet request = new HttpGet(url); 
@@ -106,7 +106,7 @@ public class CustomerInfoResource {
 	@POST
 	@Produces("application/json")
 	@Consumes("application/json")
-	@OAuthSecurity(enabled = false)
+	//@OAuthSecurity(enabled = false)
     public Response newCustomer( 
     			JSONObject newCust
     		) throws Exception{
@@ -130,7 +130,7 @@ public class CustomerInfoResource {
     @PUT
 	@Produces("application/json")
 	@Consumes("application/json")
-	@OAuthSecurity(enabled = false)
+	//@OAuthSecurity(enabled = false)
     public Response putsAppointments( JSONObject appointment
     		) throws Exception{
         
@@ -154,7 +154,7 @@ public class CustomerInfoResource {
     @GET
 	@Produces("application/json")
 	@Path("/custID")
-	@OAuthSecurity(enabled = false)
+	//@OAuthSecurity(enabled = false)
     public String getCustomerByID( @QueryParam("custID") String custID
     		) throws Exception{
         String url = "http://cap-sg-prd-2.integration.ibmcloud.com:15330/customers/" + custID;
@@ -171,7 +171,7 @@ public class CustomerInfoResource {
     @GET
 	@Produces("application/json")
 	@Path("/custID/visits")
-	@OAuthSecurity(enabled = false)
+	//@OAuthSecurity(enabled = false)
     public String getCustomerVisitsByID( @QueryParam("custID") String custID
     		) throws Exception{
         String url = "http://cap-sg-prd-2.integration.ibmcloud.com:15330/customers/" + custID + "/visits";
@@ -189,7 +189,7 @@ public class CustomerInfoResource {
 	@Produces("application/json")
 	@Consumes("application/json")
 	@Path("/search")
-	@OAuthSecurity(enabled = false)
+	//@OAuthSecurity(enabled = false)
     public Response searchCustomers( JSONObject searchFilter
     		) throws Exception{
         
@@ -214,7 +214,7 @@ public class CustomerInfoResource {
 	@Produces("application/json")
 	@Consumes("application/json")
 	@Path("/newVisit")
-	@OAuthSecurity(enabled = false)
+	//@OAuthSecurity(enabled = false)
     public Response newVisit( 
     			JSONObject newVisit,
     			@QueryParam("custID") String custID
