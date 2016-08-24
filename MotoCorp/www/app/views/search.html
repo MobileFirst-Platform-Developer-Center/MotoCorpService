@@ -1,0 +1,26 @@
+<ion-view view-title="Search" >
+  <ion-nav-buttons side="right">
+    <a class="button button-icon icon ion-plus-round" href="#/app/newcustomer"></a>
+  </ion-nav-buttons>
+ 
+  <ion-content>
+
+    <!--Search bar-->
+    <ion-header-bar class="bar bar-stable item-input-inset"> 
+      <label class="item-input-wrapper search">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input placeholder="Enter License Plate Number..." ng-model="data.plate" type="text"> 
+      </label>
+      <button ng-click="searchPlate(data.plate)" class="button button-small">
+      Search
+    </button>
+    </ion-header-bar>
+    <ion-list>
+      <ion-item href="#/app/customer/{{found.id}}">
+        <h2>Name: {{found.name}}</h2>
+        <h2>License Plate: {{found.plate}}</h2>
+      </ion-item>
+    </ion-list>
+
+  </ion-content>
+</ion-view>
