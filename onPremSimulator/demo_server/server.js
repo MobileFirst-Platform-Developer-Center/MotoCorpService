@@ -128,6 +128,20 @@ app.put('/customers/:customerId/visits/:visitId', function (req, res) {
 	res.json(_.findWhere(customers[customerIdx].visits, {id: visitId}));
 });
 
+app.post('/customers/:customerId/visits', function (req, res) {
+	var customerId = parseInt(req.params.customerId, 10); //why the default 10?
+	var payloadVisit = req.body;
+	var customerIdx = _.findIndex(customers, {id: customerId});
+
+  //if customer Visits are undefined - fix that
+  var customerVisits = (_.defaults(customers[customerIdx], {visits: []})).visits;
+  //create a new  visit id if it is a new object - generate new ID
+  var currentVisit = _.defaults(payloadVisit, {id: (customerVisits.length+1)});
+
+	updateOrCreateCustomerVisit(customerId, currentVisit.id, currentVisit);
+	res.json(_.findWhere(customers[customerIdx].visits, {id: currentVisit.id}));
+});
+
 function updateOrCreateCustomerVisit(customerId, visitId, payloadDelta ){
 	var matchedCustomerIdx = _.findIndex(customers, {id: customerId});
 	if (matchedCustomerIdx < 0) {
