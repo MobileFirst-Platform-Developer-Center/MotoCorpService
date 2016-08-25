@@ -55,7 +55,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
       url: '/newcustomer',
       views: {
       'menuContent': {
-        templateUrl: 'pages/newcustomer.html',
+        templateUrl: 'app/views/newcustomer.html',
         controller: 'CustomerCtrl'
       }
     }
