@@ -7,72 +7,54 @@
 
 package com.ibm;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.logging.Logger;
 import java.io.IOException;
-import java.nio.charset.Charset;
+import java.util.logging.Logger;
 
-import javax.ws.rs.FormParam;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
-import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletResponse;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.PUT;
-
-import com.ibm.mfp.adapter.api.ConfigurationAPI;
-import com.ibm.mfp.adapter.api.OAuthSecurity;
 
 import org.apache.http.HttpEntity;
-import org.apache.http.HttpHost;
-import org.apache.http.client.methods.HttpPost;
 import org.apache.http.HttpResponse;
-import org.apache.http.HttpStatus;
-import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.HttpClient;
-import org.apache.wink.json4j.utils.XML;
-import org.xml.sax.SAXException;
-import org.apache.http.util.EntityUtils;
 import org.apache.http.impl.client.HttpClients;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.HttpEntity;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.entity.ByteArrayEntity;
-import org.apache.http.client.methods.HttpPut;
+import org.apache.http.util.EntityUtils;
 
+import com.ibm.json.java.JSONObject;
+import com.ibm.mfp.adapter.api.AdaptersAPI;
+import com.ibm.mfp.adapter.api.ConfigurationAPI;
+import com.ibm.mfp.adapter.api.OAuthSecurity;
 import com.worklight.adapters.rest.api.WLServerAPI;
 import com.worklight.adapters.rest.api.WLServerAPIProvider;
-import com.ibm.json.java.JSONObject;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 
 @OAuthSecurity(enabled=false)
 @Api(value = "Sample Adapter Resource")
 @Produces(MediaType.TEXT_PLAIN)
 @Path("/customers")
 public class CustomerInfoResource {
-
-    String baseURL = "http://cap-sg-prd-2.integration.ibmcloud.com:15330/customers/";
+    
+	// Define logger (Standard java.util.Logger)
+	static Logger logger = Logger.getLogger(CustomerInfoResource.class.getName());
+    //http://cap-sg-prd-2.integration.ibmcloud.com:15330/customers/
     //can change this to  your personal ip address
     //String baseURL = "http://localhost:9080/customers/";
     
@@ -80,8 +62,19 @@ public class CustomerInfoResource {
     
     WLServerAPI api = WLServerAPIProvider.getWLServerAPI();
     
-    public static void init() {
-      
+    
+    @Context
+    AdaptersAPI adaptersAPI;
+    
+    
+	// Inject the MFP configuration API:
+	@Context
+	ConfigurationAPI configApi;
+    
+	
+
+	
+    public static void init() {    		
     }
     
     public CustomerInfoResource() {
@@ -96,7 +89,12 @@ public class CustomerInfoResource {
 	@Produces("application/json")
 	//@OAuthSecurity(enabled = false)
     public String getCustomers() throws Exception{
-        String url = baseURL;
+		//enable access to CRM - Secure Gateway
+		validateSecureGatewayBridge();
+		
+		
+		
+        String url = configApi.getPropertyValue("onPremCRMAddress");
         HttpGet request = new HttpGet(url); 
             CloseableHttpClient client = HttpClients.createDefault();
         CloseableHttpResponse response = client.execute(request);
@@ -104,6 +102,8 @@ public class CustomerInfoResource {
         String responseString = EntityUtils.toString(entity);
         return responseString;
     }
+
+
     
     @ApiOperation(value = "Customers", notes = "Post new customers")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "A JSONObject is returned") })
@@ -115,7 +115,10 @@ public class CustomerInfoResource {
     			JSONObject newCust
     		) throws Exception{
         
-		String url = baseURL;
+		//enable access to CRM - Secure Gateway
+		validateSecureGatewayBridge();
+    	
+		String url = configApi.getPropertyValue("onPremCRMAddress");
 		String payload = newCust.toString();
         //sample customer {"name": "Jack Reacher", "plate": "ETS-9876", "make": "Honda","model": "Accord","vin": "1234567890"}
         HttpPost request = new HttpPost(url);
@@ -137,8 +140,11 @@ public class CustomerInfoResource {
 	//@OAuthSecurity(enabled = false)
     public Response putsAppointments( JSONObject appointment
     		) throws Exception{
-        
-		String url = baseURL;
+		//enable access to CRM - Secure Gateway
+		validateSecureGatewayBridge();
+    	
+    	
+		String url = configApi.getPropertyValue("onPremCRMAddress");
         //String payload = "{\n    \"name\": \"Pete\",\n    \"plate\": \"EYW8\"\n}";
 		String payload = appointment.toString();
         
@@ -161,7 +167,10 @@ public class CustomerInfoResource {
 	//@OAuthSecurity(enabled = false)
     public String getCustomerByID( @QueryParam("custID") String custID
     		) throws Exception{
-        String url = baseURL + custID;
+		//enable access to CRM - Secure Gateway
+		validateSecureGatewayBridge();
+    	
+        String url = configApi.getPropertyValue("onPremCRMAddress") + custID;
         HttpGet request = new HttpGet(url); 
         CloseableHttpClient client = HttpClients.createDefault();
         CloseableHttpResponse response = client.execute(request);
@@ -178,7 +187,10 @@ public class CustomerInfoResource {
 	//@OAuthSecurity(enabled = false)
     public String getCustomerVisitsByID( @QueryParam("custID") String custID
     		) throws Exception{
-        String url = baseURL + custID + "/visits";
+		//enable access to CRM - Secure Gateway
+		validateSecureGatewayBridge();
+    	
+        String url = configApi.getPropertyValue("onPremCRMAddress") + custID + "/visits";
         HttpGet request = new HttpGet(url); 
         CloseableHttpClient client = HttpClients.createDefault();
         CloseableHttpResponse response = client.execute(request);
@@ -196,8 +208,11 @@ public class CustomerInfoResource {
 	//@OAuthSecurity(enabled = false)
     public Response searchCustomers( JSONObject searchFilter
     		) throws Exception{
-        
-		String url = baseURL + "_search";
+		//enable access to CRM - Secure Gateway
+		validateSecureGatewayBridge();
+    	
+    	
+		String url = configApi.getPropertyValue("onPremCRMAddress") + "_search";
         //sample searchFilter = { "plate": "ETS-9876"}
 		String payload = searchFilter.toString();
         
@@ -223,8 +238,11 @@ public class CustomerInfoResource {
     			JSONObject newVisit,
     			@QueryParam("custID") String custID
     		) throws Exception{
-        
-		String url = baseURL + custID + "/visits/";
+		//enable access to CRM - Secure Gateway
+		validateSecureGatewayBridge();
+    	
+    	
+		String url = configApi.getPropertyValue("onPremCRMAddress") + custID + "/visits/";
 		String payload = newVisit.toString();
         //sample customer {"name": "Jack Reacher", "plate": "ETS-9876", "make": "Honda","model": "Accord","vin": "1234567890"}
         HttpPost request = new HttpPost(url);
@@ -237,4 +255,16 @@ public class CustomerInfoResource {
         String result = EntityUtils.toString(response.getEntity());
         return Response.ok(result).build();
     }
+    
+    /**
+     * Check and Fix Secure gateway bridge
+     * @throws IOException
+     */
+	private void validateSecureGatewayBridge() throws IOException {
+		logger.info("validateSecureGatewayBridge:");		
+		HttpUriRequest req = new HttpGet("/SecureGatewayAdapter/secure/updateFirewall");
+		req.addHeader("Accept", "text/plain");
+		HttpResponse response = adaptersAPI.executeAdapterRequest(req);
+		logger.info("validateSecureGatewayBridge: done" + response.toString());
+	}
 }
