@@ -72,6 +72,10 @@ import com.ibm.json.java.JSONObject;
 @Path("/customers")
 public class CustomerInfoResource {
 
+    String baseURL = "http://cap-sg-prd-2.integration.ibmcloud.com:15330/customers/";
+    //can change this to  your personal ip address
+    //String baseURL = "http://localhost:9080/customers/";
+    
     private static CloseableHttpClient client;
     
     WLServerAPI api = WLServerAPIProvider.getWLServerAPI();
@@ -92,7 +96,7 @@ public class CustomerInfoResource {
 	@Produces("application/json")
 	//@OAuthSecurity(enabled = false)
     public String getCustomers() throws Exception{
-        String url = "http://cap-sg-prd-2.integration.ibmcloud.com:15330/customers";
+        String url = baseURL;
         HttpGet request = new HttpGet(url); 
             CloseableHttpClient client = HttpClients.createDefault();
         CloseableHttpResponse response = client.execute(request);
@@ -111,7 +115,7 @@ public class CustomerInfoResource {
     			JSONObject newCust
     		) throws Exception{
         
-		String url = "http://cap-sg-prd-2.integration.ibmcloud.com:15330/customers/";
+		String url = baseURL;
 		String payload = newCust.toString();
         //sample customer {"name": "Jack Reacher", "plate": "ETS-9876", "make": "Honda","model": "Accord","vin": "1234567890"}
         HttpPost request = new HttpPost(url);
@@ -134,7 +138,7 @@ public class CustomerInfoResource {
     public Response putsAppointments( JSONObject appointment
     		) throws Exception{
         
-		String url = "http://cap-sg-prd-2.integration.ibmcloud.com:15330/customers";
+		String url = baseURL;
         //String payload = "{\n    \"name\": \"Pete\",\n    \"plate\": \"EYW8\"\n}";
 		String payload = appointment.toString();
         
@@ -157,7 +161,7 @@ public class CustomerInfoResource {
 	//@OAuthSecurity(enabled = false)
     public String getCustomerByID( @QueryParam("custID") String custID
     		) throws Exception{
-        String url = "http://cap-sg-prd-2.integration.ibmcloud.com:15330/customers/" + custID;
+        String url = baseURL + custID;
         HttpGet request = new HttpGet(url); 
         CloseableHttpClient client = HttpClients.createDefault();
         CloseableHttpResponse response = client.execute(request);
@@ -174,7 +178,7 @@ public class CustomerInfoResource {
 	//@OAuthSecurity(enabled = false)
     public String getCustomerVisitsByID( @QueryParam("custID") String custID
     		) throws Exception{
-        String url = "http://cap-sg-prd-2.integration.ibmcloud.com:15330/customers/" + custID + "/visits";
+        String url = baseURL + custID + "/visits";
         HttpGet request = new HttpGet(url); 
         CloseableHttpClient client = HttpClients.createDefault();
         CloseableHttpResponse response = client.execute(request);
@@ -193,7 +197,7 @@ public class CustomerInfoResource {
     public Response searchCustomers( JSONObject searchFilter
     		) throws Exception{
         
-		String url = "http://cap-sg-prd-2.integration.ibmcloud.com:15330/customers/_search";
+		String url = baseURL + "_search";
         //sample searchFilter = { "plate": "ETS-9876"}
 		String payload = searchFilter.toString();
         
@@ -220,7 +224,7 @@ public class CustomerInfoResource {
     			@QueryParam("custID") String custID
     		) throws Exception{
         
-		String url = "http://cap-sg-prd-2.integration.ibmcloud.com:15330/customers/" + custID + "/visits/";
+		String url = baseURL + custID + "/visits/";
 		String payload = newVisit.toString();
         //sample customer {"name": "Jack Reacher", "plate": "ETS-9876", "make": "Honda","model": "Accord","vin": "1234567890"}
         HttpPost request = new HttpPost(url);
