@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Licensed Materials - Property of IBM
+	5725-I43 (C) Copyright IBM Corp. 2011, 2016. All Rights Reserved.
+	US Government Users Restricted Rights - Use, duplication or
+	disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+-->
+<mfp:adapter name="SecureGatewayBinder"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:mfp="http://www.ibm.com/mfp/integration"
+	xmlns:http="http://www.ibm.com/mfp/integration/http">
+
+	<displayName>SecureGatewayBinder</displayName>
+	<description>Setup Security Gateway  Handshake to allow access to protected on prem system</description>
+
+	<securityCheckDefinition name="SecureGatewayBinderSecurityCheck" class="com.sample.SecureGatewayBinderSecurityCheck">
+	    <property name="successStateExpirationSec" defaultValue="5"/>
+	    <property name="blockedStateExpirationSec" defaultValue="5"/>
+	    <property name="maxAttempts" defaultValue="3"/>	    
+   		<property name="sgwToken" defaultValue="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb25maWd1cmF0aW9uX2lkIjoibU82Q3NKT2JLN1RfcHJvZF9uZyIsInJlZ2lvbiI6InVzLXNvdXRoIiwiaWF0IjoxNDcxMjkwOTcwLCJleHAiOjE0NzkwNjY5NzB9.DnRkAed-m8x7xbiTxs6wGTgzeXL2Gv-sKzCov5Fcr5U"/>
+   		<property name="gatewayId" defaultValue="mO6CsJObK7T_prod_ng"/>
+   		<property name="destinationId" defaultValue="mO6CsJObK7T_rnS"/>
+   		
+	</securityCheckDefinition>
+	
+</mfp:adapter>
