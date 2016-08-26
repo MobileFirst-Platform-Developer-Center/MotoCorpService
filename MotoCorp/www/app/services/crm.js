@@ -2,8 +2,8 @@ app.factory('CRM', function () {
 
   return {
     search: function (query) {
-      var req = new WLResourceRequest('/adapters/CustomerInfo/customers', WLResourceRequest.POST);
-
+      var req = new WLResourceRequest('/adapters/CustomerInfo/customers/search', WLResourceRequest.POST);
+      req.setHeader('Content-type', 'application/json');
       return req.send(query).then(function (response) {
         return response.responseJSON;
       }, function (error) {
