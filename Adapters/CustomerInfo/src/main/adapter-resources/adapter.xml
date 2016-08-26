@@ -14,4 +14,5 @@
 	<description>CustomerInfo</description>
 
 	<JAXRSApplicationClass>com.ibm.CustomerInfoApplication</JAXRSApplicationClass>
+	<property name="onPremCRMAddress" defaultValue="http://cap-sg-prd-2.integration.ibmcloud.com:15330/customers/"/>
 </mfp:adapter>
