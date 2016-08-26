@@ -1,6 +1,9 @@
 app.factory('CRM', function () {
 
   return {
+    test: function (query) {
+      console.log("----test service");
+    },
     search: function (query) {
       var req = new WLResourceRequest('/adapters/CustomerInfo/customers/search', WLResourceRequest.POST);
       req.setHeader('Content-type', 'application/json');

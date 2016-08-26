@@ -7,7 +7,12 @@ app.controller('LoginCtrl', function ($scope, $state, Auth) {
       authInProgress = true;
     }
   };
-
+  $scope.doDemoLogin = function () {
+    if (!authInProgress) {
+      Auth.login($scope, "demo", "demo");
+      authInProgress = true;
+    }
+  };
   $scope.$on('login-success', function () {
     $state.go('app.search');
   });
