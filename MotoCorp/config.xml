@@ -110,7 +110,7 @@
     </mfp:windows>
     <mfp:platformVersion>8.0.0.00-20160803-1114</mfp:platformVersion>
     <mfp:clientCustomInit enabled="false" />
-    <mfp:server runtime="mfp" url="https://mobiledev-bo-server.mybluemix.net:443" />
+    <mfp:server runtime="mfp" url="http://unbreakable-ky-server.mybluemix.net:80" />
     <mfp:directUpdateAuthenticityPublicKey />
     <mfp:languagePreferences>en</mfp:languagePreferences>
     <plugin name="cordova-plugin-mfp" spec="~8.0.2016080320" />
