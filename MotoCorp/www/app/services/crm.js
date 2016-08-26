@@ -2,7 +2,7 @@ app.factory('CRM', function () {
 
   return {
     search: function (query) {
-      var req = WLResourceRequest('/adapters/CustomerInfo/customers', WLResourceRequest.POST);
+      var req = new WLResourceRequest('/adapters/CustomerInfo/customers', WLResourceRequest.POST);
 
       return req.send(query).then(function (response) {
         return response.responseJSON;
@@ -11,7 +11,7 @@ app.factory('CRM', function () {
       });
     },
     getCustomer: function (id) {
-      var req = WLResourceRequest('/adapters/CustomerInfo/customers/' + id, WLResourceRequest.GET);
+      var req = new WLResourceRequest('/adapters/CustomerInfo/customers/' + id, WLResourceRequest.GET);
 
       return req.send().then(function (response) {
         return response.responseJSON;
@@ -20,7 +20,7 @@ app.factory('CRM', function () {
       });
     },
     newCustomer: function (customer) {
-      var req = WLResourceRequest('/adapters/CustomerInfo/customers/', WLResourceRequest.PUT);
+      var req = new WLResourceRequest('/adapters/CustomerInfo/customers/', WLResourceRequest.PUT);
 
       return req.send(customer).then(function (response) {
         return response.responseJSON;
@@ -29,7 +29,7 @@ app.factory('CRM', function () {
       });
     },
     newVisit: function (customerId, visit) {
-      var req = WLResourceRequest('/adapters/CustomerInfo/customers/' + customerId + '/visits/', WLResourceRequest.PUT);
+      var req = new WLResourceRequest('/adapters/CustomerInfo/customers/' + customerId + '/visits/', WLResourceRequest.PUT);
 
       return req.send(visit).then(function (response) {
         return response.responseJSON;
