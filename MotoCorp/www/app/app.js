@@ -68,12 +68,21 @@ app.config(function($stateProvider, $urlRouterProvider) {
         controller: 'VisitCtrl'
       }
     }
+    })
+    .state('app.test', {
+      url: '/test',
+      views: {
+      'menuContent': {
+        templateUrl: 'app/views/test.html',
+        controller: 'TestCtrl'
+      }
+    }
     });
 
 
   // if none of the above states are matched, use this as the fallback
   // $urlRouterProvider.otherwise('/signin');
-  // $urlRouterProvider.otherwise('app/search');
+   //$urlRouterProvider.otherwise('app/test');
 });
 
 
