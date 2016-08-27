@@ -24,7 +24,7 @@ app.factory('CRM', function () {
     },
     newCustomer: function (customer) {
       var req = new WLResourceRequest('/adapters/CustomerInfo/customers/', WLResourceRequest.PUT);
-
+      req.setHeader('Content-type', 'application/json');
       return req.send(customer).then(function (response) {
         return response.responseJSON;
       }, function (error) {
