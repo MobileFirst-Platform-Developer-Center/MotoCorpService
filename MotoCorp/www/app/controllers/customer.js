@@ -33,7 +33,6 @@ app.controller('CustomerCtrl', function($scope,$state,CRM){
   };
 });
 
-<<<<<<< HEAD
 function getCustomer(customerId) {
   
   CRM.getAllCustomers().then(function(results){
@@ -71,5 +70,3 @@ function getCustomer(customerId) {
 //     id: 2
 //   }
 // ];
-=======
->>>>>>> 7dd6c0c001a082b5d45662fcd41597c9b226f1cd
