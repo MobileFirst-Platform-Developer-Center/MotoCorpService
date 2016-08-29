@@ -4,6 +4,15 @@ app.factory('CRM', function () {
     test: function (query) {
       console.log("----test service");
     },
+    getAllCustomers: function () {
+      var req = new WLResourceRequest('/adapters/CustomerInfo/customers/', WLResourceRequest.GET);
+
+      return req.send().then(function (response) {
+        return response.responseJSON;
+      }, function (error) {
+        return WLJQ.Deferred().reject(error.responseJSON).promise();
+      });
+    },
     search: function (query) {
       var req = new WLResourceRequest('/adapters/CustomerInfo/customers/search', WLResourceRequest.POST);
       req.setHeader('Content-type', 'application/json');
@@ -34,6 +43,8 @@ app.factory('CRM', function () {
       });
     },
     newVisit: function (customerId, visit) {
+      console.log("Customer id is : " + customerId);
+      console.log("Visit is : " + visit);
       var req = new WLResourceRequest('/adapters/CustomerInfo/customers/' + customerId + '/visits/', WLResourceRequest.PUT);
       req.setHeader('Content-type', 'application/json');
 

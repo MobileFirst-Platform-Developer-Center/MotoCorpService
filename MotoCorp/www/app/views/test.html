@@ -1,13 +1,25 @@
-<ion-view view-title="TestPage" >
+<ion-view view-title="TestPage">
   <ion-nav-buttons side="right">
     <a class="button button-icon icon ion-plus-round" href="#/app/newcustomer"></a>
   </ion-nav-buttons>
 
   <ion-content>
 
-    <h1>TEST:  </h1>
-    <p>{{date}}
-    </p>
+    <p>{{customer1}}</p>
+    <div ng-click="customerOne()" class=" button button-positive  button-block ">Get Customer One</div>
+
+    <p>{{customerAll}}</p>
+    <div ng-click="customerAll()" class=" button button-positive  button-block ">Get All Customers</div>
+
+    <p>{{newCustomer}}</p>
+     <input placeholder="Name" ng-model="name" type="text">
+     <input placeholder="Plate" ng-model="plate" type="text"> 
+    <div ng-click="newCustomer()" class=" button button-positive  button-block ">Create New Customer</div>
+
+    <p>{{newVisit}}</p>
+     <input placeholder="Date" ng-model="date" type="text">
+     <input placeholder="Type" ng-model="type" type="text"> 
+    <div ng-click="newVisit()" class=" button button-positive  button-block ">Create New Visit</div>
 
   </ion-content>
 </ion-view>
