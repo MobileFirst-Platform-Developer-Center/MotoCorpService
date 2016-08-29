@@ -1,4 +1,3 @@
-
 app.controller('NewCustomerCtrl', function ($scope, $state, CRM) {
   /* Create a new customer with inputs */
   $scope.newCustomer = function(){
@@ -13,5 +12,4 @@ app.controller('NewCustomerCtrl', function ($scope, $state, CRM) {
       alert(error);
     });
   };
-
 });

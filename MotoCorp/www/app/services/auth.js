@@ -24,8 +24,6 @@ app.factory('Auth', function ($rootScope) {
           // redirect to login page
           $rootScope.$emit('login-challenge');
         }
-
-
       };
 
       challengeHandler.handleSuccess = function (data) {

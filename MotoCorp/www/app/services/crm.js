@@ -1,5 +1,7 @@
 app.factory('CRM', function () {
 
+  var activeCustomer = null;
+
   return {
     test: function (query) {
       console.log("----test service");
@@ -27,13 +29,15 @@ app.factory('CRM', function () {
       req.setHeader('Content-type', 'application/json');
 
       return req.send().then(function (response) {
-        return response.responseJSON;
+        activeCustomer = response.responseJSON;
+
+        return activeCustomer;
       }, function (error) {
         return WLJQ.Deferred().reject(error.responseText).promise();
       });
     },
     newCustomer: function (customer) {
-      var req = new WLResourceRequest('/adapters/CustomerInfo/customers/', WLResourceRequest.PUT);
+      var req = new WLResourceRequest('/adapters/CustomerInfo/customers/', WLResourceRequest.POST);
       req.setHeader('Content-type', 'application/json');
 
       return req.send(customer).then(function (response) {
@@ -45,15 +49,24 @@ app.factory('CRM', function () {
     newVisit: function (customerId, visit) {
       console.log("Customer id is : " + customerId);
       console.log("Visit is : " + visit);
-      var req = new WLResourceRequest('/adapters/CustomerInfo/customers/' + customerId + '/visits/', WLResourceRequest.PUT);
+      var req = new WLResourceRequest('/adapters/CustomerInfo/customers/' + customerId + '/visits/', WLResourceRequest.POST);
       req.setHeader('Content-type', 'application/json');
 
       return req.send(visit).then(function (response) {
+        if (activeCustomer != null) {
+          if(!(activeCustomer.visits instanceof Array)) {
+            activeCustomer.visits = [];
+          }
+
+          activeCustomer.visits.push(visit);
+        }
+
         return response.responseJSON;
       }, function (error) {
         return WLJQ.Deferred().reject(error.responseText).promise();
       });
     }
-  };
+  }
+    ;
 
 });

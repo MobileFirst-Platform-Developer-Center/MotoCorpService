@@ -1,9 +1,8 @@
-// Yoel's commit
-app.controller('CustomerCtrl', function ($scope, $state, CRM) {
+app.controller('ViewCustomerCtrl', function ($scope, $state, CRM) {
   var id = $state.params.id;
 
   $scope.addVisit = function () {
-    $state.go('app.customer.visit', {id: id});
+    $state.go('app.new-visit', {id: id});
   };
 
   CRM.getCustomer(id).then(function (customer) {
@@ -28,8 +27,3 @@ app.controller('CustomerCtrl', function ($scope, $state, CRM) {
   };
 
 });
-
-//app.controller('CustomerCtrl', function($scope,$state,CRM){
-//  $scope.customer = getCustomer($state.params.customerId);
-//});
-

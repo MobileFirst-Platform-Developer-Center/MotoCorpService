@@ -7,8 +7,8 @@
 
 var app = angular.module('motocorp', ['ionic']);
 
-app.run(function($ionicPlatform) {
-  $ionicPlatform.ready(function() {
+app.run(function ($ionicPlatform) {
+  $ionicPlatform.ready(function () {
 
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -24,7 +24,7 @@ app.run(function($ionicPlatform) {
   });
 });
 
-app.config(function($stateProvider, $urlRouterProvider) {
+app.config(function ($stateProvider, $urlRouterProvider) {
   $stateProvider.state('app', {
     url: '/app',
     abstract: true,
@@ -42,55 +42,51 @@ app.config(function($stateProvider, $urlRouterProvider) {
     url: '/customer/:id',
     views: {
       'menuContent': {
-        templateUrl: 'app/views/customer.html',
-        controller: 'CustomerCtrl'
+        templateUrl: 'app/views/view-customer.html',
+        controller: 'ViewCustomerCtrl'
       }
     }
-  }).state('login', {
-      url: '/login',
-      templateUrl: 'app/views/login.html',
-      controller: 'LoginCtrl'
-    })
-    .state('app.newcustomer', {
-      url: '/newcustomer',
-      views: {
+  }).state('app.new-visit', {
+    url: '/new-visit/:id',
+    views: {
       'menuContent': {
-        templateUrl: 'app/views/newcustomer.html',
+        templateUrl: 'app/views/new-visit.html',
+        controller: 'NewVisitCtrl'
+      }
+    }
+  }).state('app.new-customer', {
+    url: '/new-customer',
+    views: {
+      'menuContent': {
+        templateUrl: 'app/views/new-customer.html',
         controller: 'NewCustomerCtrl'
       }
     }
-    })
-    .state('app.customer.visit', {
-      url: '/visit',
-      views: {
-      'menuContent': {
-        templateUrl: 'app/views/newvisit.html',
-        controller: 'VisitCtrl'
-      }
-    }
-    })
-    .state('app.test', {
-      url: '/test',
-      views: {
+  }).state('login', {
+    url: '/login',
+    templateUrl: 'app/views/login.html',
+    controller: 'LoginCtrl'
+  }).state('app.test', {
+    url: '/test',
+    views: {
       'menuContent': {
         templateUrl: 'app/views/test.html',
         controller: 'TestCtrl'
       }
     }
-    });
+  });
 
 
   // if none of the above states are matched, use this as the fallback
   // $urlRouterProvider.otherwise('/signin');
-   //$urlRouterProvider.otherwise('app/test');
+  //$urlRouterProvider.otherwise('app/test');
 });
 
 
-
-app.run(function($rootScope, $state){
-    $rootScope.$on('login-challenge', function(){
-        $state.go('login');
-    });
-
+app.run(function ($rootScope, $state) {
+  $rootScope.$on('login-challenge', function () {
     $state.go('login');
+  });
+
+  $state.go('login');
 });

@@ -97,7 +97,7 @@ public class CustomerInfoResource {
 
     @ApiOperation(value = "Customers", notes = "Post new customers")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "A JSONObject is returned")})
-    @PUT
+    @POST
     @Produces("application/json")
     @Consumes("application/json")
     public Response newCustomer(JSONObject newCust) throws Exception {

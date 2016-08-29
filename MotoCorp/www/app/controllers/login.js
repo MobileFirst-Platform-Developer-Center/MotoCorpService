@@ -1,6 +1,10 @@
 app.controller('LoginCtrl', function ($scope, $state, Auth) {
   var authInProgress = false;
 
+  // TODO: only for testing. Remove before release
+  $scope.username = '1234';
+  $scope.password = '1234';
+
   $scope.doLogin = function () {
     if (!authInProgress) {
       Auth.login($scope, this.username.toLowerCase(), this.password.toLowerCase());
