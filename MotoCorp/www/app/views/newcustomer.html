@@ -5,23 +5,23 @@
     <div class="list">
     <label class="item item-input item-stacked-label">
       <span class="input-label list-name">Name</span>
-      <input type="text" value={{customer.name}}>
+      <input placeholder="Name" ng-model="name" type="text">
     </label>
     <label class="item item-input item-stacked-label">
       <span class="input-label list-name">License Plate</span>
-      <input type="text" value={{customer.plate}}>
+      <input placeholder="Plate" ng-model="plate" type="text">
     </label>
     <label class="item item-input item-stacked-label">
       <span class="input-label list-name">Make</span>
-      <input type="text" value={{customer.make}}>
+      <input placeholder="Make" ng-model="make" type="text">
     </label>
     <label class="item item-input item-stacked-label">
       <span class="input-label list-name">Model</span>
-      <input type="text" value={{customer.model}}>
+      <input placeholder="Model" ng-model="model" type="text">
     </label>
     <label class="item item-input item-stacked-label">
       <span class="input-label list-name">VIN</span>
-      <input type="text" value={{customer.vin}}>
+      <input placeholder="Vin" ng-model="vin" type="text">
     </label>
 
 <div ng-click="newCustomer()" class=" button button-positive button-block ">Add Customer</div>
