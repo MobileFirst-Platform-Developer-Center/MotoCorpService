@@ -43,7 +43,7 @@ app.get('/customers', function (req, res) {
 
 /* Add a customer to the customer file */
 app.post('/customers', function (req, res) {
-	var body = _.pick(req.body, 'name', 'plate');
+	var body = _.pick(req.body, 'name', 'plate', 'make', 'model', 'vin');
 
 	if (!_.isString(body.name) || !_.isString(body.plate)) {
 		return res.status(400).send();
