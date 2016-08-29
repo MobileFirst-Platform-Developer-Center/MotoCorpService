@@ -1,3 +1,19 @@
+// Yoel's commit
+//app.controller('CustomerCtrl', function ($scope, $state, CRM) {
+//  var id = $state.params.id;
+//
+//  $scope.addVisit = function () {
+//    $state.go('app.customer.visit', {id: id});
+//  };
+//
+//  CRM.getCustomer(id).then(function (customer) {
+//    $scope.customer = customer;
+//    $scope.$apply();
+//  }).fail(function (error) {
+//    alert(error);
+//  });
+//});
+
 app.controller('CustomerCtrl', function($scope,$state,CRM){
   $scope.customer = getCustomer($state.params.customerId);
 
@@ -17,6 +33,7 @@ app.controller('CustomerCtrl', function($scope,$state,CRM){
   };
 });
 
+<<<<<<< HEAD
 function getCustomer(customerId) {
   
   CRM.getAllCustomers().then(function(results){
@@ -54,3 +71,5 @@ function getCustomer(customerId) {
 //     id: 2
 //   }
 // ];
+=======
+>>>>>>> 7dd6c0c001a082b5d45662fcd41597c9b226f1cd

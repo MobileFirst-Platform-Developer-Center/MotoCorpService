@@ -39,7 +39,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
       }
     }
   }).state('app.customer', {
-    url: '/customer/:customerId',
+    url: '/customer/:id',
     views: {
       'menuContent': {
         templateUrl: 'app/views/customer.html',
@@ -60,8 +60,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
       }
     }
     })
-    .state('app.newvisit', {
-      url: '/newvisit',
+    .state('app.customer.visit', {
+      url: '/visit',
       views: {
       'menuContent': {
         templateUrl: 'app/views/newvisit.html',
