@@ -41,10 +41,8 @@ app.factory('CRM', function () {
       });
     },
     newVisit: function (customerId, visit) {
-      console.log("Customer id is : " + customerId);
-      console.log("Visit is : " + visit);
-      var req = new WLResourceRequest('/adapters/CustomerInfo/customers/' + customerId + '/visits/', WLResourceRequest.PUT);
-
+      var req = new WLResourceRequest('/adapters/CustomerInfo/customers/' + customerId + '/visits/', WLResourceRequest.POST);
+      req.setHeader('Content-type', 'application/json');
       return req.send(visit).then(function (response) {
         return response.responseJSON;
       }, function (error) {

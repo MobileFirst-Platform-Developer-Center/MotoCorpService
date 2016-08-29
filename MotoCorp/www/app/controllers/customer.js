@@ -9,6 +9,7 @@ app.controller('CustomerCtrl', function($scope,$state,CRM){
       } else {
         $scope.newCustomer = results;
         $scope.$apply();
+        $state.go('app.search');
       }
     }).fail(function (error) {
       alert(error);
@@ -16,36 +17,40 @@ app.controller('CustomerCtrl', function($scope,$state,CRM){
   };
 });
 
-
 function getCustomer(customerId) {
-  for (var i = 0; i < customers.length; i++) {
-    if (customers[i].id == customerId) {
-      return customers[i];
+  
+  CRM.getAllCustomers().then(function(results){
+    console.log(results);
+    for (var i = 0; i < results.length; i++) {
+    if (results[i].id == customerId) {
+      return results[i];
     }
   }
   return undefined;
+  });
+  
 }
 
-var customers = [
-  {
-    name: 'Jack Reacher',
-    plate: '1234',
-    make: 'Honda',
-    model: 'Accord',
-    vin: '1234567890',
-    visits: [{date: '01/01/16', type: "oil change"}, {date: '06/11/16', type: "tire rotation"}, {
-      date: '08/01/16',
-      type: "tune up"
-    }],
-    id: 1
-  },
-  {
-    name: 'Joe Blow',
-    plate: '9876',
-    make: 'Honda',
-    model: 'Accord',
-    vin: '1234567890',
-    visits: [{date: '01/01/16', type: "oil change"}, {date: '06/11/16', type: "tire rotation"}],
-    id: 2
-  }
-];
+// var customers = [
+//   {
+//     name: 'Jack Reacher',
+//     plate: '1234',
+//     make: 'Honda',
+//     model: 'Accord',
+//     vin: '1234567890',
+//     visits: [{date: '01/01/16', type: "oil change"}, {date: '06/11/16', type: "tire rotation"}, {
+//       date: '08/01/16',
+//       type: "tune up"
+//     }],
+//     id: 1
+//   },
+//   {
+//     name: 'Joe Blow',
+//     plate: '9876',
+//     make: 'Honda',
+//     model: 'Accord',
+//     vin: '1234567890',
+//     visits: [{date: '01/01/16', type: "oil change"}, {date: '06/11/16', type: "tire rotation"}],
+//     id: 2
+//   }
+// ];
