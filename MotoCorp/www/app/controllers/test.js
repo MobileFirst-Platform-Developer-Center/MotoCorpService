@@ -49,8 +49,6 @@ app.controller('TestCtrl', function($scope, $state , CRM){
 /* Create a new visit to id 1 */
   $scope.newVisit = function(){
 
-// this works in swagger - {"date":"10/26/2016","type":"New Oil Change"}
-
      CRM.newVisit(3,{date: this.date,type: this.type}).then(function (results) {
       if(results.length === 0) {
         alert('No match found');

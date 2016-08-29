@@ -216,7 +216,6 @@ public class CustomerInfoResource {
         //enable access to CRM - Secure Gateway
         validateSecureGatewayBridge();
 
-
         String url = configApi.getPropertyValue("onPremCRMAddress") + "_search";
         //sample searchFilter = { "plate": "ETS-9876"}
         String payload = searchFilter.toString();

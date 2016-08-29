@@ -7,6 +7,7 @@ app.controller('NewCustomerCtrl', function ($scope, $state, CRM) {
       } else {
         $scope.newCustomer = results;
         $scope.$apply();
+        $state.go('app.search');
       }
     }).fail(function (error) {
       alert(error);
