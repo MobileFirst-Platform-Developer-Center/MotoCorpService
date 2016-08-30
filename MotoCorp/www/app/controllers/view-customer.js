@@ -1,5 +1,6 @@
 app.controller('ViewCustomerCtrl', function ($scope, $state, CRM) {
   var id = $state.params.id;
+  
 
   $scope.addVisit = function () {
     $state.go('app.new-visit', {id: id});

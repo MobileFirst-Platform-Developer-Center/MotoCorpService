@@ -3,11 +3,12 @@ app.controller('NewVisitCtrl', function($scope, $state, CRM, $ionicHistory){
 
   $scope.visit = {
     date: new Date(),
+    type: null,
     comment: null
   };
 
   $scope.newVisit = function(){
-    CRM.newVisit(id, {date: $scope.visit.date,type: $scope.visit.comment}).then(function(response){
+    CRM.newVisit(id, {date: $scope.visit.date,type: $scope.visit.type,comment:$scope.visit.comment}).then(function(response){
       alert('Added New Visit');
       $ionicHistory.goBack();
     }).fail(function(error){
