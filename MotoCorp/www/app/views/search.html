@@ -2,23 +2,36 @@
   <ion-nav-buttons side="right">
     <a class="button button-icon icon ion-plus-round" ng-click="addCustomer()"></a>
   </ion-nav-buttons>
-  <ion-content>
+  <ion-content scroll="false" style="background-image: url(img/car.jpg);background-repeat: no-repeat;background-position: center;margin: auto;z-index: 2;opacity:0.5;">
     <!--Search bar-->
-    <ion-header-bar class="bar bar-stable item-input-inset">
+    <div class="list">
+        <label class="item item-input item-select">
+          <div class="input-label">
+            Search By:
+          </div>
+          <select ng-model="searchType.name">
+            <option selected>plate</option>
+            <option>name</option>
+            <option>vin</option>
+          </select>
+        </label>
+        <ion-header-bar class="bar bar-positive item-input-inset">
       <label class="item-input-wrapper search">
         <i class="icon ion-search placeholder-icon"></i>
-        <input placeholder="Enter License Plate Number..." ng-model="query" type="text">
+        <input placeholder="Search" ng-model="query" type="text">
       </label>
-      <button ng-click="searchPlate()" class="button button-small">
+      <button ng-click="searchPlate()" class="button button-small button-light">
       Search
-    </button>
+      </button>
     </ion-header-bar>
+    </div>
+    
+    
     <ion-list>
       <ion-item ng-repeat="customer in results" href="#/app/customer/{{customer.id}}">
         <h2>Name: {{customer.name}}</h2>
         <h2>License Plate: {{customer.plate}}</h2>
       </ion-item>
     </ion-list>
-
   </ion-content>
 </ion-view>

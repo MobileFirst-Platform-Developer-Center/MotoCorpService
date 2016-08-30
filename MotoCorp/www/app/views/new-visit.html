@@ -1,19 +1,30 @@
 <ion-view view-title="New Visit">
-
   <ion-content padding="true" scroll="false">
-
+    <!--Choose Date-->
     <div class="list list-inset">
       <label class="item item-input">
         <span class="input-label">Date</span>
         <input type="date" ng-model="visit.date">
       </label>
+    </div>
+      <!--Type of visit-->
+       <div class="spacer list">
+        <label class="item item-input item-select">
+          <div class="input-label">
+            Type of Visit
+          </div>
+          <select ng-model="visit.type">
+            <option selected>Oil Change</option>
+            <option>Repair</option>
+            <option>Tire Rotation</option>
+          </select>
+        </label>
+      </div>
+      <!--Enter comments-->
       <div class="spacer" style="height: 20px;"></div>
       <label class="item item-input">
         <textarea placeholder="Comments" style="height: 100px;" ng-model="visit.comment"></textarea>
       </label>
-    </div>
-
     <div ng-click="newVisit()" class=" button button-positive button-block ">Submit</div>
-
   </ion-content>
 </ion-view>

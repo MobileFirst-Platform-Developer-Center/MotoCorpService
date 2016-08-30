@@ -1,12 +1,18 @@
 app.controller('SearchCtrl', function ($scope, $state, Auth, CRM) {
   $scope.results = [];
+  $scope.searchType = {
+    name:""
+  };
 
   $scope.addCustomer = function(){
     $state.go('app.new-customer');
   };
 
   $scope.searchPlate = function () {
-    CRM.search({plate: this.query}).then(function (results) {
+    var search = {};
+    search[$scope.searchType.name] = this.query;
+    
+    CRM.search(search).then(function (results) {
       if(results.length === 0) {
         alert('No match found');
       } else {
