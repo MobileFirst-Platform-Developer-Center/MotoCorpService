@@ -8,6 +8,7 @@
 package com.ibm;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.logging.Logger;
 
 import javax.ws.rs.*;
@@ -15,30 +16,19 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import org.apache.http.HttpEntity;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ibm.com.ibm.models.Customer;
+import com.ibm.com.ibm.models.CustomerVisit;
+import com.ibm.com.ibm.models.SearchFilter;
+import com.ibm.util.HttpRequestUtil;
+import io.swagger.annotations.*;
 import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.methods.HttpUriRequest;
-import org.apache.http.entity.ByteArrayEntity;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.http.util.EntityUtils;
 
-import com.ibm.json.java.JSONObject;
 import com.ibm.mfp.adapter.api.AdaptersAPI;
 import com.ibm.mfp.adapter.api.ConfigurationAPI;
 import com.ibm.mfp.adapter.api.OAuthSecurity;
-import com.worklight.adapters.rest.api.WLServerAPI;
-import com.worklight.adapters.rest.api.WLServerAPIProvider;
-
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
 
 @OAuthSecurity(enabled = false)
 @Api(value = "Customer Information")
@@ -52,11 +42,6 @@ public class CustomerInfoResource {
     //can change this to  your personal ip address
     //String baseURL = "http://localhost:9080/customers/";
 
-    private static CloseableHttpClient client;
-
-    WLServerAPI api = WLServerAPIProvider.getWLServerAPI();
-
-
     @Context
     AdaptersAPI adaptersAPI;
 
@@ -66,12 +51,18 @@ public class CustomerInfoResource {
     ConfigurationAPI configApi;
 
 
-    public static void init() {
-    }
+    private HttpRequestUtil httpRequestUtil;
+    private ObjectMapper objectMapper;
 
-    public CustomerInfoResource() {
-        if (client == null) {
-            client = HttpClientBuilder.create().build();
+    public CustomerInfoResource(@Context ConfigurationAPI configApi, @Context AdaptersAPI adaptersAPI) throws URISyntaxException {
+        httpRequestUtil = new HttpRequestUtil(configApi.getPropertyValue("onPremCRMAddress"));
+        objectMapper = new ObjectMapper();
+
+        try {
+            //enable access to CRM - Secure Gateway
+            validateSecureGatewayBridge(adaptersAPI);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -80,18 +71,9 @@ public class CustomerInfoResource {
     @GET
     @Produces("application/json")
     public Response getCustomers() throws Exception {
-        //enable access to CRM - Secure Gateway
-        validateSecureGatewayBridge();
+        String response = httpRequestUtil.get("");
 
-
-        String url = configApi.getPropertyValue("onPremCRMAddress");
-        HttpGet request = new HttpGet(url);
-        CloseableHttpClient client = HttpClients.createDefault();
-        CloseableHttpResponse response = client.execute(request);
-        HttpEntity entity = response.getEntity();
-        String responseString = EntityUtils.toString(entity);
-
-        return Response.ok(responseString).build();
+        return Response.ok(response).build();
     }
 
 
@@ -100,67 +82,24 @@ public class CustomerInfoResource {
     @POST
     @Produces("application/json")
     @Consumes("application/json")
-    public Response newCustomer(JSONObject newCust) throws Exception {
+    public Response newCustomer(Customer customer) throws Exception {
+        byte[] payload = objectMapper.writeValueAsBytes(customer);
 
-        //enable access to CRM - Secure Gateway
-        validateSecureGatewayBridge();
+        String response = httpRequestUtil.post("", payload);
 
-        String url = configApi.getPropertyValue("onPremCRMAddress");
-        String payload = newCust.toString();
-        //sample customer {"name": "Jack Reacher", "plate": "ETS-9876", "make": "Honda","model": "Accord","vin": "1234567890"}
-        HttpPost request = new HttpPost(url);
-        request.addHeader("Content-Type", "application/json");
-
-        HttpEntity entity = new ByteArrayEntity(payload.getBytes("UTF-8"));
-        request.setEntity(entity);
-
-        HttpResponse response = client.execute(request);
-        String result = EntityUtils.toString(response.getEntity());
-        return Response.ok(result).build();
-    }
-
-    @ApiOperation(value = "Customer Appointment", notes = "Put new customer appointments")
-    @ApiResponses(value = {@ApiResponse(code = 200, message = "A JSONObject is returned")})
-    @PUT
-    @Produces("application/json")
-    @Consumes("application/json")
-    public Response putsAppointments(JSONObject appointment) throws Exception {
-        //enable access to CRM - Secure Gateway
-        validateSecureGatewayBridge();
-
-
-        String url = configApi.getPropertyValue("onPremCRMAddress");
-        //String payload = "{\n    \"name\": \"Pete\",\n    \"plate\": \"EYW8\"\n}";
-        String payload = appointment.toString();
-
-        HttpPut request = new HttpPut(url);
-        request.addHeader("Content-Type", "application/json");
-
-        HttpEntity entity = new ByteArrayEntity(payload.getBytes("UTF-8"));
-        request.setEntity(entity);
-
-        HttpResponse response = client.execute(request);
-        String result = EntityUtils.toString(response.getEntity());
-        return Response.ok(result).build();
+        return Response.ok(response).build();
     }
 
     @ApiOperation(value = "Customer", notes = "Get customer by ID")
-    @ApiResponses(value = {@ApiResponse(code = 200, message = "A JSONObject is returned")})
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "A JSONObject is returned", response = Customer.class)})
     @GET
     @Produces("application/json")
     @Path("/{id}")
     public Response getCustomerByID(@PathParam("id") Integer id) throws Exception {
-        //enable access to CRM - Secure Gateway
-        validateSecureGatewayBridge();
 
-        String url = configApi.getPropertyValue("onPremCRMAddress") + id;
-        HttpGet request = new HttpGet(url);
-        CloseableHttpClient client = HttpClients.createDefault();
-        CloseableHttpResponse response = client.execute(request);
-        HttpEntity entity = response.getEntity();
-        String responseString = EntityUtils.toString(entity);
+        String body = httpRequestUtil.get(id + "");
 
-        return Response.ok(responseString).build();
+        return Response.ok(body).build();
     }
 
     @ApiOperation(value = "Customer", notes = "Get customer visits by custID")
@@ -169,16 +108,10 @@ public class CustomerInfoResource {
     @Produces("application/json")
     @Path("/{id}/visits")
     public Response getCustomerVisitsByID(@PathParam("id") Integer id) throws Exception {
-        //enable access to CRM - Secure Gateway
-        validateSecureGatewayBridge();
 
-        String url = configApi.getPropertyValue("onPremCRMAddress") + id + "/visits";
-        HttpGet request = new HttpGet(url);
-        CloseableHttpClient client = HttpClients.createDefault();
-        CloseableHttpResponse response = client.execute(request);
-        HttpEntity entity = response.getEntity();
-        String responseString = EntityUtils.toString(entity);
-        return Response.ok(responseString).build();
+        String response = httpRequestUtil.get(id + "/visits");
+
+        return Response.ok(response).build();
     }
 
     @ApiOperation(value = "Customer", notes = "Create new visit for customer by custID")
@@ -187,23 +120,12 @@ public class CustomerInfoResource {
     @Produces("application/json")
     @Consumes("application/json")
     @Path("/{id}/visits")
-    public Response newVisit(JSONObject newVisit, @PathParam("id") Integer id) throws Exception {
-        //enable access to CRM - Secure Gateway
-        validateSecureGatewayBridge();
+    public Response newVisit(CustomerVisit newVisit, @PathParam("id") Integer id) throws Exception {
+        byte[] payload = objectMapper.writeValueAsBytes(newVisit);
 
+        String body = httpRequestUtil.post(id + "/visits/", payload);
 
-        String url = configApi.getPropertyValue("onPremCRMAddress") + id + "/visits/";
-        String payload = newVisit.toString();
-        //sample customer {"name": "Jack Reacher", "plate": "ETS-9876", "make": "Honda","model": "Accord","vin": "1234567890"}
-        HttpPost request = new HttpPost(url);
-        request.addHeader("Content-Type", "application/json");
-
-        HttpEntity entity = new ByteArrayEntity(payload.getBytes("UTF-8"));
-        request.setEntity(entity);
-
-        HttpResponse response = client.execute(request);
-        String result = EntityUtils.toString(response.getEntity());
-        return Response.ok(result).build();
+        return Response.ok(body).build();
     }
 
     @ApiOperation(value = "Customer", notes = "Search customers by plate or id")
@@ -212,23 +134,13 @@ public class CustomerInfoResource {
     @Produces("application/json")
     @Consumes("application/json")
     @Path("/search")
-    public Response searchCustomers(JSONObject searchFilter) throws Exception {
-        //enable access to CRM - Secure Gateway
-        validateSecureGatewayBridge();
+    public Response searchCustomers(SearchFilter searchFilter) throws Exception {
 
-        String url = configApi.getPropertyValue("onPremCRMAddress") + "_search";
-        //sample searchFilter = { "plate": "ETS-9876"}
-        String payload = searchFilter.toString();
+        byte[] payload = objectMapper.writeValueAsBytes(searchFilter);
 
-        HttpPost request = new HttpPost(url);
-        request.addHeader("Content-Type", "application/json");
+        String body = httpRequestUtil.post("_search", payload);
 
-        HttpEntity entity = new ByteArrayEntity(payload.getBytes("UTF-8"));
-        request.setEntity(entity);
-
-        HttpResponse response = client.execute(request);
-        String result = EntityUtils.toString(response.getEntity());
-        return Response.ok(result).build();
+        return Response.ok(body).build();
     }
 
     /**
@@ -236,7 +148,7 @@ public class CustomerInfoResource {
      *
      * @throws IOException
      */
-    private void validateSecureGatewayBridge() throws IOException {
+    private void validateSecureGatewayBridge(AdaptersAPI adaptersAPI) throws IOException {
         logger.info("validateSecureGatewayBridge:");
         HttpUriRequest req = new HttpGet("/SecureGatewayAdapter/secure/updateFirewall");
         req.addHeader("Accept", "text/plain");

@@ -18,7 +18,6 @@ public class CustomerInfoApplication extends MFPJAXRSApplication{
 	
 
 	protected void init() throws Exception {
-        CustomerInfoResource.init();
 		logger.info("Adapter initialized!");
 	}
 	
