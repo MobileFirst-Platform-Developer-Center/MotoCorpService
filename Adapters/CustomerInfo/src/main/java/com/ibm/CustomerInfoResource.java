@@ -17,9 +17,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ibm.com.ibm.models.Customer;
-import com.ibm.com.ibm.models.CustomerVisit;
-import com.ibm.com.ibm.models.SearchFilter;
+import com.ibm.com.ibm.models.*;
+import com.ibm.json.java.JSONObject;
 import com.ibm.util.HttpRequestUtil;
 import io.swagger.annotations.*;
 import org.apache.http.HttpResponse;
@@ -30,27 +29,13 @@ import com.ibm.mfp.adapter.api.AdaptersAPI;
 import com.ibm.mfp.adapter.api.ConfigurationAPI;
 import com.ibm.mfp.adapter.api.OAuthSecurity;
 
+//@OAuthSecurity(scope = "user-restricted")
 @OAuthSecurity(enabled = false)
 @Api(value = "Customer Information")
-@Produces(MediaType.TEXT_PLAIN)
+@Produces(MediaType.APPLICATION_JSON)
 @Path("/customers")
 public class CustomerInfoResource {
-
-    // Define logger (Standard java.util.Logger)
-    static Logger logger = Logger.getLogger(CustomerInfoResource.class.getName());
-    //http://cap-sg-prd-2.integration.ibmcloud.com:15330/customers/
-    //can change this to  your personal ip address
-    //String baseURL = "http://localhost:9080/customers/";
-
-    @Context
-    AdaptersAPI adaptersAPI;
-
-
-    // Inject the MFP configuration API:
-    @Context
-    ConfigurationAPI configApi;
-
-
+    private static Logger logger = Logger.getLogger(CustomerInfoResource.class.getName());
     private HttpRequestUtil httpRequestUtil;
     private ObjectMapper objectMapper;
 
@@ -69,7 +54,6 @@ public class CustomerInfoResource {
     @ApiOperation(value = "Customers", notes = "Getting all the customer info.")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "A JSONObject is returned")})
     @GET
-    @Produces("application/json")
     public Response getCustomers() throws Exception {
         String response = httpRequestUtil.get("");
 
@@ -80,7 +64,6 @@ public class CustomerInfoResource {
     @ApiOperation(value = "Customers", notes = "Post new customers")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "A JSONObject is returned")})
     @POST
-    @Produces("application/json")
     @Consumes("application/json")
     public Response newCustomer(Customer customer) throws Exception {
         byte[] payload = objectMapper.writeValueAsBytes(customer);
@@ -93,7 +76,6 @@ public class CustomerInfoResource {
     @ApiOperation(value = "Customer", notes = "Get customer by ID")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "A JSONObject is returned", response = Customer.class)})
     @GET
-    @Produces("application/json")
     @Path("/{id}")
     public Response getCustomerByID(@PathParam("id") Integer id) throws Exception {
 
@@ -105,7 +87,6 @@ public class CustomerInfoResource {
     @ApiOperation(value = "Customer", notes = "Get customer visits by custID")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "A JSONObject is returned")})
     @GET
-    @Produces("application/json")
     @Path("/{id}/visits")
     public Response getCustomerVisitsByID(@PathParam("id") Integer id) throws Exception {
 
@@ -117,8 +98,6 @@ public class CustomerInfoResource {
     @ApiOperation(value = "Customer", notes = "Create new visit for customer by custID")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "A JSONObject is returned")})
     @POST
-    @Produces("application/json")
-    @Consumes("application/json")
     @Path("/{id}/visits")
     public Response newVisit(CustomerVisit newVisit, @PathParam("id") Integer id) throws Exception {
         byte[] payload = objectMapper.writeValueAsBytes(newVisit);
@@ -131,17 +110,46 @@ public class CustomerInfoResource {
     @ApiOperation(value = "Customer", notes = "Search customers by plate or id")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "A JSONObject is returned")})
     @POST
-    @Produces("application/json")
     @Consumes("application/json")
     @Path("/search")
-    public Response searchCustomers(SearchFilter searchFilter) throws Exception {
+    public Response searchCustomersByPlate(JSONObject filter) throws Exception {
 
-        byte[] payload = objectMapper.writeValueAsBytes(searchFilter);
+        byte[] payload = objectMapper.writeValueAsBytes(filter);
 
         String body = httpRequestUtil.post("_search", payload);
 
         return Response.ok(body).build();
     }
+
+//    @ApiOperation(value = "Customer", notes = "Search customers by plate or id")
+//    @ApiResponses(value = {@ApiResponse(code = 200, message = "A JSONObject is returned")})
+//    @POST
+//    @Consumes("application/json")
+//    @Path("/search")
+//    public Response searchCustomersByName(SearchNameFilter filter) throws Exception {
+//
+//        byte[] payload = objectMapper.writeValueAsBytes(filter);
+//
+//        String body = httpRequestUtil.post("_search", payload);
+//
+//        return Response.ok(body).build();
+//    }
+
+//    @ApiOperation(value = "Customer", notes = "Search customers by plate or id")
+//    @ApiResponses(value = {@ApiResponse(code = 200, message = "A JSONObject is returned")})
+//    @POST
+//    @Consumes("application/json")
+//    @Path("/search")
+//    public Response searchCustomersByVIN(SearchVINFilter filter) throws Exception {
+//
+//        byte[] payload = objectMapper.writeValueAsBytes(filter);
+//
+//        String body = httpRequestUtil.post("_search", payload);
+//
+//        return Response.ok(body).build();
+//    }
+
+
 
     /**
      * Check and Fix Secure gateway bridge
