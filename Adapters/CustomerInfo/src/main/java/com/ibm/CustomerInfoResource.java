@@ -16,9 +16,9 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ibm.com.ibm.models.*;
-import com.ibm.json.java.JSONObject;
 import com.ibm.util.HttpRequestUtil;
 import io.swagger.annotations.*;
 import org.apache.http.HttpResponse;
@@ -29,10 +29,10 @@ import com.ibm.mfp.adapter.api.AdaptersAPI;
 import com.ibm.mfp.adapter.api.ConfigurationAPI;
 import com.ibm.mfp.adapter.api.OAuthSecurity;
 
-//@OAuthSecurity(scope = "user-restricted")
-@OAuthSecurity(enabled = false)
 @Api(value = "Customer Information")
+@Consumes("application/json")
 @Produces(MediaType.APPLICATION_JSON)
+@OAuthSecurity(scope = "user-restricted")
 @Path("/customers")
 public class CustomerInfoResource {
     private static Logger logger = Logger.getLogger(CustomerInfoResource.class.getName());
@@ -42,6 +42,7 @@ public class CustomerInfoResource {
     public CustomerInfoResource(@Context ConfigurationAPI configApi, @Context AdaptersAPI adaptersAPI) throws URISyntaxException {
         httpRequestUtil = new HttpRequestUtil(configApi.getPropertyValue("onPremCRMAddress"));
         objectMapper = new ObjectMapper();
+        objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
 
         try {
             //enable access to CRM - Secure Gateway
@@ -51,8 +52,8 @@ public class CustomerInfoResource {
         }
     }
 
-    @ApiOperation(value = "Customers", notes = "Getting all the customer info.")
-    @ApiResponses(value = {@ApiResponse(code = 200, message = "A JSONObject is returned")})
+    @ApiOperation(value = "List Customers", notes = "List containing all the customers in the CRM is returned")
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "A array containing all the customers", response = Customer.class, responseContainer = "List")})
     @GET
     public Response getCustomers() throws Exception {
         String response = httpRequestUtil.get("");
@@ -61,10 +62,9 @@ public class CustomerInfoResource {
     }
 
 
-    @ApiOperation(value = "Customers", notes = "Post new customers")
-    @ApiResponses(value = {@ApiResponse(code = 200, message = "A JSONObject is returned")})
+    @ApiOperation(value = "Create Customer", notes = "Creates a new customer record in the CRM")
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "A customer object of the newly created record")})
     @POST
-    @Consumes("application/json")
     public Response newCustomer(Customer customer) throws Exception {
         byte[] payload = objectMapper.writeValueAsBytes(customer);
 
@@ -73,8 +73,8 @@ public class CustomerInfoResource {
         return Response.ok(response).build();
     }
 
-    @ApiOperation(value = "Customer", notes = "Get customer by ID")
-    @ApiResponses(value = {@ApiResponse(code = 200, message = "A JSONObject is returned", response = Customer.class)})
+    @ApiOperation(value = "Get Customer Details", notes = "Get customer by ID")
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "A customer object is returned", response = Customer.class)})
     @GET
     @Path("/{id}")
     public Response getCustomerByID(@PathParam("id") Integer id) throws Exception {
@@ -84,8 +84,10 @@ public class CustomerInfoResource {
         return Response.ok(body).build();
     }
 
-    @ApiOperation(value = "Customer", notes = "Get customer visits by custID")
-    @ApiResponses(value = {@ApiResponse(code = 200, message = "A JSONObject is returned")})
+    @ApiOperation(value = "List Customer Visits", notes = "List containing the visits related to a specific customer is returned")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "A array containing the visits for the matched customer", response = CustomerVisit.class, responseContainer = "List")
+    })
     @GET
     @Path("/{id}/visits")
     public Response getCustomerVisitsByID(@PathParam("id") Integer id) throws Exception {
@@ -95,8 +97,10 @@ public class CustomerInfoResource {
         return Response.ok(response).build();
     }
 
-    @ApiOperation(value = "Customer", notes = "Create new visit for customer by custID")
-    @ApiResponses(value = {@ApiResponse(code = 200, message = "A JSONObject is returned")})
+    @ApiOperation(value = "Create Customer Visit", notes = "Creates a new visit for the matching customer")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "A customer visit object of the newly created record", response = CustomerVisit.class)
+    })
     @POST
     @Path("/{id}/visits")
     public Response newVisit(CustomerVisit newVisit, @PathParam("id") Integer id) throws Exception {
@@ -107,12 +111,13 @@ public class CustomerInfoResource {
         return Response.ok(body).build();
     }
 
-    @ApiOperation(value = "Customer", notes = "Search customers by plate or id")
-    @ApiResponses(value = {@ApiResponse(code = 200, message = "A JSONObject is returned")})
+    @ApiOperation(value = "Search Customers", notes = "Search customers by name, plate, or VIN")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "An array of matching customers", response = Customer.class, responseContainer = "List")
+    })
     @POST
-    @Consumes("application/json")
     @Path("/search")
-    public Response searchCustomersByPlate(JSONObject filter) throws Exception {
+    public Response searchCustomers(SearchFilter filter) throws Exception {
 
         byte[] payload = objectMapper.writeValueAsBytes(filter);
 
@@ -120,36 +125,6 @@ public class CustomerInfoResource {
 
         return Response.ok(body).build();
     }
-
-//    @ApiOperation(value = "Customer", notes = "Search customers by plate or id")
-//    @ApiResponses(value = {@ApiResponse(code = 200, message = "A JSONObject is returned")})
-//    @POST
-//    @Consumes("application/json")
-//    @Path("/search")
-//    public Response searchCustomersByName(SearchNameFilter filter) throws Exception {
-//
-//        byte[] payload = objectMapper.writeValueAsBytes(filter);
-//
-//        String body = httpRequestUtil.post("_search", payload);
-//
-//        return Response.ok(body).build();
-//    }
-
-//    @ApiOperation(value = "Customer", notes = "Search customers by plate or id")
-//    @ApiResponses(value = {@ApiResponse(code = 200, message = "A JSONObject is returned")})
-//    @POST
-//    @Consumes("application/json")
-//    @Path("/search")
-//    public Response searchCustomersByVIN(SearchVINFilter filter) throws Exception {
-//
-//        byte[] payload = objectMapper.writeValueAsBytes(filter);
-//
-//        String body = httpRequestUtil.post("_search", payload);
-//
-//        return Response.ok(body).build();
-//    }
-
-
 
     /**
      * Check and Fix Secure gateway bridge
