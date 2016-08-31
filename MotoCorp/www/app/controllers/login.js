@@ -18,6 +18,7 @@ app.controller('LoginCtrl', function ($scope, $state, Auth) {
     }
   };
   $scope.$on('login-success', function () {
+    authInProgress = false;
     $state.go('app.search');
   });
 

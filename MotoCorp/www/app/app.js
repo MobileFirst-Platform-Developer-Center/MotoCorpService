@@ -24,7 +24,7 @@ app.run(function ($ionicPlatform) {
   });
 });
 
-app.config(function ($stateProvider, $urlRouterProvider) {
+app.config(function ($stateProvider) {
   $stateProvider.state('app', {
     url: '/app',
     abstract: true,
@@ -76,17 +76,15 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     }
   });
 
-
-  // if none of the above states are matched, use this as the fallback
-  // $urlRouterProvider.otherwise('/signin');
-  //$urlRouterProvider.otherwise('app/test');
 });
 
 
 app.run(function ($rootScope, $state) {
+  // when the login challenge event is fired redirect the user to the login page for authentication
   $rootScope.$on('login-challenge', function () {
     $state.go('login');
   });
 
+  // redirect the user to the login page when the application opens
   $state.go('login');
 });

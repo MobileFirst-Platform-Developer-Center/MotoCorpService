@@ -2,68 +2,50 @@ app.factory('CRM', function () {
 
   var activeCustomer = null;
 
+  function sendRequest(path, method, payload) {
+    var req = new WLResourceRequest(path, method);
+    req.setHeader('Content-type', 'application/json');
+    return req.send(payload).then(function (response) {
+      return response.responseJSON;
+    }, function (error) {
+      return WLJQ.Deferred().reject(error.responseText).promise();
+    });
+  }
+
   return {
     test: function (query) {
       console.log("----test service");
     },
     getAllCustomers: function () {
-      var req = new WLResourceRequest('/adapters/CustomerInfo/customers/', WLResourceRequest.GET);
-
-      return req.send().then(function (response) {
-        return response.responseJSON;
-      }, function (error) {
-        return WLJQ.Deferred().reject(error.responseJSON).promise();
-      });
+      return sendRequest('/adapters/CustomerInfo/customers/', WLResourceRequest.GET);
     },
     search: function (query) {
-      var req = new WLResourceRequest('/adapters/CustomerInfo/customers/search', WLResourceRequest.POST);
-      req.setHeader('Content-type', 'application/json');
-      return req.send(query).then(function (response) {
-        return response.responseJSON;
-      }, function (error) {
-        return WLJQ.Deferred().reject(error.responseText).promise();
-      });
+      return sendRequest('/adapters/CustomerInfo/customers/search', WLResourceRequest.POST, query)
     },
     getCustomer: function (id) {
-      var req = new WLResourceRequest('/adapters/CustomerInfo/customers/' + id, WLResourceRequest.GET);
-      req.setHeader('Content-type', 'application/json');
-
-      return req.send().then(function (response) {
-        activeCustomer = response.responseJSON;
+      return sendRequest('/adapters/CustomerInfo/customers/' + id, WLResourceRequest.GET).then(function(customer){
+        activeCustomer = customer;
 
         return activeCustomer;
-      }, function (error) {
-        return WLJQ.Deferred().reject(error.responseText).promise();
       });
     },
     newCustomer: function (customer) {
-      var req = new WLResourceRequest('/adapters/CustomerInfo/customers/', WLResourceRequest.POST);
-      req.setHeader('Content-type', 'application/json');
-
-      return req.send(customer).then(function (response) {
-        return response.responseJSON;
-      }, function (error) {
-        return WLJQ.Deferred().reject(error.responseText).promise();
-      });
+      return sendRequest('/adapters/CustomerInfo/customers/', WLResourceRequest.POST, customer);
     },
     newVisit: function (customerId, visit) {
-      var req = new WLResourceRequest('/adapters/CustomerInfo/customers/' + customerId + '/visits/', WLResourceRequest.POST);
-      req.setHeader('Content-type', 'application/json');
-      return req.send(visit).then(function (response) {
+
+      return sendRequest('/adapters/CustomerInfo/customers/' + customerId + '/visits/', WLResourceRequest.POST, visit).then(function (response) {
         if (activeCustomer != null) {
-          if(!(activeCustomer.visits instanceof Array)) {
+          if (!(activeCustomer.visits instanceof Array)) {
             activeCustomer.visits = [];
           }
 
           activeCustomer.visits.push(visit);
         }
 
-        return response.responseJSON;
-      }, function (error) {
-        return WLJQ.Deferred().reject(error.responseText).promise();
+        return response;
+
       });
     }
-  }
-    ;
-
+  };
 });
