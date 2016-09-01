@@ -1,7 +1,7 @@
 # Analytics
 
 ## Overview
-- what is foundation analytics and what are we showcasing
+Foundation analytics is used to monitor app usage and how to continually help improve the app so that customer service reps can more easily and quickly assist customres.
 
 ## Custom Analytics
 - talk about what customer analytics sent and how to create custom charts
@@ -10,4 +10,4 @@
 - what searching on
 
 ## Disclaimer
-- talk about how this is foundation analytics soon to be available on docker on bluemix
+Foundation Analytics will soon be running on docker on Bluemix. In the meantime, the customer charts can be seen by running Foundation Analytics locally.
