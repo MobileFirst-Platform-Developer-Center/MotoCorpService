@@ -8,6 +8,11 @@ app.controller('NewCustomerCtrl', function ($scope, $state, CRM) {
         $scope.newCustomer = results;
         $scope.$apply();
         $state.go('app.search');
+        
+        /* Custom analytics tracking how many new customers created in app */
+        WL.Analytics.log({ NewCustomer: '1' }, results);         
+        WL.Analytics.send();
+        
       }
     }).fail(function (error) {
       alert(error);
