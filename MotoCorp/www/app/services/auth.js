@@ -7,7 +7,6 @@ app.factory('Auth', function ($rootScope) {
     activeUser = null,
     bound = false;
 
-
   function bindChallengeHandler() {
     if (!bound) {
       // create challenge handler for the `UserLogin` security check
@@ -63,7 +62,6 @@ app.factory('Auth', function ($rootScope) {
 
     bound = true;
   }
-
 
   return {
     logout: function () {
