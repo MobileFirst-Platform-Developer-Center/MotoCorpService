@@ -6,7 +6,7 @@
 	disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
 -->
 <mfp:adapter name="SecureGatewayAdapter"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:mfp="http://www.ibm.com/mfp/integration"
 	xmlns:http="http://www.ibm.com/mfp/integration/http">
 
@@ -14,7 +14,7 @@
 	<description>SecureGatewayAdapter</description>
 
 	<JAXRSApplicationClass>com.ibm.sample.SecureGatewayAdapterApplication</JAXRSApplicationClass>
-	   	<property name="sgwToken" defaultValue="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb25maWd1cmF0aW9uX2lkIjoibU82Q3NKT2JLN1RfcHJvZF9uZyIsInJlZ2lvbiI6InVzLXNvdXRoIiwiaWF0IjoxNDcxMjkwOTcwLCJleHAiOjE0NzkwNjY5NzB9.DnRkAed-m8x7xbiTxs6wGTgzeXL2Gv-sKzCov5Fcr5U"/>
-   		<property name="gatewayId" defaultValue="mO6CsJObK7T_prod_ng"/>
-   		<property name="destinationId" defaultValue="mO6CsJObK7T_rnS"/>
+	   	<property name="sgwToken" defaultValue=""/>
+   		<property name="gatewayId" defaultValue=""/>
+   		<property name="destinationId" defaultValue=""/>
 </mfp:adapter>
