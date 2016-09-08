@@ -9,9 +9,11 @@ app.controller('SearchCtrl', function ($scope, $state, Auth, CRM) {
   };
 
   $scope.searchPlate = function () {
-    var search = {};
-    search[$scope.searchType.name] = this.query;
-    
+  // Get the search payload
+  var search = {};
+  search[$scope.searchType.name] = this.query;
+
+// This sends the search payload to the search function at the CRM service.
     CRM.search(search).then(function (results) {
       if(results.length === 0) {
         alert('No match found');
@@ -21,6 +23,6 @@ app.controller('SearchCtrl', function ($scope, $state, Auth, CRM) {
       }
     }).fail(function (error) {
       alert(error);
-    });
+    }); 
   };
 });
