@@ -50,7 +50,7 @@ Red Arrows: MFP Adapter > Backend Calls
 ## Pushing Changes
 
 1.  Make sure this meets the definition of done (in task)
-2.  Do a code review if necessary
+2.  Do a code review
 3.  Check your branch with `$git branch`
 3. `$ git status` to see what files were changes
 4. `$ git add` relevant files
