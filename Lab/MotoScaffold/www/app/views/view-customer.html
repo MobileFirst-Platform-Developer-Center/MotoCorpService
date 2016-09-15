@@ -1,0 +1,49 @@
+<ion-view view-title="Profile">
+
+  <ion-nav-buttons side="right">
+    <a class="button button-icon icon ion-plus-round" ng-click="addVisit()"></a>
+  </ion-nav-buttons>
+
+
+  <ion-content>
+<div class="list">
+    <label class="item item-input item-stacked-label">
+      <span class="input-label list-name">Name</span>
+      <input type="text" value={{customer.name}}>
+    </label>
+    <label class="item item-input item-stacked-label">
+      <span class="input-label list-name">License Plate</span>
+      <input type="text" value={{customer.plate}}>
+    </label>
+    <label class="item item-input item-stacked-label">
+      <span class="input-label list-name">Make</span>
+      <input type="text" value={{customer.make}}>
+    </label>
+    <label class="item item-input item-stacked-label">
+      <span class="input-label list-name">Model</span>
+      <input type="text" value={{customer.model}}>
+    </label>
+    <label class="item item-input item-stacked-label">
+      <span class="input-label list-name">VIN</span>
+      <input type="text" value={{customer.vin}}>
+    </label>
+
+    <div class="item item-divider" style="background-color:#9B9B9B;color:white;">
+    Previous Visits
+    </div>
+
+    <ul class="list">
+      <li class="item" ng-repeat="visit in customer.visits">
+       <h2 class="list-name">{{visit.date | date:"MM/dd/yyyy"}}</h2>
+       <h2><b>Type of Visit:</b> {{visit.type}}</h2>
+       <h2><b>Comments: </b>{{visit.comment}}</h2>
+      </li>
+    </ul>
+    </ion-item>
+
+
+</div>
+
+
+  </ion-content>
+</ion-view>
