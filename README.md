@@ -51,13 +51,15 @@ On this first Demo Tutorial, it is covered a initial integration of the followin
 | **Secure Gateway**           | Code & Guide | How to allow MFP on Bluemix to setup firewall rules to protect a Secure Gateway Endpoint    |
 | **Analytics**                | Code & Guide | Adding Custom Analytics on an Ionic App                                                     |
 
-[For details check here](/Lab/1.%20introduction.md)
+![Lab 01 - Data Flow](/Lab/img/architecture.png)
 
-[Quick start Guide](Lab/2.%20quick-start.md)
+- [For details check here](/Lab/1.%20introduction.md)
 
-[Lab Guides](/Lab/)
+- [Quick start Guide](Lab/2.%20quick-start.md)
 
-![Mini Demo](/Lab/img/demo.gif)
+- [Lab Guides](/Lab/)
+
+- ![Mini Demo](/Lab/img/demo.gif)
 
 
 ## Lab 2 - Asynchronous Scenario:
@@ -69,7 +71,7 @@ Main goal of this scenario it is to add:
 
 *Additional features and scenario constrains still under discussion. At the moment this scenario it is in development.*
 
-> *List of assests pending*
+> *List of assets pending*
 
 
 # References:
