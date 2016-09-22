@@ -1,8 +1,8 @@
-# Team
+## Team
 
 This project is been developed by the CORD Americas **Unbreakable Team**
 
-## Team Members:
+### Unbreakable Team:
 
 * Offering Manager: Carmel Schindelhaim, carmels@il.ibm.com
 * Manager: Jim McGarrahan, mcgarr@us.ibm.com
@@ -11,7 +11,7 @@ This project is been developed by the CORD Americas **Unbreakable Team**
 * Developer: Rob Puryear, sdpuryea@us.ibm.com
 * Developer: Yoel Nunez, ynunez@us.ibm.com
 
-## Previous Projects:
+### Previous Projects:
 
 [Acme-Motors App](https://ibm.box.com/s/3j2r89z8acn4qdq6a08v7918idizifnb)
 > Features:
@@ -20,18 +20,18 @@ This project is been developed by the CORD Americas **Unbreakable Team**
 > - Demo setup automation on bluemix
 > - Ionic Hybrid App with MFP v8.0
 
-# Project Overview
+## Project Overview
 
 To explore the scenario which an Enterprise which owns car service centers wants to leverage Mobile Foundation and IBM Bluemix to expose its OnPrem CRM to its Services Centers employees via a Mobile App.
 
 Considerations:
-- OnPrem CRM should not be publicly available in the cloud.
+- OnPrem CRM should not be available in the public cloud.
 - OnPrem CRM already servers the company internally, so performance should impacts should be considered on this new channel on interaction.
 
 [For details check here](/Lab/0.Overview.md)
 
 
-# Possible Scenarios of Adoption
+# Scenarios Covered on the Labs
 | Lab                  | Status           | Goal                                                                                                                                                                                                                                    |
 |:---------------------|:-----------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Lab01 - Online       | **Final Review** | To Explore the integration of Secure Gateway as safe tunnel to allow online access to an OnPrem CRM Solution via REST APIs                                                                                                              |
@@ -52,9 +52,13 @@ On this first Demo Tutorial, it is covered a initial integration of the followin
 | **Analytics**                | Code & Guide | Adding Custom Analytics on an Ionic App                                                     |
 
 [For details check here](/Lab/1.%20introduction.md)
+
 [Quick start Guide](Lab/2.%20quick-start.md)
+
 [Lab Guides](/Lab/)
+
 ![Mini Demo](/Lab/img/demo.gif)
+
 
 ## Lab 2 - Asynchronous Scenario:
 
@@ -69,8 +73,8 @@ Main goal of this scenario it is to add:
 
 
 # References:
-[Mobile Foundation](https://console.ng.bluemix.net/catalog/services/mobile-foundation/)
-[IBM Secure Gateway](https://console.ng.bluemix.net/catalog/services/secure-gateway/)
-[IBM DashDB](https://console.ng.bluemix.net/catalog/services/dashdb/)
-[IBM MessageHub](https://console.ng.bluemix.net/catalog/services/message-hub/)
-[Ionic](http://ionicframework.com/)
+- [Mobile Foundation](https://console.ng.bluemix.net/catalog/services/mobile-foundation/)
+- [IBM Secure Gateway](https://console.ng.bluemix.net/catalog/services/secure-gateway/)
+- [IBM DashDB](https://console.ng.bluemix.net/catalog/services/dashdb/)
+- [IBM MessageHub](https://console.ng.bluemix.net/catalog/services/message-hub/)
+- [Ionic](http://ionicframework.com/)
