@@ -32,6 +32,7 @@ Considerations:
 
 
 # Scenarios Covered on the Labs
+
 | Lab                  | Status           | Goal                                                                                                                                                                                                                                    |
 |:---------------------|:-----------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Lab01 - Online       | **Final Review** | To Explore the integration of Secure Gateway as safe tunnel to allow online access to an OnPrem CRM Solution via REST APIs                                                                                                              |
@@ -39,7 +40,10 @@ Considerations:
 
 
 ## Lab 1 - Online Scenario:
+
 On this first Demo Tutorial, it is covered a initial integration of the following elements:
+
+![Lab 01 - Data Flow](/Lab/img/architecture.png)
 
 | Asset                        | Assets       | Description                                                                                 |
 |:-----------------------------|:-------------|:--------------------------------------------------------------------------------------------|
@@ -51,7 +55,7 @@ On this first Demo Tutorial, it is covered a initial integration of the followin
 | **Secure Gateway**           | Code & Guide | How to allow MFP on Bluemix to setup firewall rules to protect a Secure Gateway Endpoint    |
 | **Analytics**                | Code & Guide | Adding Custom Analytics on an Ionic App                                                     |
 
-![Lab 01 - Data Flow](/Lab/img/architecture.png)
+
 
 - [For details check here](/Lab/1.%20introduction.md)
 
@@ -59,22 +63,27 @@ On this first Demo Tutorial, it is covered a initial integration of the followin
 
 - [Lab Guides](/Lab/)
 
-- ![Mini Demo](/Lab/img/demo.gif)
+![Mini Demo](/Lab/img/demo.gif)
 
 
 ## Lab 2 - Asynchronous Scenario:
 
+
 Main goal of this scenario it is to add:
-- DashDB: Using this data store service to act as a mirror of some data in your CRM to allow, reduce the pressure of consuming it online from your onPrem Environment and also improving the responsiveness to your MobileApp users.
-- MessageHub: A service to allow a better pipeline to allow a more asynchronous data propagation of the data from your MobileApp to an OnPrem CRM.
+- **DashDB**: Using this data store service to act as a mirror of some data in your CRM to allow, reduce the pressure of consuming it online from your onPrem Environment and also improving the responsiveness to your MobileApp users.
+- **MessageHub**: A service to allow a better pipeline to allow a more asynchronous data propagation of the data from your MobileApp to an OnPrem CRM.
+
 
 
 *Additional features and scenario constrains still under discussion. At the moment this scenario it is in development.*
 
 > *List of assets pending*
 
+For the [scenario overview click here](/Lab/0.Overview.md) and [for more info here](https://github.ibm.com/cord-americas/MotoCorpService/wiki/Milestone-3)
+
 
 # References:
+
 - [Mobile Foundation](https://console.ng.bluemix.net/catalog/services/mobile-foundation/)
 - [IBM Secure Gateway](https://console.ng.bluemix.net/catalog/services/secure-gateway/)
 - [IBM DashDB](https://console.ng.bluemix.net/catalog/services/dashdb/)
