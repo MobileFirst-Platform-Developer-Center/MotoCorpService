@@ -45,15 +45,15 @@ On this first Demo Tutorial, it is covered a initial integration of the followin
 
 ![Lab 01 - Data Flow](/Lab/img/architecture.png)
 
-| Asset                        | Assets       | Description                                                                                 |
-|:-----------------------------|:-------------|:--------------------------------------------------------------------------------------------|
-| **Mockup NodeJS OnPrem CRM** | Code & Guide | Available to be ran as Local NodeJS App or a Docker Container.                              |
-| **Secure Gateway Setup**     | Guide        | A step-by-step guide to a IBM Secure Gateway on Bluemix Account and connect with this demo  |
-| **Ionic + MFP V8.0**         | Code & Guide | Main steps to add MFP V8.0 into a blank Ionic App                                           |
-| **Java Adapter to Consume**  | Code & Guide | Sample Adapter to Consume the CRM OnPrem Data, that supports integration with SecureGateway |
-| **Login Integration**        | Code & Guide | How  add Login/Logout function in a Ionic App integrated with MFP Authentication APIs       |
-| **Secure Gateway**           | Code & Guide | How to allow MFP on Bluemix to setup firewall rules to protect a Secure Gateway Endpoint    |
-| **Analytics**                | Code & Guide | Adding Custom Analytics on an Ionic App                                                     |
+| Asset                        | Assets       | Description                                                                                                          |
+|:-----------------------------|:-------------|:---------------------------------------------------------------------------------------------------------------------|
+| **Mockup NodeJS OnPrem CRM** | Code & Guide | Available to be ran as Local NodeJS App or a Docker Container.                                                       |
+| **Secure Gateway Setup**     | Guide        | A step-by-step guide to a IBM Secure Gateway on Bluemix Account and connect with this demo                           |
+| **Ionic + MFP V8.0**         | Code & Guide | Main steps to add MFP V8.0 into a blank Ionic App                                                                    |
+| **Java Adapter to Consume**  | Code & Guide | Sample Adapter to Consume the CRM OnPrem Data, that supports integration with SecureGateway                          |
+| **Login Integration**        | Code & Guide | How  add Login/Logout function in a Ionic App integrated with MFP User Identity Management and Security Checks  APIs |
+| **Secure Gateway**           | Code & Guide | How to allow MFP on Bluemix to setup firewall rules to protect a Secure Gateway Endpoint                             |
+| **Analytics**                | Code & Guide | Adding Custom Analytics on an Ionic App                                                                              |
 
 
 
