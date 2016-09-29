@@ -12,7 +12,7 @@ This car service center app demonstrates multiple Foundation features coupled wi
 | -- | -- | -- | 
 | Offering Manager | Carmel Schindelhaim | carmels@il.ibm.com |
 | Manager | Jim McGarrahan | mcgarr@us.ibm.com |
-| Scrum Master: Theodora Cheng | tcheng@us.ibm.com |
+| Scrum Master | Theodora Cheng | tcheng@us.ibm.com |
 | Developer | Cesar Lourenco Botti Filho | cesarlb@br.ibm.com |
 | Developer | Rob Puryear | sdpuryea@us.ibm.com |
 | Developer | Yoel Nunez | ynunez@us.ibm.com |
