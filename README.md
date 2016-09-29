@@ -1,7 +1,3 @@
-## Team
-
-This project is been developed by the CORD Americas **Unbreakable Team**
-
 ## Overview
 This car service center app demonstrates multiple Foundation features coupled with Bluemix services to create an app that works seamlessly for the customer.
 
@@ -10,10 +6,10 @@ This car service center app demonstrates multiple Foundation features coupled wi
 ## Architecture Diagram
 ![Iteration 2](https://github.ibm.com/cord-americas/MotoCorpService/blob/pictures/iter2.png)
 
-### Unbreakable Team:
+## CORD Americas Unbreakable Team:
 
 | Role | Name | Email | 
-| - | - | - | 
+| -- | -- | -- | 
 | Offering Manager | Carmel Schindelhaim | carmels@il.ibm.com |
 | Manager | Jim McGarrahan | mcgarr@us.ibm.com |
 | Scrum Master: Theodora Cheng | tcheng@us.ibm.com |
