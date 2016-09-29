@@ -9,7 +9,7 @@ This car service center app demonstrates multiple Foundation features coupled wi
 ## CORD Americas Unbreakable Team:
 
 | Role | Name | Email | 
-| -- | -- | -- | 
+| --- | --- | --- | 
 | Offering Manager | Carmel Schindelhaim | carmels@il.ibm.com |
 | Manager | Jim McGarrahan | mcgarr@us.ibm.com |
 | Scrum Master | Theodora Cheng | tcheng@us.ibm.com |
