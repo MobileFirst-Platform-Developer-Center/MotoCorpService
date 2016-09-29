@@ -76,13 +76,11 @@ var start = function(restEndpoint, apiKey, callback) {
       consumerInstance.get('livechat')
         .then(function(data) {
           if(data.length > 0) {
-            console.log('Recieved data: ' + data);
+             
+            var mydata = JSON.parse(data);
+            console.log(mydata.name);
 
-            for(var index in data) {
-              data[index] = JSON.parse(data[index]);
-            }
-
-            //io.emit('topic_data', data);
+            // send mydata to CRM
           }
         })
         .fail(function(error) {
