@@ -67,9 +67,9 @@ public class JavaSQLResource {
 			//Return a 200 OK
 			return Response.ok().build();
 		}
-		catch (SQLIntegrityConstraintViolationException violation) {
+		catch (Exception E) {
 			//Trying to create a user that already exists
-			return Response.status(Status.CONFLICT).entity(violation.getMessage()).build();
+			return Response.status(Status.CONFLICT).entity(E.getMessage()).build();
 		}
 		finally{
 			//Close resources in all cases
@@ -86,15 +86,15 @@ public class JavaSQLResource {
 	@Path("/{userId}")
 	public Response getUser(@PathParam("userId") String userId) throws SQLException{
 		Connection con = getSQLConnection();
-		PreparedStatement getUser = con.prepareStatement("SELECT * FROM CUSTOMERS WHERE CustomerID = ?");
+		PreparedStatement getUser = con.prepareStatement("SELECT * FROM CUSTOMERS WHERE \"CustomerID\" = ?");
 
 		try{
 			JSONObject result = new JSONObject();
 
-			getUser.setString(1, userId);
+			getUser.setInt(1, Integer.parseInt(userId));
 			ResultSet data = getUser.executeQuery();
 
-			if(data.first()){
+			if(data.next()){
 				result.put("CustomerID", data.getInt("CustomerID"));
 				result.put("Name", data.getString("Name"));
 				result.put("LicensePlate", data.getString("LicensePlate"));
@@ -109,12 +109,15 @@ public class JavaSQLResource {
 			}
 
 		}
+		catch(Exception E) {
+			E.printStackTrace();
+		}
 		finally{
 			//Close resources in all cases
 			getUser.close();
 			con.close();
 		}
-
+		return Response.ok().build();
 	}
 
 	@GET
@@ -152,7 +155,7 @@ public class JavaSQLResource {
 								@FormParam("password") String password)
 										throws SQLException{
 		Connection con = getSQLConnection();
-		PreparedStatement getUser = con.prepareStatement("SELECT * FROM CUSTOMERS WHERE CustomerID = ?");
+		PreparedStatement getUser = con.prepareStatement("SELECT * FROM CUSTOMERS WHERE 'CustomerID' = ?");
 
 		try{
 			getUser.setString(1, userId);
