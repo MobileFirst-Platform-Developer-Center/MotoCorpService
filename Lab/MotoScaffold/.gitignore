@@ -1,0 +1,8 @@
+node_modules/
+platforms/
+plugins/
+mobilefirst/
+.vscode/
+.brackets.json
+.editorconfig
+ionic.projectgit
