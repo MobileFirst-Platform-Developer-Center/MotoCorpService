@@ -9,6 +9,8 @@ app.controller('SearchCtrl', function ($scope, $state, Auth, CRM) {
   };
 
   $scope.searchPlate = function () {
+
+
   // Get the search payload
   var search = {};
   search[$scope.searchType.name] = this.query;

@@ -17,7 +17,7 @@ app.factory('CRM', function () {
       console.log("----test service");
     },
     getAllCustomers: function () {
-      return sendRequest('/adapters/CustomerInfo/customers/', WLResourceRequest.GET);
+      return sendRequest('/adapters/CustomerAdapter/resource/customers', WLResourceRequest.GET);
     },
     search: function (query) {
       return sendRequest('/adapters/CustomerInfo/customers/search', WLResourceRequest.POST, query)
@@ -30,7 +30,8 @@ app.factory('CRM', function () {
       });
     },
     newCustomer: function (customer) {
-      return sendRequest('/adapters/CustomerInfo/customers/', WLResourceRequest.POST, customer);
+      // return sendRequest('/adapters/CustomerInfo/customers/', WLResourceRequest.POST, customer);
+      return sendRequest('/adapters/CustomerAdapter/resource/newCustomer', WLResourceRequest.POST, customer);
     },
     newVisit: function (customerId, visit) {
 

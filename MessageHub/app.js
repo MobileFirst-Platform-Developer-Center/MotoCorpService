@@ -78,7 +78,7 @@ var start = function(restEndpoint, apiKey, callback) {
           if(data.length > 0) {
              
             var mydata = JSON.parse(data);
-            console.log(mydata.name);
+            console.log(mydata.Name);
 
             // send mydata to CRM
           }

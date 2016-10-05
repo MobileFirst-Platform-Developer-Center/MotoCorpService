@@ -123,6 +123,7 @@ public class JavaSQLResource {
 	@GET
 	@OAuthSecurity(enabled=false)
 	@Produces("application/json")
+	@Path("/getAllUsers")
 	public Response getAllUsers() throws SQLException{
 		JSONArray results = new JSONArray();
 		Connection con = getSQLConnection();

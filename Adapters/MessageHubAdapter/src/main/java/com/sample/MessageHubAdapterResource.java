@@ -65,10 +65,10 @@ public class MessageHubAdapterResource {
     @POST
     @Consumes("application/json")
     @Path("/sendMessage")
-    public Response sendMessage(JSONObject newVisit) throws Exception {
+    public Response sendMessage(JSONObject msgPayload) throws Exception {
         
         String url = "http://ourmessagehub.mybluemix.net/sendMessage";
-        String payload = newVisit.toString();
+        String payload = msgPayload.toString();
         HttpPost request = new HttpPost(url);
         request.addHeader("Content-Type", "application/json");
 
