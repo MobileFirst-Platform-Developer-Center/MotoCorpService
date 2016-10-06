@@ -174,7 +174,7 @@ public class CustomerAdapterResource {
 	 * "<server address>/mfp/api/adapters/CustomerAdapter/resource/newCustomer"
 	 */
 
-	 // Calls the SQL Adapter to get all customers
+	 // POST a new customer to MessageHub
 	@ApiOperation(value = "Unprotected Resource", notes = "Example of an unprotected resource, this resource is accessible without a valid token.")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "A constant string is returned") })
 	@POST
@@ -188,6 +188,34 @@ public class CustomerAdapterResource {
 		req.addHeader("Content-Type", "application/json");
 
 		String payload = customer.toString();
+		HttpEntity entity = new ByteArrayEntity(payload.getBytes("UTF-8"));
+        req.setEntity(entity);
+
+		HttpResponse response = adaptersAPI.executeAdapterRequest(req);
+		JSONObject jsonObj = adaptersAPI.getResponseAsJSON(response);
+
+		return Response.ok(jsonObj.get("responseText")).build();
+	}
+
+	/*
+	 * Path for method:
+	 * "<server address>/mfp/api/adapters/CustomerAdapter/resource/newVisit"
+	 */
+
+	 // POST a new visit to MessageHub
+	@ApiOperation(value = "Unprotected Resource", notes = "Example of an unprotected resource, this resource is accessible without a valid token.")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "A constant string is returned") })
+	@POST
+	@Consumes("application/json")
+	@Path("/newVisit")
+	@OAuthSecurity(enabled = false)
+	public Response newVisit(JSONObject visit) throws IOException{
+
+		String MessageHubURL = "/MessageHubAdapter/resource/sendMessage";
+		HttpPost req = new HttpPost(MessageHubURL);
+		req.addHeader("Content-Type", "application/json");
+
+		String payload = visit.toString();
 		HttpEntity entity = new ByteArrayEntity(payload.getBytes("UTF-8"));
         req.setEntity(entity);
 

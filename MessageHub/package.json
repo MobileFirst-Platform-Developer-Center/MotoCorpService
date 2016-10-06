@@ -9,7 +9,8 @@
     "body-parser": "^1.15.2",
     "cfenv": "1.0.x",
     "express": "4.13.x",
-    "message-hub-rest": "^1.2.0"
+    "message-hub-rest": "^1.2.0",
+    "request-json": "^0.6.1"
   },
   "repository": {},
   "engines": {

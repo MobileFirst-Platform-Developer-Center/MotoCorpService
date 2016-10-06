@@ -10,6 +10,9 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var cfenv = require('cfenv');
 var MessageHub = require('message-hub-rest');
+var http = require('http');
+// var request = require('request');
+var request = require('request-json');
 var app = express();
 var appEnv = cfenv.getAppEnv();
 var instance;
@@ -21,9 +24,6 @@ app.use(bodyParser.json());
 
 var pushMessage = function(message) {
     var list = new MessageHub.MessageList();
-    // var myMessage = {
-    //  message: message
-    // };
 
     list.push(JSON.stringify(message));
 
@@ -77,10 +77,15 @@ var start = function(restEndpoint, apiKey, callback) {
         .then(function(data) {
           if(data.length > 0) {
              
-            var mydata = JSON.parse(data);
-            console.log(mydata.Name);
-
-            // send mydata to CRM
+            var myData = JSON.parse(data);
+            console.log(myData.Name);
+            
+            // send message to CRM
+            var client = request.createClient('http://unbreakable-node.mybluemix.net');
+            
+            client.post('/message', data, function(err, res, body) {
+              return console.log(body);
+            });
           }
         })
         .fail(function(error) {

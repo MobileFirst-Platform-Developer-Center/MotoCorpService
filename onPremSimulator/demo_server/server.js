@@ -201,3 +201,8 @@ app.post('/customers/_search', function (req, res) {
 	var payloadSearch = req.body;
 	return res.json(_.filter(customers, payloadSearch));
 });
+
+app.post('/test', function(req,res){
+	console.log(req.body);
+	res.json(req.body);
+});
