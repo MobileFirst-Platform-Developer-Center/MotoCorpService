@@ -2,9 +2,17 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var fs = require('fs');
 var _ = require('underscore');
+var ibmdb = require('ibm_db');
+var cfenv = require('cfenv');
+var DashDB = require('./modules/dashdb');
 
 var PORT = 8080;
 var app = express();
+
+var appEnv = cfenv.getAppEnv();
+if(appEnv.port) {
+	PORT = appEnv.port;
+}
 
 // app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
@@ -12,6 +20,30 @@ app.use(bodyParser.json());
 app.listen(PORT);
 console.log('Running on http://localhost:' + PORT);
 
+
+var dashDBConfig = (function(){
+
+	if(process.env['VCAP_SERVICES']) {
+		var services = JSON.parse(process.env.VCAP_SERVICES);
+
+		if(typeof services['dashDB'] === 'undefined') {
+			return {};
+		}
+
+		return services['dashDB'][0]['credentials'];
+	}
+
+	return {
+        db: "BLUDB",
+        hostname: "awh-yp-small02.services.dal.bluemix.net",
+        port: 50000,
+        username: "dash104925",
+        password: "0P41Ch6tAUw5"
+     };
+})();
+
+
+var dashDB = new DashDB(ibmdb, dashDBConfig);
 
 //read the customer info file
 var customerDB = fs.readFileSync("./customers.json");
@@ -51,6 +83,22 @@ app.post('/customers', function (req, res) {
 	body.id = customers.length + 1;
 	// add new customer to the customer array
 	customers.push(body);
+
+	dashDB.connect().then(function(){
+		return dashDB.create('CUSTOMERS',{
+			CustomerID: body.id,
+			Name: body.name,
+			LicensePlate: body.plate,
+			Make: body.make,
+			Model: body.model,
+			VIN: body.vin
+		}).then(function(){
+			console.log('SUCESS: customer saved to dashdb');
+		}).catch(function(){
+			console.log('ERROR: failed to sync with dashdb');
+		});
+	});
+
 	// save new customer file
 	saveCustomers(customers);
 	// display all customers
