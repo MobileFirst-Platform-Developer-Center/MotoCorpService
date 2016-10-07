@@ -1,34 +1,55 @@
-/*eslint-env node*/
+var _ = require('underscore'),
+	fs = require('fs'),
+	cfenv = require('cfenv'),
+	ibmdb = require('ibm_db'),
+	express = require('express'),
+	DashDB = require('./modules/dashdb'),
+	bodyParser = require('body-parser');
 
-var express = require('express');
-var bodyParser = require('body-parser');
-var fs = require('fs');
-var _ = require('underscore');
-var cfenv = require('cfenv');
 
-var PORT = 8080;
-var app = express();
+var dashDBConfig = (function () {
+	if (process.env['VCAP_SERVICES']) {
+		try {
+			var services = JSON.parse(process.env['VCAP_SERVICES']);
+
+			if (services['dashDB'] instanceof Array) {
+				return services['dashDB'][0]['credentials'];
+			}
+		} catch (e) {
+			console.warn('[WARNING] DashDB service is not bound to the application, no synchronization will occur.')
+		}
+
+	}
+
+	return {};
+})();
+
+
+var app = express(),
+	appEnv = cfenv.getAppEnv(), // get the app environment from Cloud Foundry
+	dashDB = new DashDB(ibmdb, dashDBConfig);
 
 app.use(bodyParser.json());
-// serve the files out of ./public as our main files
-// app.use(express.static(__dirname + '/public'));
 
-// get the app environment from Cloud Foundry
-var appEnv = cfenv.getAppEnv();
 
 // start server on the specified port and binding host
-app.listen(appEnv.port, '0.0.0.0', function() {
-  // print a message when the server starts listening
-  console.log("server starting on " + appEnv.url);
+app.listen(appEnv.port, '0.0.0.0', function () {
+	// print a message when the server starts listening
+	console.log("server starting on " + appEnv.url);
 });
 
-//read the customer info file
-var customerDB = fs.readFileSync("./customers.json");
-var customers = JSON.parse(customerDB);
+
+var customers = [];
+
+try {
+	customers = require('./customers.json');
+} catch (e) {
+	// error loading `customers.json`
+	console.error('Couldn\'t load `customers.json`', e);
+}
 
 /* Main page */
 app.get('/', function (req, res) {
-	// res.sendFile(__dirname + '/index.html');
 	res.send(customers);
 });
 
@@ -36,9 +57,10 @@ app.get('/', function (req, res) {
 function saveCustomers(newCustomers) {
 	// save new customer info
 	var customerFile = './customers.json';
+
 	fs.writeFile(customerFile, JSON.stringify(newCustomers, null, 4), function (err) {
 		if (err) {
-			console.log(err);
+			console.error(err);
 		} else {
 			console.log("JSON saved to " + customerFile);
 		}
@@ -60,6 +82,23 @@ app.post('/customers', function (req, res) {
 	body.id = customers.length + 1;
 	// add new customer to the customer array
 	customers.push(body);
+
+	// synchronize data with dashdb
+	dashDB.connect().then(function(){
+		return dashDB.create('CUSTOMERS',{
+			CustomerID: body.id,
+			Name: body.name,
+			LicensePlate: body.plate,
+			Make: body.make,
+			Model: body.model,
+			VIN: body.vin
+		});
+	}).then(function(){
+		console.log('[SUCCESS] Customer saved to dashdb');
+	}).catch(function(error){
+		console.error('[ERROR] A problem occurred while synchronizing data with dashdb', error);
+	});
+
 	// save new customer file
 	saveCustomers(customers);
 	// display all customers
@@ -97,17 +136,17 @@ app.get('/customers/:customerId/visits/:visitId', function (req, res) {
 	var customerIdx = _.findIndex(customers, {id: customerId});
 
 
-		if (customerIdx < 0 ) {
-			res.status(404).send("Customer not found");
+	if (customerIdx < 0) {
+		res.status(404).send("Customer not found");
+	} else {
+		var visitIdx = _.findIndex(customers[customerIdx].visits, {id: visitId});
+		if (visitIdx < 0) {
+			res.status(404).send("Visit not found");
 		} else {
-			var visitIdx = _.findIndex(customers[customerIdx].visits, {id: visitId});
-			if(visitIdx <0 ) {
-				res.status(404).send("Visit not found");
-			} else {
-				var customerVisits = (_.defaults(customers[customerIdx], {visits: []})).visits;
-				res.json(customerVisits[visitIdx]);
-			}
+			var customerVisits = (_.defaults(customers[customerIdx], {visits: []})).visits;
+			res.json(customerVisits[visitIdx]);
 		}
+	}
 
 });
 
@@ -142,31 +181,45 @@ app.post('/customers/:customerId/visits', function (req, res) {
 	var payloadVisit = req.body;
 	var customerIdx = _.findIndex(customers, {id: customerId});
 
-  //if customer Visits are undefined - fix that
-  var customerVisits = (_.defaults(customers[customerIdx], {visits: []})).visits;
-  //create a new  visit id if it is a new object - generate new ID
-  var currentVisit = _.defaults(payloadVisit, {id: (customerVisits.length+1)});
+	//if customer Visits are undefined - fix that
+	var customerVisits = (_.defaults(customers[customerIdx], {visits: []})).visits;
+	//create a new  visit id if it is a new object - generate new ID
+	var currentVisit = _.defaults(payloadVisit, {id: (customerVisits.length + 1)});
+
+	dashDB.connect().then(function(){
+		return dashDB.create('VISITS',{
+			CustomerID: customerId,
+			Date: body.date,
+			Type: body.type,
+			Comments: body.comment
+		});
+	}).then(function(){
+		console.log('[SUCCESS] Customer saved to dashdb');
+	}).catch(function(error){
+		console.error('[ERROR] A problem occurred while synchronizing data with dashdb', error);
+	});
+
 
 	updateOrCreateCustomerVisit(customerId, currentVisit.id, currentVisit);
 	res.json(_.findWhere(customers[customerIdx].visits, {id: currentVisit.id}));
 });
 
-function updateOrCreateCustomerVisit(customerId, visitId, payloadDelta ){
+function updateOrCreateCustomerVisit(customerId, visitId, payloadDelta) {
 	var matchedCustomerIdx = _.findIndex(customers, {id: customerId});
 	if (matchedCustomerIdx < 0) {
 		return res.status(404).send("Customer not found");
 	}
 	var customerVisits = (_.defaults(customers[matchedCustomerIdx], {visits: []})).visits;
 	var visitIdx = _.findIndex(customerVisits, {id: visitId});
-		if(visitIdx <0 ){
-			//new array
-			customers[matchedCustomerIdx].visits.push( _.extend(payloadDelta,{id: visitId}));
-		} else {
-			//visit exist:
-			var currentVisit = customers[matchedCustomerIdx].visits[visitIdx];
-			customers[matchedCustomerIdx].visits[visitIdx]=  _.extend(currentVisit,payloadDelta);
-		}
-		saveCustomers(customers);
+	if (visitIdx < 0) {
+		//new array
+		customers[matchedCustomerIdx].visits.push(_.extend(payloadDelta, {id: visitId}));
+	} else {
+		//visit exist:
+		var currentVisit = customers[matchedCustomerIdx].visits[visitIdx];
+		customers[matchedCustomerIdx].visits[visitIdx] = _.extend(currentVisit, payloadDelta);
+	}
+	saveCustomers(customers);
 }
 
 
@@ -191,7 +244,7 @@ app.post('/customers/_search', function (req, res) {
 	return res.json(_.filter(customers, payloadSearch));
 });
 
-app.post('/message', function(req,res){
+app.post('/message', function (req, res) {
 	console.log(req.body);
 	res.json(req.body);
 });
