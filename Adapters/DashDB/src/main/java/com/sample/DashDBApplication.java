@@ -23,9 +23,9 @@ import org.apache.commons.dbcp.BasicDataSource;
 import javax.ws.rs.core.Context;
 import java.util.logging.Logger;
 
-public class JavaSQLApplication extends MFPJAXRSApplication{
+public class DashDBApplication extends MFPJAXRSApplication{
 
-	static Logger logger = Logger.getLogger(JavaSQLApplication.class.getName());
+	static Logger logger = Logger.getLogger(DashDBApplication.class.getName());
 
 	public BasicDataSource dataSource = null;
 

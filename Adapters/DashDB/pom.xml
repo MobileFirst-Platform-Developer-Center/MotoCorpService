@@ -19,10 +19,10 @@ limitations under the License.
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.sample</groupId>
-	<artifactId>JavaSQL</artifactId>
+	<artifactId>DashDB</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>adapter</packaging>
-	<name>JavaSQL</name>
+	<name>DashDB</name>
 
 	<dependencies>
 		<dependency>

@@ -30,7 +30,7 @@ import java.sql.*;
 
 
 @Path("/")
-public class JavaSQLResource {
+public class DashDBResource {
 	/*
 	 * For more info on JAX-RS see https://jax-rs-spec.java.net/nonav/2.0-rev-a/apidocs/index.html
 	 */
@@ -43,7 +43,7 @@ public class JavaSQLResource {
 
 	public Connection getSQLConnection() throws SQLException{
 		// Create a connection object to the database
-		JavaSQLApplication app = adaptersAPI.getJaxRsApplication(JavaSQLApplication.class);
+		DashDBApplication app = adaptersAPI.getJaxRsApplication(DashDBApplication.class);
 		return app.dataSource.getConnection();
 	}
 
