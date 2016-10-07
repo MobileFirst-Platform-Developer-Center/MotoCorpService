@@ -12,24 +12,24 @@ This does not use "customer search by id" because it might not have been created
 
 ```
 {
-    email:143@yahoo.com,
     name:dora
     license:lin123
     etc
 }
 ```
 
-## 2. New visit payload (create with email)
+## 2. New visit payload (create with id)
+new customer -> [adapter] getcustomerdetails with plate -> customer page -> new visit w/cust id
 "Cache" this when going back to the main profile page. Use the payload you just created, not do a "search customer by id" right? ??
 
 CRM new visit
 - get id by email, then create new visit using that id
 
 
-Visits table - does not have email only cust id as a foreign key
+New visits payload - does not have email only cust id as a foreign key
+{id}/visits
 ```
 {
-    email: 123@yahoo.com,
     date:12/13/16,
     type: oil change,
     comment:help    
@@ -65,27 +65,25 @@ Returns:
     customers: 
         {
             id:1
-            email:123@yahoo.com
             name:dora,
             license:lin123,
         },
         {
             id:2,
-            email:123@yahoo.com
             name:dora,
             license:lin123,
         }
 }
 ```
 
-## 4. Customer get by id:
+## 4. Customer get by licenseplates:
 Done when transitioning from search page to customer info page
 This is 2 queries on dashdb (Get customer by id, get visits by id, then the json object is formed)
 
 Search payload:
 ```
 {
-    id:1
+    licenseplate:112345
 }
 ```
 
@@ -102,14 +100,17 @@ Returns:
                 {
                     date:12/13/16,
                     type: oil change,
-                    comements:help
+                    comments:help
                 },
                 {
                     date:12/13/16,
                     type: oil change,
-                    comements:help
+                    comments:help
                 }
             }
 }
 ```            
 
+Scenario
+1. new customer
+2. customer info
