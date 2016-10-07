@@ -146,6 +146,11 @@ public class DashDBResource {
 				result.put("Model", data.getString("Model"));
 				result.put("Vin", data.getString("Vin"));
 
+
+//				{
+//					CustomerID = 1,
+//					Visits :[{},{},{}]
+//				}
 				return Response.ok(result).build();
 
 			} else{

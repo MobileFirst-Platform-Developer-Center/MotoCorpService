@@ -42,6 +42,13 @@ app.post('/sendMessage', function (req, res) {
   res.json(req.body);
 });
 
+// endpoint for the Foundation adapter to call to send a message to messagehub
+app.post('{id}/newVisit', function (req, res) {
+    // add id to req.body
+  pushMessage(req.body);
+  res.json(req.body);
+});
+
 var start = function(restEndpoint, apiKey, callback) {
   if(!appEnv.services || (appEnv.services && Object.keys(appEnv.services).length === 0)) {
     if(restEndpoint && apiKey) {

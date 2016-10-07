@@ -79,6 +79,30 @@ public class MessageHubAdapterResource {
         String result = EntityUtils.toString(response.getEntity());
         return Response.ok(result).build();
     }
+    
+    /*
+	 * Send MessageHub message
+	 */
+    @OAuthSecurity(enabled = false)
+	@ApiOperation(value = "Customer", notes = "Create new visit for customer by custID")
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "A JSONObject is returned")})
+    @POST
+    @Consumes("application/json")
+    @Path("/{id}/newVisit")
+    public Response sendMessage(JSONObject msgPayload, Integer id) throws Exception {
+        
+        String url = "http://ourmessagehub.mybluemix.net/{id}/newVisit";
+        String payload = msgPayload.toString();
+        HttpPost request = new HttpPost(url);
+        request.addHeader("Content-Type", "application/json");
+
+        HttpEntity entity = new ByteArrayEntity(payload.getBytes("UTF-8"));
+        request.setEntity(entity);
+
+        HttpResponse response = client.execute(request);
+        String result = EntityUtils.toString(response.getEntity());
+        return Response.ok(result).build();
+    }
 
 }
 

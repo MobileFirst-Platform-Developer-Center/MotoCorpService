@@ -11,6 +11,7 @@ app.controller('NewCustomerCtrl', function ($scope, $state, CRM) {
   /* Create a new customer with inputs */
   $scope.newCustomer = function(){
     var myCustomer = JSON.stringify($scope.customer);
+      
     // var req = new WLResourceRequest('/adapters/MessageHubAdapter/resource/sendMessage', WLResourceRequest.POST);
     // req.setHeader('Content-type', 'application/json');
 
