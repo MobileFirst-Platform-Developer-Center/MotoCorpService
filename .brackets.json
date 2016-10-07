@@ -1,0 +1,7 @@
+{
+    "jscodehints.detectedExclusions": [
+        "/Users/theodoracheng/MotoCorpService/MotoCorp/www/js/controllers/controllers.js",
+        "/Users/theodoracheng/MotoCorpService/MotoCorp/www/js/controllers/searchController.js",
+        "/Users/theodoracheng/MotoCorpService/MotoCorp/platforms/ios/www/cordova_plugins.js"
+    ]
+}
