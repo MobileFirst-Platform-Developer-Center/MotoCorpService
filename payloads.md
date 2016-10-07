@@ -25,6 +25,8 @@ This does not use "customer search by id" because it might not have been created
 CRM new visit
 - get id by email, then create new visit using that id
 
+
+Visits table - does not have email only cust id as a foreign key
 ```
 {
     email: 123@yahoo.com,
@@ -34,6 +36,17 @@ CRM new visit
 }
 ```
 
+1. New visit - post to CRM 
+2. CRM uses email to look for custid in the CRM (tcheng@us.ibm.com has id=1) then uses that id to 3. create the visit record in the visits table using the below payload.
+
+```
+{
+    id: 1,
+    date:12/13/16,
+    type: oil change,
+    comment:help    
+}
+``
 
 ## 3. Search by name/license/vin
 Search Payload:
@@ -62,12 +75,12 @@ Returns:
             name:dora,
             license:lin123,
         }
- 
 }
 ```
 
 ## 4. Customer get by id:
 Done when transitioning from search page to customer info page
+This is 2 queries on dashdb (Get customer by id, get visits by id, then the json object is formed)
 
 Search payload:
 ```
