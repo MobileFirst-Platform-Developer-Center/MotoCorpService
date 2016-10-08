@@ -3,7 +3,7 @@
 ## 3 - Search customer by payload
 ## 4 - Get Customer by Id
 
-## 1. New customer payload (create with email)
+## 1. New customer payload (create with license)
 CRM new customer
 - validate if email exists? if so, get cust id
 - if not exist, create a new cust id (incr by 1)
@@ -18,16 +18,16 @@ This does not use "customer search by id" because it might not have been created
 }
 ```
 
-## 2. New visit payload (create with id)
+## 2. New visit payload (create with license)
 new customer -> [adapter] getcustomerdetails with plate -> customer page -> new visit w/cust id
 "Cache" this when going back to the main profile page. Use the payload you just created, not do a "search customer by id" right? ??
 
 CRM new visit
-- get id by email, then create new visit using that id
+- create new visit with cust license plate
+- In the CRM we can match the plate with the id and then create the visit with the id as a foreign key.
 
-
-New visits payload - does not have email only cust id as a foreign key
-{id}/visits
+New visits payload - 
+{plate}/visits
 ```
 {
     date:12/13/16,
@@ -37,7 +37,7 @@ New visits payload - does not have email only cust id as a foreign key
 ```
 
 1. New visit - post to CRM 
-2. CRM uses email to look for custid in the CRM (tcheng@us.ibm.com has id=1) then uses that id to 3. create the visit record in the visits table using the below payload.
+2. CRM uses email to look for custid in the CRM (tcheng@us.ibm.com has id=1) then uses that id to create the visit record in the visits table using the below payload.
 
 ```
 {
@@ -77,6 +77,7 @@ Returns:
 ```
 
 ## 4. Customer get by licenseplates:
+/{plate}/customer
 Done when transitioning from search page to customer info page
 This is 2 queries on dashdb (Get customer by id, get visits by id, then the json object is formed)
 
@@ -110,7 +111,3 @@ Returns:
             }
 }
 ```            
-
-Scenario
-1. new customer
-2. customer info
