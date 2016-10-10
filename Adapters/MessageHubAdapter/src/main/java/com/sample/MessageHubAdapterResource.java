@@ -67,7 +67,7 @@ public class MessageHubAdapterResource {
     @Path("/sendMessage")
     public Response sendMessage(JSONObject msgPayload) throws Exception {
         
-        String url = "http://ourmessagehub.mybluemix.net/sendMessage";
+        String url = "http://messageub.mybluemix.net/sendMessage";
         String payload = msgPayload.toString();
         HttpPost request = new HttpPost(url);
         request.addHeader("Content-Type", "application/json");
@@ -91,7 +91,7 @@ public class MessageHubAdapterResource {
     @Path("/{id}/newVisit")
     public Response sendMessage(JSONObject msgPayload, Integer id) throws Exception {
         
-        String url = "http://ourmessagehub.mybluemix.net/{id}/newVisit";
+        String url = "http://messageub.mybluemix.net/{id}/newVisit";
         String payload = msgPayload.toString();
         HttpPost request = new HttpPost(url);
         request.addHeader("Content-Type", "application/json");
