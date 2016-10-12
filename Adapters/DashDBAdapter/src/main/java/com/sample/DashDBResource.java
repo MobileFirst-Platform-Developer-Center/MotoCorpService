@@ -28,7 +28,6 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import java.sql.*;
 
-
 @Path("/")
 public class DashDBResource {
 	/*
@@ -117,28 +116,28 @@ public class DashDBResource {
 		return Response.ok(results).build();
 	}
 
-	// [In-Progress][GET] Get customer by id with all related visits
+	// [In-Progress][GET] Get customer by licenseplate with all related visits
 	@GET
 	@OAuthSecurity(enabled=false)
 	@Produces("application/json")
-	@Path("/{userId}/CustomInfoVisits")
-	public Response getUserWithVisits(@PathParam("userId") String userId) throws SQLException{
+	@Path("/{plate}/Customer")
+	public Response getUserWithVisits(@PathParam("plate") String plate) throws SQLException{
+		Integer customerId = -1;
+
 		Connection con = getSQLConnection();
-		PreparedStatement getUser = con.prepareStatement("SELECT * FROM CUSTOMERS WHERE \"CustomerID\" = ?");
-		PreparedStatement getUserInfo= con.prepareStatement("SELECT *\n" +
-				"FROM   CUSTOMERS LEFT OUTER JOIN VISITS\n" +
-				"ON     CUSTOMERS.\"CustomerID\" = VISITS.\"CustomerID\"\n" +
-				"WHERE CUSTOMERS.\"CustomerID\" = ?");
+
+		// get customers
+		PreparedStatement getUser = con.prepareStatement("SELECT * FROM CUSTOMERS WHERE \"LicensePlate\" = ?");
 
 		try{
 			JSONObject result = new JSONObject();
 
-			getUser.setInt(1, Integer.parseInt(userId));
+			getUser.setString(1, plate);
 			ResultSet data = getUser.executeQuery();
 
-			// need to figure out how to parse through sql results
-			// http://stackoverflow.com/questions/7643576/java-looping-through-result-set
 			if(data.next()){
+				customerId = data.getInt("CustomerId");
+
 				result.put("CustomerID", data.getInt("CustomerID"));
 				result.put("Name", data.getString("Name"));
 				result.put("LicensePlate", data.getString("LicensePlate"));
@@ -146,11 +145,23 @@ public class DashDBResource {
 				result.put("Model", data.getString("Model"));
 				result.put("Vin", data.getString("Vin"));
 
+				// get visits
+				JSONArray customerVisits = new JSONArray();
+				PreparedStatement getVisits = con.prepareStatement("Select \"Date\", \"Type\" , \"Comments\" from VISITS WHERE \"CustomerID\" = ?");
+				getVisits.setInt(1, customerId);
+				ResultSet visits = getVisits.executeQuery();
 
-//				{
-//					CustomerID = 1,
-//					Visits :[{},{},{}]
-//				}
+				while (visits.next()){
+
+					// build each visit
+						JSONObject visit = new JSONObject();
+						visit.put("Date", visits.getString("Date"));
+						visit.put("Type", visits.getString("Type"));
+						visit.put("Comments", visits.getString("Comments") );
+						customerVisits.add(visit);
+				}
+				result.put("Visits", customerVisits);
+
 				return Response.ok(result).build();
 
 			} else{
@@ -160,6 +171,7 @@ public class DashDBResource {
 		}
 		catch(Exception E) {
 			E.printStackTrace();
+
 		}
 		finally{
 			//Close resources in all cases
@@ -169,5 +181,5 @@ public class DashDBResource {
 		return Response.ok().build();
 	}
 
-	// [TODO][POST] Search customer using parameter passed (talk to Rob about this)
+	// [TODO][POST] Search customer using parameter passed
 }
