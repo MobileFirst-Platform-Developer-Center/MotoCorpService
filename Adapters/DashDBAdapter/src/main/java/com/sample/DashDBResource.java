@@ -185,6 +185,7 @@ public class DashDBResource {
 	// [TODO][POST] Search customer using parameter passed
 	@POST
 	@OAuthSecurity(enabled=false)
+	@Produces("application/json")
 	@Consumes("application/json")
 	@Path("/customer")
 	public Response searchCustomer(JSONObject msgPayload) throws SQLException{
@@ -227,7 +228,7 @@ public class DashDBResource {
 				}
 				result.put("Customers", customerSearch);
 
-			    return Response.ok(result.toString()).build();
+			    return Response.ok(result).build();
 		}
 		catch(Exception E) {
 			E.printStackTrace();
