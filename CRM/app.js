@@ -21,7 +21,7 @@ var dashDBConfig = (function () {
 
 	}
 
-	return {};
+	return require('./dashdb-credentials.json');
 })();
 
 
