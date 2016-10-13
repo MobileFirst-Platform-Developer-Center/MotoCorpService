@@ -227,7 +227,7 @@ public class DashDBResource {
 				}
 				result.put("Customers", customerSearch);
 
-				return Response.ok(result).build();
+			    return Response.ok(result.toString()).build();
 		}
 		catch(Exception E) {
 			E.printStackTrace();
