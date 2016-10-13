@@ -198,6 +198,7 @@ public class DashDBResource {
 		PreparedStatement searchCustomer;
 
 		Connection con = getSQLConnection();
+		JSONObject result = new JSONObject();
 
 		//plate,name,vin -> returns name/licenseplate
 		if (Objects.equals(type, new String("plate"))) {
@@ -206,35 +207,36 @@ public class DashDBResource {
 		} else if (Objects.equals(type, new String("VIN"))) {
 			searchCustomer = con.prepareStatement("SELECT \"Name\",\"LicensePlate\" FROM CUSTOMERS WHERE \"VIN\" = ?");
 
-		} else if (Objects.equals(type, new String("Name"))) {
+		} else if (Objects.equals(type, new String("name"))) {
 			searchCustomer = con.prepareStatement("SELECT \"Name\",\"LicensePlate\" FROM CUSTOMERS WHERE \"Name\" = ?");
 		} else {
 			return Response.status(Status.NOT_FOUND).entity("User information not found...").build();
 		}
 
 		searchCustomer.setString(1, text);
+		JSONArray customerSearch = new JSONArray();
 
 		try{
-			JSONObject result = new JSONObject();
 			ResultSet data = searchCustomer.executeQuery();
 
-			if(data.next()){
-				result.put("Name", data.getString("Name"));
-				result.put("LicensePlate", data.getString("LicensePlate"));
-				return Response.ok(result).build();
-			} else{
-				return Response.status(Status.NOT_FOUND).entity("User information not found...").build();
-			}
+				while (data.next()){
+					JSONObject customer = new JSONObject();
+					customer.put("Name", data.getString("Name"));
+					customer.put("LicensePlate", data.getString("LicensePlate"));
+					customerSearch.add(customer);
+				}
+				result.put("Customers", customerSearch);
 
+				return Response.ok(result).build();
 		}
 		catch(Exception E) {
 			E.printStackTrace();
+			return Response.ok(E).build();
 
 		}
 		finally{
 			searchCustomer.close();
 			con.close();
 		}
-		return Response.ok().build();
 	}
 }
