@@ -14,4 +14,12 @@
 	<description>MessageHubAdapter</description>
 
 	<JAXRSApplicationClass>com.sample.MessageHubAdapterApplication</JAXRSApplicationClass>
+
+	<property name="messagehub-username" defaultValue="0IKl36QD9BDFtTXd"/>
+	<property name="messagehub-password" defaultValue="7EeNWTFiz90OT7HdNM7F9Rlah56MvR6N"/>
+
+	<property name="message-hub-servers" defaultValue="kafka01-prod01.messagehub.services.us-south.bluemix.net:9093,kafka02-prod01.messagehub.services.us-south.bluemix.net:9093,kafka03-prod01.messagehub.services.us-south.bluemix.net:9093,kafka04-prod01.messagehub.services.us-south.bluemix.net:9093,kafka05-prod01.messagehub.services.us-south.bluemix.net:9093"/>
+	<property name="truststore-path" defaultValue="/home/vcap/app/.java/jre/lib/security/cacerts"/>
+	<property name="truststore-password" defaultValue="changeit"/>
+	<property name="truststore-type" defaultValue="JKS"/>
 </mfp:adapter>
