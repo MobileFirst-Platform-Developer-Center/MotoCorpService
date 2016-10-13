@@ -15,6 +15,9 @@
 
 	<JAXRSApplicationClass>com.sample.MessageHubAdapterApplication</JAXRSApplicationClass>
 
+	<property name="kafka-rest-url" defaultValue="https://kafka-rest-prod01.messagehub.services.us-south.bluemix.net:443"/>
+	<property name="messagehub-api-key" defaultValue="0IKl36QD9BDFtTXd7EeNWTFiz90OT7HdNM7F9Rlah56MvR6N"/>
+
 	<property name="messagehub-username" defaultValue="0IKl36QD9BDFtTXd"/>
 	<property name="messagehub-password" defaultValue="7EeNWTFiz90OT7HdNM7F9Rlah56MvR6N"/>
 

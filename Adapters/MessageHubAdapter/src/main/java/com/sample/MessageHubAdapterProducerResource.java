@@ -15,12 +15,16 @@ package com.sample;
 import com.ibm.json.java.JSONObject;
 import com.ibm.mfp.adapter.api.ConfigurationAPI;
 import com.ibm.mfp.adapter.api.OAuthSecurity;
+import com.sample.config.KafkaConfig;
+import com.sample.config.KafkaRestConfig;
 import com.sample.config.MessageHubProperties;
 import com.sample.util.MessageHubProducer;
+import com.sample.util.MessageHubREST;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import org.apache.http.client.HttpResponseException;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 
@@ -30,6 +34,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
+import java.util.ArrayList;
 
 @Api(value = "MessageHub Adapter Producer")
 @Path("/resource")
@@ -40,11 +45,22 @@ public class MessageHubAdapterProducerResource {
     private static final String NEW_VISIT_TOPIC = "new-visit";
 
     private final KafkaProducer<byte[], byte[]> producer;
+    private final MessageHubREST messageHubREST;
 
     public MessageHubAdapterProducerResource(@Context ConfigurationAPI configurationAPI) {
-        MessageHubProperties properties = MessageHubProperties.getInstance(configurationAPI);
+        KafkaConfig kafkaConfig = new KafkaConfig();
+        kafkaConfig.loadConfig(configurationAPI);
 
-        producer = MessageHubProducer.getInstance(properties);
+        javax.security.auth.login.Configuration.setConfiguration(kafkaConfig);
+
+
+        KafkaRestConfig kafkaRestConfig = new KafkaRestConfig();
+        kafkaRestConfig.loadConfig(configurationAPI);
+        messageHubREST = MessageHubREST.getInstance(kafkaRestConfig);
+
+
+        MessageHubProperties messageHubProperties = MessageHubProperties.getInstance(configurationAPI);
+        producer = MessageHubProducer.getInstance(messageHubProperties);
     }
 
     @ApiOperation(value = "Customer", notes = "Forwards new customer record to MessageHub")
@@ -52,6 +68,8 @@ public class MessageHubAdapterProducerResource {
     @POST
     @Path("/sendMessage")
     public Response newCustomer(JSONObject customer) throws Exception {
+        createTopicIfNeeded(MessageHubAdapterProducerResource.NEW_CUSTOMER_TOPIC);
+
         String messageKey = Integer.toString((int)(Math.random()*10000F));
 
         producer.send(produce(MessageHubAdapterProducerResource.NEW_CUSTOMER_TOPIC, messageKey, customer.toString()));
@@ -65,6 +83,8 @@ public class MessageHubAdapterProducerResource {
     @Consumes("application/json")
     @Path("/{id}/newVisit")
     public Response newCustomerVisit(@PathParam("id") String id, JSONObject customerVisit) throws Exception {
+        createTopicIfNeeded(MessageHubAdapterProducerResource.NEW_VISIT_TOPIC);
+
         JSONObject newVisit = new JSONObject();
 
         newVisit.put("CustomerId", id);
@@ -73,6 +93,21 @@ public class MessageHubAdapterProducerResource {
         producer.send(produce(MessageHubAdapterProducerResource.NEW_VISIT_TOPIC, id, newVisit.toString()));
 
         return Response.ok().build();
+    }
+
+    protected void createTopicIfNeeded(String topic) {
+        ArrayList topics = messageHubREST.getCurrentTopics();
+
+        if(!topics.contains(topic)) {
+            try {
+                messageHubREST.createTopic(topic);
+            } catch (HttpResponseException e) {
+                // 422 means the topic already exists
+                if(e.getStatusCode() != 422) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
     protected ProducerRecord<byte[], byte[]> produce(String topic, String key, String payload) {

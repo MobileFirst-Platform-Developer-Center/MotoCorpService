@@ -20,20 +20,20 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class KafkaConfig extends Configuration {
+public class KafkaConfig extends Configuration implements ConfigurationLoader {
     private Map<String, String> options = new HashMap<String, String>();
     private static final String FLAG = "org.apache.kafka.common.security.plain.PlainLoginModule";
-
-    public KafkaConfig(ConfigurationAPI config) {
-        options.put("serviceName", "kafka");
-        options.put("username", config.getPropertyValue("messagehub-username"));
-        options.put("password", config.getPropertyValue("messagehub-password"));
-    }
 
     @Override
     public AppConfigurationEntry[] getAppConfigurationEntry(String name) {
         return new AppConfigurationEntry[]{
                 new AppConfigurationEntry(KafkaConfig.FLAG, AppConfigurationEntry.LoginModuleControlFlag.REQUIRED, options)
         };
+    }
+
+    public void loadConfig(ConfigurationAPI config) {
+        options.put("serviceName", "kafka");
+        options.put("username", config.getPropertyValue("messagehub-username"));
+        options.put("password", config.getPropertyValue("messagehub-password"));
     }
 }

@@ -16,13 +16,14 @@ import com.ibm.mfp.adapter.api.ConfigurationAPI;
 
 import java.util.Properties;
 
-public class MessageHubProperties {
+public class MessageHubProperties implements ConfigurationLoader {
 
     private static MessageHubProperties instance;
 
     public static MessageHubProperties getInstance(ConfigurationAPI config) {
         if (instance == null) {
-            instance = new MessageHubProperties(config);
+            instance = new MessageHubProperties();
+            instance.loadConfig(config);
         }
 
         return instance;
@@ -30,7 +31,14 @@ public class MessageHubProperties {
 
     private Properties props = new Properties();
 
-    private MessageHubProperties(ConfigurationAPI config) {
+    private MessageHubProperties() {
+    }
+
+    public Properties getConfig() {
+        return props;
+    }
+
+    public void loadConfig(ConfigurationAPI config) {
         props.put("key.serializer", "org.apache.kafka.common.serialization.ByteArraySerializer");
         props.put("value.serializer", "org.apache.kafka.common.serialization.ByteArraySerializer");
         props.put("bootstrap.servers", config.getPropertyValue("message-hub-servers"));
@@ -44,11 +52,5 @@ public class MessageHubProperties {
         props.put("ssl.truststore.password", config.getPropertyValue("truststore-password"));
         props.put("ssl.truststore.type", config.getPropertyValue("truststore-type"));
         props.put("ssl.endpoint.identification.algorithm", "HTTPS");
-
-        javax.security.auth.login.Configuration.setConfiguration(new KafkaConfig(config));
-    }
-
-    public Properties getConfig() {
-        return props;
     }
 }
