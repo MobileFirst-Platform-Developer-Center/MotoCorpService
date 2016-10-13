@@ -27,6 +27,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import java.sql.*;
+import java.util.Objects;
 
 @Path("/")
 public class DashDBResource {
@@ -182,4 +183,58 @@ public class DashDBResource {
 	}
 
 	// [TODO][POST] Search customer using parameter passed
+	@POST
+	@OAuthSecurity(enabled=false)
+	@Consumes("application/json")
+	@Path("/customer")
+	public Response searchCustomer(JSONObject msgPayload) throws SQLException{
+//		{
+//			"type":"name",
+//			"text":"ABC-123"
+//		}
+
+		String type = msgPayload.get("type").toString();
+		String text = msgPayload.get("text").toString();
+		PreparedStatement searchCustomer;
+
+		Connection con = getSQLConnection();
+
+		//plate,name,vin -> returns name/licenseplate
+		if (Objects.equals(type, new String("plate"))) {
+			searchCustomer = con.prepareStatement("SELECT \"Name\",\"LicensePlate\" FROM CUSTOMERS WHERE \"LicensePlate\" = ?");
+
+		} else if (Objects.equals(type, new String("VIN"))) {
+			searchCustomer = con.prepareStatement("SELECT \"Name\",\"LicensePlate\" FROM CUSTOMERS WHERE \"VIN\" = ?");
+
+		} else if (Objects.equals(type, new String("Name"))) {
+			searchCustomer = con.prepareStatement("SELECT \"Name\",\"LicensePlate\" FROM CUSTOMERS WHERE \"Name\" = ?");
+		} else {
+			return Response.status(Status.NOT_FOUND).entity("User information not found...").build();
+		}
+
+		searchCustomer.setString(1, text);
+
+		try{
+			JSONObject result = new JSONObject();
+			ResultSet data = searchCustomer.executeQuery();
+
+			if(data.next()){
+				result.put("Name", data.getString("Name"));
+				result.put("LicensePlate", data.getString("LicensePlate"));
+				return Response.ok(result).build();
+			} else{
+				return Response.status(Status.NOT_FOUND).entity("User information not found...").build();
+			}
+
+		}
+		catch(Exception E) {
+			E.printStackTrace();
+
+		}
+		finally{
+			searchCustomer.close();
+			con.close();
+		}
+		return Response.ok().build();
+	}
 }
