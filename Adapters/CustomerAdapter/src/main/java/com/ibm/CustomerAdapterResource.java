@@ -95,7 +95,7 @@ public class CustomerAdapterResource {
 	@OAuthSecurity(enabled = false)
 	public Response customers()  throws IOException{
 
-		String JavaSQLURL = "/DashDBAdapter/getAllUsers";
+		String JavaSQLURL = "/DashDB/getAllUsers";
 		HttpUriRequest req = new HttpGet(JavaSQLURL);
 		HttpResponse response = adaptersAPI.executeAdapterRequest(req);
 		JSONObject jsonObj = adaptersAPI.getResponseAsJSON(response);
@@ -167,8 +167,29 @@ public class CustomerAdapterResource {
 	 * "<server address>/mfp/api/adapters/CustomerAdapter/resource/searchCustomer"
 	 */
 
-    // POST a to do a search on DashDB
-    // {id}/searchCustomer
+     // POST a to do a search on DashDB
+	@ApiOperation(value = "Unprotected Resource", notes = "Example of an unprotected resource, this resource is accessible without a valid token.")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "A constant string is returned") })
+	@POST
+	@Path("/searchCustomer")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes("application/json")
+	@OAuthSecurity(enabled = false)
+	public Response searchCustomer(JSONObject searchPayload)  throws IOException{
+
+		String JavaSQLURL = "/DashDB/customer";
+		HttpPost req = new HttpPost(JavaSQLURL);
+		req.addHeader("Content-Type", "application/json");
+		
+		String payload = searchPayload.toString();
+		HttpEntity entity = new ByteArrayEntity(payload.getBytes("UTF-8"));
+        req.setEntity(entity);
+
+		HttpResponse response = adaptersAPI.executeAdapterRequest(req);
+		JSONObject jsonObj = adaptersAPI.getResponseAsJSON(response);
+
+		return Response.ok(jsonObj.get("responseText")).build();
+	}
     
     //TODO
     /*
