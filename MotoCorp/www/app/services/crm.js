@@ -20,14 +20,10 @@ app.factory('CRM', function () {
       return sendRequest('/adapters/CustomerAdapter/resource/customers', WLResourceRequest.GET);
     },
     search: function (query) {
-      return sendRequest('/adapters/CustomerInfo/customers/search', WLResourceRequest.POST, query)
+      return sendRequest('/adapters/CustomerAdapter/resource/searchCustomer', WLResourceRequest.POST, query);
     },
-    getCustomer: function (id) {
-      return sendRequest('/adapters/CustomerInfo/customers/' + id, WLResourceRequest.GET).then(function(customer){
-        activeCustomer = customer;
-
-        return activeCustomer;
-      });
+    getCustomer: function (plate) {
+      return sendRequest('/adapters/CustomerAdapter/resource/customers/' + plate, WLResourceRequest.GET);
     },
     newCustomer: function (customer) {
       // return sendRequest('/adapters/CustomerInfo/customers/', WLResourceRequest.POST, customer);

@@ -9,23 +9,23 @@
 <div class="list">
     <label class="item item-input item-stacked-label">
       <span class="input-label list-name">Name</span>
-      <input type="text" value={{customer.name}}>
+      <input type="text" value={{customer.Name}}>
     </label>
     <label class="item item-input item-stacked-label">
       <span class="input-label list-name">License Plate</span>
-      <input type="text" value={{customer.plate}}>
+      <input type="text" value={{customer.LicensePlate}}>
     </label>
     <label class="item item-input item-stacked-label">
       <span class="input-label list-name">Make</span>
-      <input type="text" value={{customer.make}}>
+      <input type="text" value={{customer.Make}}>
     </label>
     <label class="item item-input item-stacked-label">
       <span class="input-label list-name">Model</span>
-      <input type="text" value={{customer.model}}>
+      <input type="text" value={{customer.Model}}>
     </label>
     <label class="item item-input item-stacked-label">
       <span class="input-label list-name">VIN</span>
-      <input type="text" value={{customer.vin}}>
+      <input type="text" value={{customer.Vin}}>
     </label>
 
     <div class="item item-divider" style="background-color:#9B9B9B;color:white;">
@@ -33,10 +33,10 @@
     </div>
 
     <ul class="list">
-      <li class="item" ng-repeat="visit in customer.visits">
-       <h2 class="list-name">{{visit.date | date:"MM/dd/yyyy"}}</h2>
-       <h2><b>Type of Visit:</b> {{visit.type}}</h2>
-       <h2><b>Comments: </b>{{visit.comment}}</h2>
+      <li class="item" ng-repeat="visit in customer.Visits">
+       <h2 class="list-name">{{visit.Date | date:"MM/dd/yyyy"}}</h2>
+       <h2><b>Type of Visit:</b> {{visit.Type}}</h2>
+       <h2><b>Comments: </b>{{visit.Comments}}</h2>
       </li>
     </ul>
     </ion-item>
