@@ -22,7 +22,7 @@
         <div class="input-label">
           Search By:
         </div>
-        <select ng-model="searchType.name">
+        <select ng-model="search.type">
           <option selected>plate</option>
           <option>name</option>
           <option>vin</option>
@@ -32,9 +32,9 @@
 
 
     <ion-list>
-      <ion-item ng-repeat="customer in results" href="#/app/customer/{{customer.id}}">
-        <h2>Name: {{customer.name}}</h2>
-        <h2>License Plate: {{customer.plate}}</h2>
+      <ion-item ng-repeat="customer in results" href="#/app/customer/{{customer.LicensePlate}}">
+        <h2>Name: {{customer.Name}}</h2>
+        <h2>License Plate: {{customer.LicensePlate}}</h2>
       </ion-item>
     </ion-list>
   </ion-content>

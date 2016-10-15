@@ -27,7 +27,7 @@ var pushMessage = function(message) {
 
     list.push(JSON.stringify(message));
 
-    instance.produce('livechat', list.messages)
+    instance.produce('new-customer', list.messages)
       .then(function(response) {
           console.log(response);
       })
@@ -74,37 +74,37 @@ var start = function(restEndpoint, apiKey, callback) {
   instance = new MessageHub(appEnv.services);
 
   // Set up an interval which will poll Message Hub for
-  // new messages on the 'livechat' topic.
+  // new messages on the 'new-customer' topic.
   produceInterval = setInterval(function() {
 
-    // Attempt to consumer messages from the 'livechat' topic_data
+    // Attempt to consumer messages from the 'new-customer' topic_data
     // if at least one user is connected to the service.
     if(consumerInstance) {
-      consumerInstance.get('livechat')
+      consumerInstance.get('new-customer')
         .then(function(data) {
           if(data.length > 0) {
              
             var myData = JSON.parse(data);
-            console.log(myData.Name);
+            console.log(myData.name);
             
             // send message to CRM
-            var client = request.createClient('http://unbreakable-node.mybluemix.net');
+            // var client = request.createClient('http://unbreakable-node.mybluemix.net');
             
-            client.post('/message', data, function(err, res, body) {
-              return console.log(body);
-            });
+            // client.post('/message', data, function(err, res, body) {
+            //   return console.log(body);
+            // });
           }
-        })
-        .fail(function(error) {
-          throw new Error(error);
         });
+        // .fail(function(error) {
+        //   throw new Error(error);
+        // });
     }
 
   }, 250);
 
-  instance.topics.create('livechat')
+  instance.topics.create('new-customer')
     .then(function(response) {
-      console.log('"livechat" topic created.');
+      console.log('"new-customer" topic created.');
       // Set up a consumer group of the provided name.
       return instance.consume("consumerGroupName", "consumerInstanceName", { 'auto.offset.reset': 'largest' });
     })
@@ -112,7 +112,7 @@ var start = function(restEndpoint, apiKey, callback) {
       consumerInstance = response[0];
       console.log('Consumer Instance created.');
       // Set offset for current consumer instance.
-      return consumerInstance.get('livechat');
+      return consumerInstance.get('new-customer');
     })
     .then(function() {
        // start server on the specified port and binding host

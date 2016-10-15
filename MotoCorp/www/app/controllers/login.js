@@ -8,7 +8,7 @@ app.controller('LoginCtrl', function ($scope, $state, Auth) {
   $scope.doLogin = function () {
     if (!authInProgress) {
       Auth.login($scope, this.username.toLowerCase(), this.password.toLowerCase());
-      authInProgress = true;
+      authInProgress = true; 
     }
   };
   $scope.doDemoLogin = function () {

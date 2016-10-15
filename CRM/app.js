@@ -24,18 +24,18 @@ var dashDBConfig = (function () {
 	return require('./dashdb-credentials.json');
 })();
 
-
 var app = express(),
-	appEnv = cfenv.getAppEnv(), // get the app environment from Cloud Foundry
-	dashDB = new DashDB(ibmdb, dashDBConfig);
+	//appEnv = cfenv.getAppEnv(), // get the app environment from Cloud Foundry
+    dashDB = new DashDB(ibmdb, dashDBConfig);
 
 app.use(bodyParser.json());
 
 
 // start server on the specified port and binding host
-app.listen(appEnv.port, '0.0.0.0', function () {
+app.listen(5000, '0.0.0.0', function () {
 	// print a message when the server starts listening
-	console.log("server starting on " + appEnv.url);
+	//console.log("server starting on " + appEnv.url);
+    console.log("you got this");
 });
 
 

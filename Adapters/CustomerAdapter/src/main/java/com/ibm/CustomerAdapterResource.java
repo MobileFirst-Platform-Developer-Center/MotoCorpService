@@ -103,6 +103,23 @@ public class CustomerAdapterResource {
 		return Response.ok(jsonObj.get("responseText")).build();
 	}
 
+	// Calls the SQL Adapter to get specific customers
+	@ApiOperation(value = "Unprotected Resource", notes = "Example of an unprotected resource, this resource is accessible without a valid token.")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "A constant string is returned") })
+	@GET
+	@Path("/customers/{plate}")
+	@Produces("application/json")
+	@OAuthSecurity(enabled = false)
+	public Response customers(@PathParam("plate") String plate) throws IOException{
+
+		String JavaSQLURL = "/DashDB/" + plate + "/Customer";
+		HttpUriRequest req = new HttpGet(JavaSQLURL);
+		HttpResponse response = adaptersAPI.executeAdapterRequest(req);
+		JSONObject jsonObj = adaptersAPI.getResponseAsJSON(response);
+
+		return Response.ok(jsonObj).build();
+	}
+
 
 	/*
 	 * Path for method:
@@ -146,7 +163,7 @@ public class CustomerAdapterResource {
 	@OAuthSecurity(enabled = false)
 	public Response newVisit(JSONObject visit, Integer id) throws IOException{
 
-        String MessageHubURL = "/MessageHubAdapter/resource/{id}/newVisit";
+        String MessageHubURL = "/MessageHubAdapter/resource/" + id + "/newVisit";
 		HttpPost req = new HttpPost(MessageHubURL);
 		req.addHeader("Content-Type", "application/json");
 
@@ -172,7 +189,7 @@ public class CustomerAdapterResource {
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "A constant string is returned") })
 	@POST
 	@Path("/searchCustomer")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces("application/json")
 	@Consumes("application/json")
 	@OAuthSecurity(enabled = false)
 	public Response searchCustomer(JSONObject searchPayload)  throws IOException{
@@ -188,7 +205,7 @@ public class CustomerAdapterResource {
 		HttpResponse response = adaptersAPI.executeAdapterRequest(req);
 		JSONObject jsonObj = adaptersAPI.getResponseAsJSON(response);
 
-		return Response.ok(jsonObj.get("responseText")).build();
+		return Response.ok(jsonObj.get("Customers")).build();
 	}
     
     //TODO
