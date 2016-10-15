@@ -1,3 +1,3 @@
 # Sample
 
-![](/Lab/LAB_V2/ToC-LAB.svg?raw=fix)
+![]( image:: /Lab/LAB_V2/ToC-LAB.svg?raw=true)
