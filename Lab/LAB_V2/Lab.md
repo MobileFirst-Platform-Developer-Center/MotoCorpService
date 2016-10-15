@@ -1,3 +1,3 @@
 # Sample
 
-![](./ToC-LAB.svg?raw=true)
+![](./ToC-LAB.svg)
