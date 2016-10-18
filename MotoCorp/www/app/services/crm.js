@@ -26,13 +26,12 @@ app.factory('CRM', function () {
       return sendRequest('/adapters/CustomerAdapter/resource/customers/' + plate, WLResourceRequest.GET);
     },
     newCustomer: function (customer) {
-      // return sendRequest('/adapters/CustomerInfo/customers/', WLResourceRequest.POST, customer);
       return sendRequest('/adapters/CustomerAdapter/resource/newCustomer', WLResourceRequest.POST, customer);
     },
     newVisit: function (customerId, visit) {
 
-      return sendRequest('/adapters/CustomerInfo/customers/' + customerId + '/visits/', WLResourceRequest.POST, visit).then(function (response) {
-        if (activeCustomer != null) {
+      return sendRequest('/adapters/CustomerAdapter/resource/' + customerId + '/newVisit', WLResourceRequest.POST, visit).then(function (response) {
+        if (activeCustomer !== null) {
           if (!(activeCustomer.visits instanceof Array)) {
             activeCustomer.visits = [];
           }

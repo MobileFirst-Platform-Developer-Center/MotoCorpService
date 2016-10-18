@@ -1,14 +1,12 @@
 app.controller('ViewCustomerCtrl', function ($scope, $state, CRM) {
   var plate = $state.params.id;
-  console.log("Plate is : " + plate);
   var customer = {};
 
   $scope.addVisit = function () {
-    $state.go('app.new-visit', {id: id});
+    $state.go('app.new-visit', {id: $scope.customer.CustomerID});
   };
 
   CRM.getCustomer(plate).then(function (customer) {
-    // console.log(customer.Name);
     $scope.customer = customer;
     $scope.$apply();
   }).fail(function (error) {

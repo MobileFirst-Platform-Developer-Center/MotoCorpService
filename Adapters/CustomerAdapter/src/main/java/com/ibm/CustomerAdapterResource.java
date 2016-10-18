@@ -135,7 +135,7 @@ public class CustomerAdapterResource {
 	@OAuthSecurity(enabled = false)
 	public Response newCustomer(JSONObject customer) throws IOException{
 
-		String MessageHubURL = "/MessageHubAdapter/resource/sendMessage";
+		String MessageHubURL = "/MessageHubAdapter/resource/newCustomer";
 		HttpPost req = new HttpPost(MessageHubURL);
 		req.addHeader("Content-Type", "application/json");
 
@@ -146,7 +146,7 @@ public class CustomerAdapterResource {
 		HttpResponse response = adaptersAPI.executeAdapterRequest(req);
 		JSONObject jsonObj = adaptersAPI.getResponseAsJSON(response);
 
-		return Response.ok(jsonObj.get("responseText")).build();
+		return Response.ok(jsonObj).build();
 	}
 
 	/*
@@ -161,7 +161,7 @@ public class CustomerAdapterResource {
 	@Consumes("application/json")
     @Path("/{id}/newVisit")
 	@OAuthSecurity(enabled = false)
-	public Response newVisit(JSONObject visit, Integer id) throws IOException{
+	public Response newVisit(JSONObject visit, @PathParam("id") String id) throws IOException{
 
         String MessageHubURL = "/MessageHubAdapter/resource/" + id + "/newVisit";
 		HttpPost req = new HttpPost(MessageHubURL);

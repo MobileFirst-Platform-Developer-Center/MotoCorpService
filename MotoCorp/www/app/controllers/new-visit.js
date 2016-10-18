@@ -1,6 +1,7 @@
 app.controller('NewVisitCtrl', function($scope, $state, CRM, $ionicHistory){
   var id = $state.params.id;
-
+  alert(id);
+  
   $scope.visit = {
     date: new Date(),
     type: null,

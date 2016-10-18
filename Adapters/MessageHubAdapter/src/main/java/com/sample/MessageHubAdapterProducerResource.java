@@ -66,7 +66,7 @@ public class MessageHubAdapterProducerResource {
     @ApiOperation(value = "Customer", notes = "Forwards new customer record to MessageHub")
     @ApiResponses(value = {@ApiResponse(code = 200, message = "A JSONObject is returned")})
     @POST
-    @Path("/sendMessage")
+    @Path("/newCustomer")
     public Response newCustomer(JSONObject customer) throws Exception {
         createTopicIfNeeded(MessageHubAdapterProducerResource.NEW_CUSTOMER_TOPIC);
 

@@ -98,6 +98,21 @@ var start = function(restEndpoint, apiKey, callback) {
         // .fail(function(error) {
         //   throw new Error(error);
         // });
+      consumerInstance.get('new-visit')
+        .then(function(data) {
+          if(data.length > 0) {
+             
+            var myData = JSON.parse(data);
+            console.log(myData);
+            
+            // send message to CRM
+            // var client = request.createClient('http://unbreakable-node.mybluemix.net');
+            
+            // client.post('/message', data, function(err, res, body) {
+            //   return console.log(body);
+            // });
+          }
+        });
     }
 
   }, 250);
