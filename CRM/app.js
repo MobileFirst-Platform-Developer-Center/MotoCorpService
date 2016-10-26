@@ -84,7 +84,14 @@ app.post('/customers', function (req, res) {
 
 	// synchronize data with dashdb
 	dashDB.connect().then(function () {
-		return dashDB.create('CUSTOMERS', body);
+		return dashDB.create('CUSTOMERS', {
+			CustomerID: body.id,
+			Name: body.Name,
+			LicensePlate: body.LicensePlate,
+			Make: body.Make,
+			Model: body.Model,
+			VIN: body.VIN
+		});
 	}).then(function () {
 		console.log('[SUCCESS] Customer saved to dashdb');
 	}).catch(function (error) {
@@ -181,9 +188,9 @@ app.post('/customers/:customerId/visits', function (req, res) {
 	dashDB.connect().then(function () {
 		return dashDB.create('VISITS', {
 			CustomerID: customerId,
-			Date: body.date,
-			Type: body.type,
-			Comments: body.comment
+			Date: payloadVisit.date,
+			Type: payloadVisit.type,
+			Comments: payloadVisit.comment
 		});
 	}).then(function () {
 		console.log('[SUCCESS] Customer saved to dashdb');
