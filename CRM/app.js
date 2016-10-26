@@ -187,6 +187,7 @@ app.post('/customers/:customerId/visits', function (req, res) {
 
 	dashDB.connect().then(function () {
 		return dashDB.create('VISITS', {
+			VISITID: currentVisit.id,
 			CustomerID: customerId,
 			Date: payloadVisit.date,
 			Type: payloadVisit.type,
