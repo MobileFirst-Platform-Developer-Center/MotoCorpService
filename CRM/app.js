@@ -25,8 +25,8 @@ var dashDBConfig = (function () {
 })();
 
 var app = express(),
-	//appEnv = cfenv.getAppEnv(), // get the app environment from Cloud Foundry
-    dashDB = new DashDB(ibmdb, dashDBConfig);
+//appEnv = cfenv.getAppEnv(), // get the app environment from Cloud Foundry
+	dashDB = new DashDB(ibmdb, dashDBConfig);
 
 app.use(bodyParser.json());
 
@@ -35,7 +35,7 @@ app.use(bodyParser.json());
 app.listen(5000, '0.0.0.0', function () {
 	// print a message when the server starts listening
 	//console.log("server starting on " + appEnv.url);
-    console.log("you got this");
+	console.log("you got this");
 });
 
 
@@ -74,9 +74,9 @@ app.get('/customers', function (req, res) {
 
 /* Add a customer to the customer file */
 app.post('/customers', function (req, res) {
-	var body = _.pick(req.body, 'name', 'plate', 'make', 'model', 'vin');
+	var body = _.pick(req.body, 'Name', 'LicensePlate', 'Make', 'Model', 'VIN');
 
-	if (!_.isString(body.name) || !_.isString(body.plate)) {
+	if (!_.isString(body.Name) || !_.isString(body.LicensePlate)) {
 		return res.status(400).send();
 	}
 	body.id = customers.length + 1;
@@ -84,18 +84,11 @@ app.post('/customers', function (req, res) {
 	customers.push(body);
 
 	// synchronize data with dashdb
-	dashDB.connect().then(function(){
-		return dashDB.create('CUSTOMERS',{
-			CustomerID: body.id,
-			Name: body.name,
-			LicensePlate: body.plate,
-			Make: body.make,
-			Model: body.model,
-			VIN: body.vin
-		});
-	}).then(function(){
+	dashDB.connect().then(function () {
+		return dashDB.create('CUSTOMERS', body);
+	}).then(function () {
 		console.log('[SUCCESS] Customer saved to dashdb');
-	}).catch(function(error){
+	}).catch(function (error) {
 		console.error('[ERROR] A problem occurred while synchronizing data with dashdb', error);
 	});
 
@@ -186,16 +179,16 @@ app.post('/customers/:customerId/visits', function (req, res) {
 	//create a new  visit id if it is a new object - generate new ID
 	var currentVisit = _.defaults(payloadVisit, {id: (customerVisits.length + 1)});
 
-	dashDB.connect().then(function(){
-		return dashDB.create('VISITS',{
+	dashDB.connect().then(function () {
+		return dashDB.create('VISITS', {
 			CustomerID: customerId,
 			Date: body.date,
 			Type: body.type,
 			Comments: body.comment
 		});
-	}).then(function(){
+	}).then(function () {
 		console.log('[SUCCESS] Customer saved to dashdb');
-	}).catch(function(error){
+	}).catch(function (error) {
 		console.error('[ERROR] A problem occurred while synchronizing data with dashdb', error);
 	});
 
