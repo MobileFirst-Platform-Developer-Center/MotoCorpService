@@ -91,7 +91,7 @@ public class CustomerAdapterResource {
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "A constant string is returned") })
 	@GET
 	@Path("/customers")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces("application/json")
 	@OAuthSecurity(enabled = false)
 	public Response customers()  throws IOException{
 
@@ -131,6 +131,7 @@ public class CustomerAdapterResource {
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "A constant string is returned") })
 	@POST
 	@Consumes("application/json")
+	@Produces("application/json")
 	@Path("/newCustomer")
 	@OAuthSecurity(enabled = false)
 	public Response newCustomer(JSONObject customer) throws IOException{

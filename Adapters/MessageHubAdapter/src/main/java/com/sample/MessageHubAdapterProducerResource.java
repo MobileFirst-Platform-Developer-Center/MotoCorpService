@@ -30,10 +30,7 @@ import org.apache.http.client.HttpResponseException;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import java.util.ArrayList;
@@ -41,6 +38,7 @@ import java.util.ArrayList;
 @Api(value = "MessageHub Adapter Producer")
 @Path("/resource")
 @Consumes("application/json")
+@Produces("application/json")
 @OAuthSecurity(enabled = false)
 public class MessageHubAdapterProducerResource {
     private static final String NEW_CUSTOMER_TOPIC = "new-customer";
@@ -76,7 +74,7 @@ public class MessageHubAdapterProducerResource {
 
         producer.send(produce(MessageHubAdapterProducerResource.NEW_CUSTOMER_TOPIC, messageKey, customer.toString()));
 
-        return Response.ok().build();
+        return okResponse();
     }
 
     @ApiOperation(value = "Customer", notes = "Forwards new visit record to MessageHub")
@@ -94,7 +92,7 @@ public class MessageHubAdapterProducerResource {
 
         producer.send(produce(MessageHubAdapterProducerResource.NEW_VISIT_TOPIC, id, newVisit.toString()));
 
-        return Response.ok().build();
+        return okResponse();
     }
 
     protected void createTopicIfNeeded(String topic) {
@@ -114,6 +112,13 @@ public class MessageHubAdapterProducerResource {
 
     protected ProducerRecord<byte[], byte[]> produce(String topic, String key, String payload) {
         return new ProducerRecord<byte[], byte[]>(topic, key.getBytes(), payload.getBytes());
+    }
+
+    protected Response okResponse() {
+        JSONObject response = new JSONObject();
+        response.put("published", true);
+
+        return Response.ok(response).build();
     }
 }
 
