@@ -18,6 +18,8 @@ import com.ibm.mfp.adapter.api.OAuthSecurity;
 import com.sample.config.KafkaConfig;
 import com.sample.config.KafkaRestConfig;
 import com.sample.config.MessageHubProperties;
+import com.sample.models.Customer;
+import com.sample.models.CustomerVisit;
 import com.sample.util.MessageHubProducer;
 import com.sample.util.MessageHubREST;
 import io.swagger.annotations.Api;
@@ -67,7 +69,7 @@ public class MessageHubAdapterProducerResource {
     @ApiResponses(value = {@ApiResponse(code = 200, message = "A JSONObject is returned")})
     @POST
     @Path("/newCustomer")
-    public Response newCustomer(JSONObject customer) throws Exception {
+    public Response newCustomer(Customer customer) throws Exception {
         createTopicIfNeeded(MessageHubAdapterProducerResource.NEW_CUSTOMER_TOPIC);
 
         String messageKey = Integer.toString((int)(Math.random()*10000F));
@@ -82,7 +84,7 @@ public class MessageHubAdapterProducerResource {
     @POST
     @Consumes("application/json")
     @Path("/{id}/newVisit")
-    public Response newCustomerVisit(@PathParam("id") String id, JSONObject customerVisit) throws Exception {
+    public Response newCustomerVisit(@PathParam("id") String id, CustomerVisit customerVisit) throws Exception {
         createTopicIfNeeded(MessageHubAdapterProducerResource.NEW_VISIT_TOPIC);
 
         JSONObject newVisit = new JSONObject();
