@@ -22,6 +22,18 @@
     4. How to test that it works (check in liberty logs or for not 500)
 ```
 
+Testing adapter:
+```
+curl -X POST --header 'Content-Type: application/json' --header 'Accept: */*' -d '{
+ "Name": "Jane Doe 3",
+ "LicensePlate": "ABC4321",
+ "Make": "Honda",
+ "Model": "Accord",
+ "VIN": "ZKSNKUS89SKJS"
+}' 'https://dorasmobile-1-cw-server.mybluemix.net/mfp/api/adapters/MessageHubAdapter/resource/newCustomer'
+
+
+```
 
 
 
