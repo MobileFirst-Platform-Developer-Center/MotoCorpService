@@ -17,6 +17,14 @@ This application on an environment variable `APP_CONFIG` which contains a config
 }
 ```
 
+Update your `manifest.yml` to reflect your changes. You can use the following default values for Bluemix
+
+```
+"truststore-path":"/home/vcap/app/.java/jre/lib/security/cacerts",
+"truststore-password":"changeit",
+"truststore-type":"JKS",
+```
+
 Running on Bluemix
 ==================
 
