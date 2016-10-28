@@ -6,3 +6,15 @@ applications:
   name: JavaConsumer
   host: javaconsumer
   disk_quota: 1024M
+  env:
+    APP_CONFIG: '{
+                    "kafka-rest-url":"https://${YOUR-MESSAGEHUB-KAFKA-REST-ENDPOINT}.messagehub.services.us-south.bluemix.net:443",
+                    "messagehub-api-key":"${YOUR-MESSAGEHUB-API-KEY}",
+                    "messagehub-username":"${YOUR-MESSAGEHUB-USERNAME}",
+                    "messagehub-password":"${YOUR-MESSAGEHUB-PASSWORD}",
+                    "message-hub-servers":"${YOUR-MESSAGEHUB-SERVERS}",
+                    "truststore-path":"${YOUR-KESYSTORE-PATH}",
+                    "truststore-password":"${YOUR-KEYSTORE-PASSWORD}",
+                    "truststore-type":"${YOUR-KEYSTORE-TYPE}",
+                    "crm-endpoint":"https://${YOUR-CRM-ENDPOINT}"
+                 }'
