@@ -27,6 +27,23 @@
 ```
 
 
+Notes: 
+
+```
+- go to  the adapter folder 
+- mfpdev adapter build 
+- mfpdev adapter deploy or deploy manually (screenshots)
+- Security setup -> screenshots on how to add the logina dpater security test
+- how to test (swagger test - screenshot or video)
+(we assume we can test)
+
+
+- Swagger tests -> Test MessageHub via Swagger(how we test as this is protected - GIF/Video)
+200 - ok
+- Swagger tests -> Test DashDB via Swagger(how we test as this is protected)
+200 - ok
+
+```
 
 
 ## Next guide
