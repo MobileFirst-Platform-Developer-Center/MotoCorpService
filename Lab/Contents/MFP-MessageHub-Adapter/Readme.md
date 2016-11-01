@@ -55,6 +55,7 @@ curl -X POST --header 'Content-Type: application/json' --header 'Accept: */*' -d
 
 - Swagger tests -> sample endpoint and sample result screen
 - Check the topic on messageHub check if the topic was created. 
+- Sample payload to creat a customer and sample payload to create a visit
 
 ```
 
