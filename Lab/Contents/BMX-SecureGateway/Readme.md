@@ -27,6 +27,20 @@
     2. set up secure gateway
 ```
 
+Notes:
+```
+- check you have docker
+- setup docker
+- instatiate the service SGW on bluemix
+> you can only have one per account
+- setup a new gateway
+- run docker SGW client locally
+- setup local ACL list(add your CRM local IP)
+- setup an endpoint (destination)
+> point the destination to your CRM nodeJs
+> ensure protection is disabled(screenshot)
+- test secure gateway
+```
 
 
 
