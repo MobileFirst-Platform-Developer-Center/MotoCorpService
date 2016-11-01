@@ -20,8 +20,12 @@ In this tutorial, we will be showing how to
 2 - Install [Node](https://nodejs.org/en/) 
 4 - Install [Ionic CLI](http://ionicframework.com/getting-started/)
 ```bash
-npm install -g cordova ionic
+npm install -g cordova ionic@1.X
 ```
+> This project is based on ionic 1.X(to go on details on this - 1.6 or 1.7)
+> TODO: to test how to install ionic
+
+
 3 - Install the MobileFirst CLI
 ```bash
 npm install -g mfpdev-cli
@@ -50,9 +54,15 @@ mfpdev 8.0.0-2016101416
 # How to install cloud foundry?
 (not required here)
 
+how to install maven?
+https://maven.apache.org/
+
+
+
 ```
    
-
+# Reference
+[mfp install](https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/adapters/creating-adapters/#install-maven)
 
 ## Next guide
 
