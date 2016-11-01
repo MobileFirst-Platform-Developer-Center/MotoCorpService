@@ -15,16 +15,18 @@ Checklist for completing
 
 | #  | Name/Link                                                                                                | Code | Doc Author | Doc Review | Closed |
 |:--:|:---------------------------------------------------------------------------------------------------------|:----:|:----------:|:-----------|:-------|
-| 1  | [MFP-Setup-Mobile-Foundation-on-Bluemix](/Lab/Contents/MFP-Setup-Mobile-Foundation-on-Bluemix/Readme.md) |  X   |    dora    |            |        |
-| 2  | [MFP-Security-Implement-Login](/Lab/Contents/MFP-Security-Implement-Login/Readme.md)                     |  X   |    dora    |            |        |
-| 3  | [MFP-MessageHub-Adapter](/Lab/Contents/MFP-MessageHub-Adapter/Readme.md)                                 |  X   |    dora    |            |        |
-| 4  | [MFP-DashDB-Adapter](/Lab/Contents/MFP-DashDB-Adapter/Readme.md)                                         |  X   |    dora    |            |        |
-| 5  | [NodeJS-CRM-OnPrem](/Lab/Contents/NodeJS-CRM-OnPrem/Readme.md)                                           |  R1  |     ?      |            |        |
-| 6  | [BMX-SecureGateway](/Lab/Contents/BMX-SecureGateway/Readme.md)                                           |  R2  |  cesarlb   |            |        |
-| 7  | [BMX-Java-Message-Hub-Consumer](/Lab/Contents/BMX-Java-Message-Hub-Consumer/Readme.md)                   |  R3  |     ?      |            |        |
-| 8  | [MFP-Customer-Adapter](/Lab/Contents/MFP-Customer-Adapter/Readme.md)                                     |  R6  |     ?      |            |        |
-| 9  | [MFP-Ionic-MobileApp](/Lab/Contents/MFP-Ionic-MobileApp/Readme.md)                                       |  R4  |     ?      |            |        |
-| 10 | [Bluemix-Mobile-Analytics](/Lab/Contents/Bluemix-Mobile-Analytics/Readme.md)                             |  R5  |     ?      |            |        |
+| 1  | [MFP-Setup-Mobile-Foundation-on-Bluemix](/Lab/Contents/Overview/Readme.md)                               |  X   |    dora    |            |        |
+| 2  | [MFP-Setup-Mobile-Foundation-on-Bluemix](/Lab/Contents/Quickstart/Readme.md)                             |  X   |    dora    |            |        |
+| 3  | [MFP-Setup-Mobile-Foundation-on-Bluemix](/Lab/Contents/MFP-Setup-Mobile-Foundation-on-Bluemix/Readme.md) |  X   |    dora    |            |        |
+| 4  | [MFP-Security-Implement-Login](/Lab/Contents/MFP-Security-Implement-Login/Readme.md)                     |  X   |    dora    |            |        |
+| 5  | [MFP-MessageHub-Adapter](/Lab/Contents/MFP-MessageHub-Adapter/Readme.md)                                 |  X   |    dora    |            |        |
+| 6  | [MFP-DashDB-Adapter](/Lab/Contents/MFP-DashDB-Adapter/Readme.md)                                         |  X   |    dora    |            |        |
+| 7  | [NodeJS-CRM-OnPrem](/Lab/Contents/NodeJS-CRM-OnPrem/Readme.md)                                           |  R1  |     ?      |            |        |
+| 8  | [BMX-SecureGateway](/Lab/Contents/BMX-SecureGateway/Readme.md)                                           |  R2  |  cesarlb   |            |        |
+| 9  | [BMX-Java-Message-Hub-Consumer](/Lab/Contents/BMX-Java-Message-Hub-Consumer/Readme.md)                   |  R3  |     ?      |            |        |
+| 10 | [MFP-Customer-Adapter](/Lab/Contents/MFP-Customer-Adapter/Readme.md)                                     |  R6  |     ?      |            |        |
+| 11 | [MFP-Ionic-MobileApp](/Lab/Contents/MFP-Ionic-MobileApp/Readme.md)                                       |  R4  |     ?      |            |        |
+| 12 | [Bluemix-Mobile-Analytics](/Lab/Contents/Bluemix-Mobile-Analytics/Readme.md)                             |  R5  |     ?      |            |        |
 
 
 - Environment and the you use
