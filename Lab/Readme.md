@@ -15,8 +15,8 @@ Checklist for completing
 
 | #  | Name/Link                                                                                                | Code | Doc Author | Doc Review | Closed |
 |:--:|:---------------------------------------------------------------------------------------------------------|:----:|:----------:|:-----------|:-------|
-| 1  | [MFP-Setup-Mobile-Foundation-on-Bluemix](/Lab/Contents/Overview/Readme.md)                               |  X   |    dora    |            |        |
-| 2  | [MFP-Setup-Mobile-Foundation-on-Bluemix](/Lab/Contents/Quickstart/Readme.md)                             |  X   |    dora    |            |        |
+| 1  | [Overview](/Lab/Contents/Sample/Readme.md)                               |  X   |    dora    |            |        |
+| 2  | [Quickstart](/Lab/Contents/Quickstart/Readme.md)                             |  X   |    dora    |            |        |
 | 3  | [MFP-Setup-Mobile-Foundation-on-Bluemix](/Lab/Contents/MFP-Setup-Mobile-Foundation-on-Bluemix/Readme.md) |  X   |    dora    |            |        |
 | 4  | [MFP-Security-Implement-Login](/Lab/Contents/MFP-Security-Implement-Login/Readme.md)                     |  X   |    dora    |            |        |
 | 5  | [MFP-MessageHub-Adapter](/Lab/Contents/MFP-MessageHub-Adapter/Readme.md)                                 |  X   |    dora    |            |        |
