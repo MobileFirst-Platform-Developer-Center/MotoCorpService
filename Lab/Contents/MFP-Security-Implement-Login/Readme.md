@@ -25,8 +25,9 @@
 
 - go to  the adapter folder 
 - mfpdev adapter build 
-- mfpdev adapter deploy 
-
+- mfpdev adapter deploy or deploy manually (screenshots)
+- how to test if the adapter deploy(swagger test - screenshot or video)
+(we assume we can test)
 
 ```
 
