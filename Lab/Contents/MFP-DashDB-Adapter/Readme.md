@@ -25,6 +25,28 @@
     6. How to test that it works
 ```
 
+*notes*
+```
+# DashDB Bluemix
+- create the instance of DashDB(screenshot)_
+- get credentials of DashDB service(screnshot)
+- run a SQL to Script to Create the database tables(Customers and Vists)
+> No initial data
+
+# DashDB Adpater
+- go to  the adapter folder 
+- go to adapter.xml and update the default properties. (screenshots)
+> provide a link on the docs how to do this via foundation console. 
+- mfpdev adapter build 
+- mfpdev adapter deploy or deploy manually (screenshots)
+> you can only deploy manually due to a limitation of the size of the adpater. 
+
+- how to test if the adapter deploy(swagger test - screenshot or video)
+(we assume we can test)
+
+- Swagger tests -> sample endpoint and sample result screen(200 - no results)
+
+```
 
 
 
