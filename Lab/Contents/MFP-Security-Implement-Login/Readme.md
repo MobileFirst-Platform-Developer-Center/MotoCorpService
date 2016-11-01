@@ -19,6 +19,15 @@
     1. login adapter (deploy adapter/console config, create a client secret)
         1. limitation of deploying adapter (size)
     2. relevant client side configurations (code snippets)
+    
+#Notes:
+
+
+- go to  the adapter folder 
+- mfpdev adapter build 
+- mfpdev adapter deploy 
+
+
 ```
 
 
