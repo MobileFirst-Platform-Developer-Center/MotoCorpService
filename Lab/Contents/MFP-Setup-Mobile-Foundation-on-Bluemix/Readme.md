@@ -57,6 +57,12 @@ mfpdev 8.0.0-2016101416
 how to install maven?
 https://maven.apache.org/
 
+To add steps: 
+- install git(just in casE)
+- clone the project (move ot the first guide)
+- setup foudnation on bluemix(screenshots)
+- get the URL to deploy on bluemix(sample screenshot)
+- register a new server(mfedev server create)
 
 
 ```
