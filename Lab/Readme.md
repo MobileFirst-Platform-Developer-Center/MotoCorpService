@@ -23,26 +23,32 @@ Checklist for completing
 | 6  | [MFP-DashDB-Adapter](/Lab/Contents/MFP-DashDB-Adapter/Readme.md)                                         |  X   |    dora    |            |        |
 | 7  | [NodeJS-CRM-OnPrem](/Lab/Contents/NodeJS-CRM-OnPrem/Readme.md)                                           |  R1  |     ?      |            |        |
 | 8  | [BMX-SecureGateway](/Lab/Contents/BMX-SecureGateway/Readme.md)                                           |  R2  |  cesarlb   |            |        |
-| 9  | [BMX-Java-Message-Hub-Consumer](/Lab/Contents/BMX-Java-Message-Hub-Consumer/Readme.md)                   |  R3  |     ?      |            |        |
+| 9  | [BMX-Java-Message-Hub-Consumer](/Lab/Contents/BMX-Java-Message-Hub-Consumer/Readme.md)                   |  -  |     ?      |            |        |
 | 10 | [MFP-Customer-Adapter](/Lab/Contents/MFP-Customer-Adapter/Readme.md)                                     |  R6  |     ?      |            |        |
 | 11 | [MFP-Ionic-MobileApp](/Lab/Contents/MFP-Ionic-MobileApp/Readme.md)                                       |  R4  |     ?      |            |        |
-| 12 | [Bluemix-Mobile-Analytics](/Lab/Contents/Bluemix-Mobile-Analytics/Readme.md)                             |  R5  |     ?      |            |        |
+| NOT 12 | [Bluemix-Mobile-Analytics](/Lab/Contents/Bluemix-Mobile-Analytics/Readme.md)                             |  R5  |     ?      |            |        |
 
 
 - Environment and the you use
 - Focus on Visits updates
 
 Observations:
-R1: Rob will verify the CRM
-R2: Code for Java to protect
-R3: Confirm if the endpoint its ok for the CRM
+R1: Rob will verify the CRM - Test the entire flow, the CRM running locally. 
+
+R2: Code for Java to protect - Cesar, still pending. 
+
+R3: Confirm if the endpoint its ok for the CRM - done, the Yml update yoel - Done
+
 R4: The app it is not working, the adapter integration it is not ok. (the new customer endpoint, it is not working)
   - Login works
   - Search works
   - DashDb Works
-  - MessageHub not ok
-R5: To investigate if foundation analytics is able to be used.
-R6: To protected the Customer adapter
+  - MessageHub not ok -> not working on Robs account pointing to doras account)
+  - 
+R5: To investigate if foundation analytics is able to be used. - Not part of this delivery for now. 
+
+R6: To protected the Customer adapter - Pending
+
 
 Raw Guides
 ```
