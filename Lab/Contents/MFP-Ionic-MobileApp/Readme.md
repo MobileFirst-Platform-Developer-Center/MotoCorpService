@@ -30,6 +30,36 @@
         4. customer details -> visit
 ```
 
+Notes:
+```bash
+Go to the MobileApp folder
+cd MotoCorpService/MotoCorp/
+- Add the ios plaform
+ionic platform add ios
+- Add the MobileFirst Plugin
+cordova plugin add cordova-plugin-mfp
+
+- point you default server to bluemix
+- if the server is not default , register must point to give server using 'mybluemixmfp'
+
+
+6 - Register the application
+mfpdev app register mybluemixmfp
+
+7 - Build the ios platform. You will need to do this every time you make a change in the app.
+# ionic build ios -> not sure if works
+Do this instead: 
+ - cordova build 
+ - cordova emulate
+
+Simulate the app: 
+- Login in:
+- user and password: "demo"/"demo"
+- create a new customer
+- search with no filter and no text - you will see the new customer
+- can also add a customer visit to a customer and see result
+
+```
 
 
 ## Next guide
