@@ -13,29 +13,48 @@ The general idea of this lab it is the following:
 
 Checklist for completing
 
-| #  | Name/Link                                                                                                | Code | Doc Author | Doc Review | Closed |
-|:--:|:---------------------------------------------------------------------------------------------------------|:----:|:----------:|:-----------|:-------|
-| 1  | [Overview](/Lab/Contents/Sample/Readme.md)                               |  X   |    dora    |            |        |
-| 2  | [Quickstart](/Lab/Contents/Quickstart/Readme.md)                             |  X   |    dora    |            |        |
-| 3  | [MFP-Setup-Mobile-Foundation-on-Bluemix](/Lab/Contents/MFP-Setup-Mobile-Foundation-on-Bluemix/Readme.md) |  X   |    dora    |            |        |
-| 4  | [MFP-Security-Implement-Login](/Lab/Contents/MFP-Security-Implement-Login/Readme.md)                     |  X   |    dora    |            |        |
-| 5  | [MFP-MessageHub-Adapter](/Lab/Contents/MFP-MessageHub-Adapter/Readme.md)                                 |  X   |    dora    |            |        |
-| 6  | [MFP-DashDB-Adapter](/Lab/Contents/MFP-DashDB-Adapter/Readme.md)                                         |  X   |    dora    |            |        |
-| 7  | [NodeJS-CRM-OnPrem](/Lab/Contents/NodeJS-CRM-OnPrem/Readme.md)                                           |  R1  |     ?      |            |        |
-| 8  | [BMX-SecureGateway](/Lab/Contents/BMX-SecureGateway/Readme.md)                                           |  R2  |  cesarlb   |            |        |
-| 9  | [BMX-Java-Message-Hub-Consumer](/Lab/Contents/BMX-Java-Message-Hub-Consumer/Readme.md)                   |  -  |     ?      |            |        |
-| 10 | [MFP-Customer-Adapter](/Lab/Contents/MFP-Customer-Adapter/Readme.md)                                     |  R6  |     ?      |            |        |
-| 11 | [MFP-Ionic-MobileApp](/Lab/Contents/MFP-Ionic-MobileApp/Readme.md)                                       |  R4  |     ?      |            |        |
-| NOT 12 | [Bluemix-Mobile-Analytics](/Lab/Contents/Bluemix-Mobile-Analytics/Readme.md)                             |  R5  |     ?      |            |        |
+|   #    | Name/Link                                                                                                | Code  | Doc Author | Has Blocker(Doc) | Doc Review | Closed |  |
+|:------:|:---------------------------------------------------------------------------------------------------------|:-----:|:----------:|:----------------:|:-----------|:-------|:-|
+|   1    | [Overview](/Lab/Contents/Sample/Readme.md)                                                               |   X   |     ?      |        ?         |            |        |  |
+|   2    | [Quickstart](/Lab/Contents/Quickstart/Readme.md)                                                         |   X   |     ?      |        ?         |            |        |  |
+|   3    | [MFP-Setup-Mobile-Foundation-on-Bluemix](/Lab/Contents/MFP-Setup-Mobile-Foundation-on-Bluemix/Readme.md) |   X   |     ?      |        no        |            |        |  |
+|   4    | [MFP-Security-Implement-Login](/Lab/Contents/MFP-Security-Implement-Login/Readme.md)                     |   X   |    dora    |        no        |            |        |  |
+|   5    | [MFP-MessageHub-Adapter](/Lab/Contents/MFP-MessageHub-Adapter/Readme.md)                                 |  R6   |    yoel    |        no        |            |        |  |
+|   6    | [MFP-DashDB-Adapter](/Lab/Contents/MFP-DashDB-Adapter/Readme.md)                                         |   X   |     ?      |        no        |            |        |  |
+|   7    | [NodeJS-CRM-OnPrem](/Lab/Contents/NodeJS-CRM-OnPrem/Readme.md)                                           |  R1   |     ?      |        no        |            |        |  |
+|   8    | [BMX-SecureGateway](/Lab/Contents/BMX-SecureGateway/Readme.md)                                           |   -   |  cesarlb   |        no        |            |        |  |
+|   9    | [BMX-Java-Message-Hub-Consumer](/Lab/Contents/BMX-Java-Message-Hub-Consumer/Readme.md)                   | R2-R7 |     -      |      yes-B1      |            |        |  |
+|   10   | [MFP-Customer-Adapter](/Lab/Contents/MFP-Customer-Adapter/Readme.md)                                     |  R6   |     ?      |        B2        |            |        |  |
+|   11   | [MFP-Ionic-MobileApp](/Lab/Contents/MFP-Ionic-MobileApp/Readme.md)                                       |  R4   |    rob     |        no        |            |        |  |
+| NOT 12 | [Bluemix-Mobile-Analytics](/Lab/Contents/Bluemix-Mobile-Analytics/Readme.md)                             |  R5   |     ?      |       yes        |            |        |  |
+
+
+```
+
+
+@dora will be out at 9th, 10th  - 8th(deadline)
+- Hard deadline: Nov, 11th
+- Present to Carmel: Nov, 14th
+
+
+```
+B2: How deep we need to explain this code? Probably not so deep, for the sake of clarity.
+
+R6: It is not confirmed if the adapter is posting data to the MessageHub(topic)
+
+R7: It is possible the consumer is not working as expected
+
+B1: we are not sure if the Consumer is working as expected, tests are failing.
 
 
 - Environment and the you use
 - Focus on Visits updates
 
 Observations:
-R1: Rob will verify the CRM - Test the entire flow, the CRM running locally. 
+R1: *Someone* will verify the CRM - Test the *entire flow*, the CRM running locally. -> `(new R1) How to just test the CRM interfaces, not the entire flow. ()`
+-> Postman/CURL -> see if the data appears on dashdb
 
-R2: Code for Java to protect - Cesar, still pending. 
+R2: Code for Java to protect - Cesar, still pending.
 
 R3: Confirm if the endpoint its ok for the CRM - done, the Yml update yoel - Done
 
@@ -44,8 +63,8 @@ R4: The app it is not working, the adapter integration it is not ok. (the new cu
   - Search works
   - DashDb Works
   - MessageHub not ok -> not working on Robs account pointing to doras account)
-  - 
-R5: To investigate if foundation analytics is able to be used. - Not part of this delivery for now. 
+  -
+R5: To investigate if foundation analytics is able to be used. - Not part of this delivery for now. Dora, needs to talk with ajay.
 
 R6: To protected the Customer adapter - Pending
 
