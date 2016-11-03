@@ -1,10 +1,20 @@
 #  Mobile Foundation - Implement Login(Security)
 
 
-
 ## What you will learn on this guide
 
- - Hoe to use  Mobile Foundation Security Check
+ In this section you will learn how to implement a secure login for your application. 
+ The next step in creating this app is to create the security to authenticate a user before they can access sensitive customer information. 
+ We will do this by using the MobileFirst security framework to easily implement the OAuth2 protocal to do a handshake with the server for a live token every time a resource request is made via the adapter.
+
+ When the app is first launched, it will take you to a login screen where you can sign into the app.
+ In our example, the username and password used in the security adapter logic is such that the user name and password are the same values.
+
+ In this lab you will explore the **Auth** service that will communicate between the **login controller** and the **security adapter**.
+
+ Let's take a look at how this works.
+ 
+ ![Login](login.png)
 
 
 ## Requirement of this guide
@@ -13,6 +23,15 @@
 
 
 ## Guide
+
+## Server Side Configuration
+1 - Go to 
+
+## Client Side Configuration 
+
+
+
+# Notes
 
 ```
 2. (Security) Implement Login

@@ -17,6 +17,8 @@ In this tutorial, we will be showing how to
 ## Guide
 
 1 - Instantiate [MobileFirst Foundation](https://console.ng.bluemix.net/catalog/services/mobile-foundation/) on Bluemix
+> TODO: Add a screenshot and point out host name
+
 2 - Install [Node](https://nodejs.org/en/) 
 4 - Install [Ionic CLI](http://ionicframework.com/getting-started/)
 ```bash
@@ -35,7 +37,28 @@ npm install -g mfpdev-cli
 ```bash
 java -version
 ```
-6 - Configure you mfpdev-cli to point to your Foundation Bluemix server
+
+6 - Download and Install [Maven](https://maven.apache.org/install.html)
+
+7 - Configure you mfpdev-cli to point to your Foundation Bluemix server
+Included are the default settings for username/passwords.
+Replace <server> with your server.
+
+```bash
+mfpdev server add 
+? Enter the name of the new server profile: bluemix-server
+? Enter the fully qualified URL of this server: http://<server>:80
+? Enter the MobileFirst Server administrator login ID: mfpRESTUser
+? Enter the MobileFirst Server administrator password: mfpadmin
+? Save the administrator password for this server?: Yes
+? Enter the context root of the MobileFirst administration services: mfpadmin
+? Enter the MobileFirst Server connection timeout in seconds: 30
+? Make this server the default?: (Y/n) Y
+```
+
+
+
+# Notes
 
 ```bash
 # We tested this at
