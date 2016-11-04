@@ -46,19 +46,27 @@ On this guide we will explore an IBM Secure Gateway as an way to expose our samp
 To expose an On-Prem Service(our CRM) to Bluemix we will need the following elements:
 - An `Gateway` on Bluemix Secure Gateway;
 - An `Gateway Client` running on your On-Prem network ;
-- An `Endpoint on Secure Gateway` on Bluemix pointing to your On-Prem Software;
+- An `Destination on Secure Gateway` on Bluemix pointing to your On-Prem Software;
 - An `On-Prem Service` running, for this something that listen a TCP or UDP port to serve some content;
 
+
+#### How IBM Secure Gateway setup works? 
 
 The general setup is the following:
 
 1. Create an [IBM Secure Gateway](https://console.ng.bluemix.net/catalog/services/secure-gateway/) on your account;
 2. Add an `Gateway` on it;
-3. Run an `Gateway Client` on your network to allow your On-Prem network to be exposed to bluemix network.
+3. Run an `Gateway Client` on your network to allow your On-Prem network to be exposed to bluemix network;
 
 > *Don't Panic!:*  The gateway client has an internal firewall, so you will have control on what is exposed. 
 
-4. 
+4. Expose on the `Gateway Client ACL` the service(Host and Port) you want to expose, for details [here](https://console.ng.bluemix.net/docs/services/SecureGateway/sg_010.html#sg_010);
+5. Create an `Destination` on your `Gateway` on your IBM Secure Gateay on Bluemix ;
+6. (optional) Protect the `Destination` to be accessed by only pre-autorized IPs  - [Details Here](https://console.ng.bluemix.net/docs/services/SecureGateway/sg_023.html#sg_033)
+7. (optional) Provide access to your `Destination` to the consumer of your `Destination` endpoint.  - [Details Here](https://console.ng.bluemix.net/docs/services/SecureGateway/sg_023.html#sg_033)
+
+
+## TO review  after this point ---
 
 After integrating your ui with your backend and applying mobile security, time to tackle the next hurdle - firewalls!
 Many of your users will not be on the same network as your sensitive customer information (i.e. on-prem CRM) and you do not want to open up those resources for anyone on the Internet to be able to access.
