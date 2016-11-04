@@ -25,7 +25,7 @@
 
 ## Guide
 
-## Server Side Configuration
+### Server Side Configuration
 
 1 - Go to your UserLogin Adapter folder and build the adapter
 ```bash
@@ -46,9 +46,9 @@ By adding `user-restricted` scope to a resource (in this lab, `CustomerAdapter`)
 @OAuthSecurity(scope = "user-restricted")
 ```
 
-## Client Side Configuration 
+### Client Side Configuration 
 
-### Auth Service
+#### Auth Service
 
 In the services/auth.js file, the following The *login()* function uses the username and password that you type in and sends it to the UserLogin security adapter via the `WLAuthorizationManager.login` function to validate the credentials (if username and password are the same).
 
@@ -75,7 +75,7 @@ login: function ($scope, username, password) {
 
 > > This lab uses the [UserLogin Adapter](https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/authentication-and-security/user-authentication/security-check/) from the Getting Started tutorials. Please familiarize yourself with this in order to better understand the logic implemented on the client side.
 
-### Login Controller
+#### Login Controller
 
 In the **login.js** file, the following code snippet shows passes the username and password to the Auth service.
 
