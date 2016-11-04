@@ -204,7 +204,8 @@ Congratulations we now have a OnPrem Service exposed to the web, allowing it to 
 ![Instructions](/Lab/img/SGW_3_Step1_EnableProtectedEndpoint.gif)
 
 
-> :memo: Link to the Consumer guide to setup protection.
+> :memo: Check our [Java Message Hub Consumer](/Lab/Contents/BMX-Java-Message-Hub-Consumer/Readme.md) code, it has a special Java code to allow it to add itself on the gateway whitelist. As described [here](https://console.ng.bluemix.net/docs/services/SecureGateway/sg_023.html#sg_033). 
+
 
 #### Learning more about cloudfoundry apps and secure gateway IP Tables.
 
