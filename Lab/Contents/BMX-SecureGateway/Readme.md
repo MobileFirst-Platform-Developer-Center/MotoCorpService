@@ -28,19 +28,26 @@
 
 ### Secure Gateway Overview
 
-#### What is secure gateway?
+#### What is IBM Secure Gateway?
 
 It is a service available on bluemix that allows you to access On-Prem Services of your data center(eg: an web service) on a IBM Bluemix Application(eg: [NodeJS](https://console.ng.bluemix.net/catalog/starters/sdk-for-nodejs/) or [Java Runtime](https://console.ng.bluemix.net/catalog/starters/liberty-for-java/)).  
 
 Another possibility is to access a Bluemix Application on your On-Prem Daatacenter, but this second use case will not be explored on this guide. 
 
 > [read more here](https://console.ng.bluemix.net/docs/services/SecureGateway/secure_gateway.html)
+> [what is On-Prem?](https://en.wikipedia.org/wiki/On-premises_software)
 
 #### When to use IBM Secure Gateway?
 
 On this guide we will explore an IBM Secure Gateway as an way to expose our sample CRM API that will run on your machine(not on bluemix) and allow our  [BMX-Java-Message-Hub-Consumer](/Lab/Contents/BMX-Java-Message-Hub-Consumer/Readme.md) to send updates commands to the CRM.
 
 #### How IBM Secure Gateway works? 
+
+To expose an On-Prem Service(our CRM) to Bluemix we will need the following elements:
+- An `Gateway` on Bluemix Secure Gateway;
+- An `Gateway Client` running on your On-Prem network ;
+- An `Endpoint on Secure Gateway` on Bluemix pointing to your On-Prem Software;
+- An `On-Prem Service` running, for this something that listen a TCP or UDP port to serve some content;
 
 
 
