@@ -11,13 +11,13 @@
 
  - `What is secure gateway?` - ok
  - `When to use secure gateway?` - ok
- - `How to create a gateway?`
- - `Why do you need a gateway client On-Prem?`
- - How to run a Security Gateway Client On-Prem
- - `What is a Secure Gateway Endpoint on Bluemix?`
- - How to setup an Secure Gateway Endpoint on Bluemix
- - How to protect the Secure Gateway Tunnel between Bluemix and On-Prem -> Link
- - How to test the Tunnel
+ - `How to create a gateway?` - ok
+ - `Why do you need a gateway client On-Prem?` - ok
+ - How to run a Security Gateway Client On-Prem - ok
+ - `What is a Secure Gateway Endpoint on Bluemix?` - ?
+ - How to setup an Secure Gateway Endpoint on Bluemix  - ok 
+ - How to protect the Secure Gateway Tunnel between Bluemix and On-Prem - ok
+ - How to test the Tunnel - Missing
 
 ## Requirement of this guide
 
