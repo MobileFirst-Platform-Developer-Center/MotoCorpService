@@ -6,7 +6,6 @@
 
  `move the text bellow to the guide part`
 
- `add links to our getting started topics on this subject - as reference`
 
  In this section you will learn how to implement a secure login for your application.
   
