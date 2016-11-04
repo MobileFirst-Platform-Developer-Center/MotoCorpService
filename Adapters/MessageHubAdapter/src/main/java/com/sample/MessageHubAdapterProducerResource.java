@@ -12,6 +12,8 @@
  */
 package com.sample;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ibm.json.java.JSONObject;
 import com.ibm.mfp.adapter.api.ConfigurationAPI;
 import com.ibm.mfp.adapter.api.OAuthSecurity;
@@ -46,6 +48,7 @@ public class MessageHubAdapterProducerResource {
 
     private final KafkaProducer<byte[], byte[]> producer;
     private final MessageHubREST messageHubREST;
+    private  final ObjectMapper objectMapper;
 
     public MessageHubAdapterProducerResource(@Context ConfigurationAPI configurationAPI) {
         KafkaConfig kafkaConfig = new KafkaConfig();
@@ -61,6 +64,9 @@ public class MessageHubAdapterProducerResource {
 
         MessageHubProperties messageHubProperties = MessageHubProperties.getInstance(configurationAPI);
         producer = MessageHubProducer.getInstance(messageHubProperties);
+
+        objectMapper = new ObjectMapper();
+        objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
     }
 
     @ApiOperation(value = "Customer", notes = "Forwards new customer record to MessageHub")
@@ -72,7 +78,9 @@ public class MessageHubAdapterProducerResource {
 
         String messageKey = Integer.toString((int)(Math.random()*10000F));
 
-        producer.send(produce(MessageHubAdapterProducerResource.NEW_CUSTOMER_TOPIC, messageKey, customer.toString()));
+        byte[] payload  = objectMapper.writeValueAsBytes(customer);
+
+        producer.send(produce(MessageHubAdapterProducerResource.NEW_CUSTOMER_TOPIC, messageKey, payload));
 
         return okResponse();
     }
@@ -88,9 +96,9 @@ public class MessageHubAdapterProducerResource {
         JSONObject newVisit = new JSONObject();
 
         newVisit.put("CustomerId", id);
-        newVisit.put("CustomerVisit", customerVisit);
+        newVisit.put("CustomerVisit", objectMapper.writerWithType(JSONObject.class));
 
-        producer.send(produce(MessageHubAdapterProducerResource.NEW_VISIT_TOPIC, id, newVisit.toString()));
+        producer.send(produce(MessageHubAdapterProducerResource.NEW_VISIT_TOPIC, id, newVisit.toString().getBytes()));
 
         return okResponse();
     }
@@ -110,8 +118,8 @@ public class MessageHubAdapterProducerResource {
         }
     }
 
-    protected ProducerRecord<byte[], byte[]> produce(String topic, String key, String payload) {
-        return new ProducerRecord<byte[], byte[]>(topic, key.getBytes(), payload.getBytes());
+    protected ProducerRecord<byte[], byte[]> produce(String topic, String key, byte[] payload) {
+        return new ProducerRecord<byte[], byte[]>(topic, key.getBytes(), payload);
     }
 
     protected Response okResponse() {
