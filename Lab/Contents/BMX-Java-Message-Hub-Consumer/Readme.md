@@ -41,6 +41,8 @@ Notes:
   - >to avoid error: The route javaconsumer.mybluemix.net is already in use.
 - update the yml to add your MessageHub credentials(screenshots)
 - update the yml to add your SecureGateway credentials(TBD)(screenshots)
+- build WAR:
+  mvn -B package
 - cf push
 > Message Hub is a "public service" - to be confirmed if message hub is visible outside of your account.
 - how to test MessageHub consumer?
