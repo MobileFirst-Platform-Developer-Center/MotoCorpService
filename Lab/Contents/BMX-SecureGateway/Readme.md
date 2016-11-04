@@ -55,7 +55,9 @@ The general setup is the following:
 1. Create an [IBM Secure Gateway](https://console.ng.bluemix.net/catalog/services/secure-gateway/) on your account;
 2. Add an `Gateway` on it;
 3. Run an `Gateway Client` on your network to allow your On-Prem network to be exposed to bluemix network.
+
 > *Don't Panic!:*  The gateway client has an internal firewall, so you will have control on what is exposed. 
+
 4. 
 
 After integrating your ui with your backend and applying mobile security, time to tackle the next hurdle - firewalls!
