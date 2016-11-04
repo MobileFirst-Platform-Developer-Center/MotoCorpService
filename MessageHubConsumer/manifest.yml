@@ -18,3 +18,8 @@ applications:
                     "truststore-type":"${YOUR-KEYSTORE-TYPE}",
                     "crm-endpoint":"https://${YOUR-CRM-ENDPOINT}"
                  }'
+    SGW_CONFIG: '{
+                    "destination-id":"destination-id",
+                    "gateway-id":"gateway-id",
+                    "sgw-token":"SGW"
+                 }'
