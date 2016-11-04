@@ -4,9 +4,9 @@
 ## What you will learn on this guide
 - How to use  Mobile Foundation Security Check
 
-- `move the text bellow to the guide part`
+ `move the text bellow to the guide part`
 
-- `add links to our getting started topics on this subject - as reference`
+ `add links to our getting started topics on this subject - as reference`
 
  In this section you will learn how to implement a secure login for your application.
   
