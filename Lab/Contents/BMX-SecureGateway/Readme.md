@@ -9,8 +9,8 @@
 
 ## What you will learn on this guide
 
- - `What is secure gateway?`
- - `When to use secure gateway?`
+ - `What is secure gateway?` - ok
+ - `When to use secure gateway?` - ok
  - `How to create a gateway?`
  - `Why do you need a gateway client On-Prem?`
  - How to run a Security Gateway Client On-Prem
@@ -27,6 +27,22 @@
 ## Guide
 
 ### Secure Gateway Overview
+
+#### What is secure gateway?
+
+It is a service available on bluemix that allows you to access On-Prem Services of your data center(eg: an web service) on a IBM Bluemix Application(eg: [NodeJS](https://console.ng.bluemix.net/catalog/starters/sdk-for-nodejs/) or [Java Runtime](https://console.ng.bluemix.net/catalog/starters/liberty-for-java/)).  
+
+Another possibility is to access a Bluemix Application on your On-Prem Daatacenter, but this second use case will not be explored on this guide. 
+
+> [read more here](https://console.ng.bluemix.net/docs/services/SecureGateway/secure_gateway.html)
+
+#### When to use IBM Secure Gateway?
+
+On this guide we will explore an IBM Secure Gateway as an way to expose our sample CRM API that will run on your machine(not on bluemix) and allow our  [BMX-Java-Message-Hub-Consumer](/Lab/Contents/BMX-Java-Message-Hub-Consumer/Readme.md) to send updates commands to the CRM.
+
+#### How IBM Secure Gateway works? 
+
+
 
 After integrating your ui with your backend and applying mobile security, time to tackle the next hurdle - firewalls!
 Many of your users will not be on the same network as your sensitive customer information (i.e. on-prem CRM) and you do not want to open up those resources for anyone on the Internet to be able to access.
