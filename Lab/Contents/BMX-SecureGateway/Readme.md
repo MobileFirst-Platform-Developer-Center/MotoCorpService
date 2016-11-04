@@ -65,50 +65,24 @@ The general setup is the following:
 
 > *Don't worry* the gateway client has an internal firewall, so you will have control on what is exposed. And also, you can protect the Bluemix Secure Gateway `destination` with a set of layers of protections. 
 
+### Setup steps for the CRM Sample
 
-## TO review  after this point ---
-
-After integrating your ui with your backend and applying mobile security, time to tackle the next hurdle - firewalls!
-Many of your users will not be on the same network as your sensitive customer information (i.e. on-prem CRM) and you do not want to open up those resources for anyone on the Internet to be able to access.
-
-IBM Bluemix Secure Gateway service allows you to securely and easily tunnel through these firewalls so that your end users can access the resources they need.
-
-This lab will cover how can you explore IBM Bluemix Secure Gateway service to call an OnPrem service from your Bluemix application.
-
-#### 1. Scenario explored on this sample
-
-![Demo Map](/Lab/img/SGW_MAP.png)
-> Remove Map
-
-In this Lab we will connect to a CRM Mockup(See: :pushpin:  **Link to CRM Setup** ) that is running in a nodeJS server that is not in bluemix environment and not exposed to the web.
-
-To allow our Mobile Foundation server on bluemix to reach the REST API of our CRM Mockup from bluemix app we will use Secure Gateway to bridge the OnPrem Server and the Bluemix App, by:
-
-1 - Exposing CRM REST API to the web(all internet users - public access)
-
-2 - To protect the CRM API to be only visible by the Mobile Foundation Runtime running on Bluemix (restricted access)
-
-
-
-> :bulb: **TIP:**  This could be used when you have a backend system that is not available at the internet and you need to access it from a bluemix service.
-
-
-> :bulb: **TIP:**  This could also  be used when you are developing an app and want expose your local test version to another developer or team via bluemix or via internet.
-
-#### 2. Creating a gateway to allow cloud to reach on OnPrem data
+#### Creating a gateway to allow cloud to reach on OnPrem data
 
 > **Before Proceding:**   This tutorial will require you have a service to be exposed in a tcp port, then expose it via Secure Gateway Bluemix service. To help you with that, we provide the CRM Mockup as a sample of service to be exposed.
+>
+> **Before Proceding:**   This tutorial will also assumes you have `docker` installed on your machine. More about docker at [here](https://www.docker.com)
 
 
-To create a gateway and expose a destination through it the steps are:
+Let's start:
 
-##### 2.1 - Add Secure Gateway on bluemix account
+##### Adding Secure Gateway on bluemix account
 
 > In your bluemix account, add a new service and select **"Secure Gateway"** and fill with default values and press create.
 
 ![Instructions](/Lab/img/SGW_Setup01.gif)
 
-### 2.2 - Creating an Gateway
+#### Creating an Gateway
 
 > Once you have a Secure Gateway service on your account let's add an gateway:
 
@@ -123,7 +97,7 @@ To create a gateway and expose a destination through it the steps are:
 > :memo: **What is a gateway?:**  
 > The gateway is a collection of destinations, it has secure token that allows it to be customized by the users.
 
-##### 2.3 - Running the Secure Gateway Docker Client
+#### Running the Secure Gateway Docker Client
 
 >  - On the top right of the secure gateway dashboard, press on "add client".
 >  - Select docker
@@ -143,7 +117,7 @@ To create a gateway and expose a destination through it the steps are:
   ![Demo Map](/Lab/img/SGW_Client.png)
 > The Secure Gateway client and the service/resource you want to reach in the OnPrem network do not need to be on the same machine, as long as the client machine can reach the service desired, it will do the proper routing to it.
 
-##### 2.4 - Creating a Destination
+#### Creating a Destination
 > - Enter in your gateway on the Service Dashboard.
 > - Click on Add a destination
 > - Select "On-Premesis" -> This will create a destination from a bluemix endpoint to a service on your OnPrem netowrk.
@@ -164,9 +138,7 @@ To create a gateway and expose a destination through it the steps are:
 > It is a endpoint on bluemix that will receive the calls from the cloud-side(Bluemix) and tunnel it in to your OnPrem resource, in this example, the CRM Mockup.
 
 
-
-
-##### 2.5 - Testing your OnPrem Service(optional)
+#### Testing your OnPrem Service(optional)
 
 Execute the curl below to test your OnPrem resource, to ensure there is something been responded when the tunnel works.
   ```bash
@@ -176,7 +148,7 @@ Execute the curl below to test your OnPrem resource, to ensure there is somethin
   ```
 
 
-##### 2.6 - Defining the ACL List
+#### Defining the ACL List(Allowing access to your Local Service)
 
 Once you start your client endpoint, as we did on the **step 3** you will see a console open, on this console, if you press "S" you will see a list of rules(your ACL list).
 > On the Secure Gateway Console, type:
@@ -219,10 +191,10 @@ docker run -it -v /ACLList/Folder/OnHost/:/var/settings/  --name sgw_client ibmc
 Congratulations we now have a OnPrem Service exposed to the web, allowing it to also be reached by Bluemix Applications. In the next topic we will cover how to to restrict the access to this service, for just bluemix apps.
 
 
-#### 3. Restricting the access to the gateway - MFP on bluemix
+#### (optional) Restricting the access to the gateway - MFP on bluemix
 
 
-##### 3.1 - Protecting your resource destination on Secure Gateway
+##### Protecting your resource destination on Secure Gateway
 > On your gateway page, where you have the list of destinations.
 > Click on the gateway name, the grey big box.
 > Expand the "advanced" area.
@@ -234,13 +206,13 @@ Congratulations we now have a OnPrem Service exposed to the web, allowing it to 
 
 > :memo: Link to the Consumer guide to setup protection.
 
-### 3.4 - Learning more about cloudfoundry apps and secure gateway IP Tables.
+#### Learning more about cloudfoundry apps and secure gateway IP Tables.
 
 > :books: To learn more about this access [this link](https://console.ng.bluemix.net/docs/services/SecureGateway/sg_023.html#sg_033)
 
-## 4. Troubleshooting Secure Gateway
+#### Troubleshooting Secure Gateway
 
-### How to clean you IP Tables
+##### How to clean you IP Tables
 If for some reason you want to wipe out the list of IP/Ports from the Secure Gateway restricted list to prevent all servers to access your endpoint you can run the following command:
 
 ```bash
@@ -253,12 +225,6 @@ curl -X DELETE "https://sgmanager.ng.bluemix.net/v1/sgconfig/mO6CsJObK7T_prod_ng
 
 > By invoking a **DELETE** call to "https://sgmanager.ng.bluemix.net/v1/sgconfig/$GATEWAY_ID/destinations/$Ddestination_id/ipTableRule" using your Secure Token as the Bearer token with  the payload **'{"all":true}'** you will ask the selected destination to wipe its list of ips.
 > To information used here it is the same one used on step 3, deploying your SecureGatewayAdapter.
-
-
-
-## Acknowledgement:
- Some of the icons used on this page are Designed by Freepik and distributed by Flaticon.
-
 
 
 
