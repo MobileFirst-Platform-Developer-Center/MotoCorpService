@@ -2,6 +2,9 @@
 > TODO: Discuss cannot test login adapter no swagger
 
 ## What you will learn on this guide
+- How to use  Mobile Foundation Security Check
+
+`move the text bellow to the guide part`
 
  In this section you will learn how to implement a secure login for your application.
   
