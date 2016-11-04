@@ -55,15 +55,15 @@ To expose an On-Prem Service(our CRM) to Bluemix we will need the following elem
 The general setup is the following:
 
 1. Create an [IBM Secure Gateway](https://console.ng.bluemix.net/catalog/services/secure-gateway/) on your account;
-2. Add an `Gateway` on it;
-3. Run an `Gateway Client` on your network to allow your On-Prem network to be exposed to bluemix network;
+1. Add an `Gateway` on it;
+1. Run an `Gateway Client` on your network to allow your On-Prem network to be exposed* to bluemix network;
+1. Expose on the `Gateway Client ACL` the service(Host and Port) you want to expose, for details [here](https://console.ng.bluemix.net/docs/services/SecureGateway/sg_010.html#sg_010);
+1. Create an `Destination` on your `Gateway` on your IBM Secure Gateay on Bluemix ;
+1. (optional) Protect the `Destination` to be accessed by only pre-autorized IPs  - [Details Here](https://console.ng.bluemix.net/docs/services/SecureGateway/sg_023.html#sg_033)
+1. (optional) Provide access to your `Destination` to the consumer of your `Destination` endpoint.  - [Details Here](https://console.ng.bluemix.net/docs/services/SecureGateway/sg_023.html#sg_033)
 
-> *Don't Panic!:*  The gateway client has an internal firewall, so you will have control on what is exposed. 
 
-4. Expose on the `Gateway Client ACL` the service(Host and Port) you want to expose, for details [here](https://console.ng.bluemix.net/docs/services/SecureGateway/sg_010.html#sg_010);
-5. Create an `Destination` on your `Gateway` on your IBM Secure Gateay on Bluemix ;
-6. (optional) Protect the `Destination` to be accessed by only pre-autorized IPs  - [Details Here](https://console.ng.bluemix.net/docs/services/SecureGateway/sg_023.html#sg_033)
-7. (optional) Provide access to your `Destination` to the consumer of your `Destination` endpoint.  - [Details Here](https://console.ng.bluemix.net/docs/services/SecureGateway/sg_023.html#sg_033)
+> * *Don't worry* the gateway client has an internal firewall, so you will have control on what is exposed. And also, you can protect the Bluemix Secure Gateway `destination` with a set of layers of protections. 
 
 
 ## TO review  after this point ---
