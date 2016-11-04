@@ -51,6 +51,7 @@ To expose an On-Prem Service(our CRM) to Bluemix we will need the following elem
 
 
 The general setup is the following:
+
 1. Create an [IBM Secure Gateway](https://console.ng.bluemix.net/catalog/services/secure-gateway/) on your account;
 2. Add an `Gateway` on it;
 3. Run an `Gateway Client` on your network to allow your On-Prem network to be exposed to bluemix network.
