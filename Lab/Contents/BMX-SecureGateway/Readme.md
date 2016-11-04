@@ -82,7 +82,7 @@ Let's start:
 
 ![Instructions](/Lab/img/SGW_Setup01.gif)
 
-#### Creating an Gateway
+##### Creating an Gateway
 
 > Once you have a Secure Gateway service on your account let's add an gateway:
 
@@ -97,7 +97,7 @@ Let's start:
 > :memo: **What is a gateway?:**  
 > The gateway is a collection of destinations, it has secure token that allows it to be customized by the users.
 
-#### Running the Secure Gateway Docker Client
+##### Running the Secure Gateway Docker Client
 
 >  - On the top right of the secure gateway dashboard, press on "add client".
 >  - Select docker
@@ -117,7 +117,7 @@ Let's start:
   ![Demo Map](/Lab/img/SGW_Client.png)
 > The Secure Gateway client and the service/resource you want to reach in the OnPrem network do not need to be on the same machine, as long as the client machine can reach the service desired, it will do the proper routing to it.
 
-#### Creating a Destination
+##### Creating a Destination
 > - Enter in your gateway on the Service Dashboard.
 > - Click on Add a destination
 > - Select "On-Premesis" -> This will create a destination from a bluemix endpoint to a service on your OnPrem netowrk.
@@ -138,7 +138,7 @@ Let's start:
 > It is a endpoint on bluemix that will receive the calls from the cloud-side(Bluemix) and tunnel it in to your OnPrem resource, in this example, the CRM Mockup.
 
 
-#### Testing your OnPrem Service(optional)
+##### Testing your OnPrem Service(optional)
 
 Execute the curl below to test your OnPrem resource, to ensure there is something been responded when the tunnel works.
   ```bash
@@ -148,7 +148,7 @@ Execute the curl below to test your OnPrem resource, to ensure there is somethin
   ```
 
 
-#### Defining the ACL List(Allowing access to your Local Service)
+##### Defining the ACL List(Allowing access to your Local Service)
 
 Once you start your client endpoint, as we did on the **step 3** you will see a console open, on this console, if you press "S" you will see a list of rules(your ACL list).
 > On the Secure Gateway Console, type:
