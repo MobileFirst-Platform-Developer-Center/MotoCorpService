@@ -9,9 +9,14 @@
 
 ## What you will learn on this guide
 
- - How to setup Secure Gateway Endpoint on Bluemix
- - How to Setup a Security Gateway Client On-Prem
- - How to protect the Secure Gateway Tunnel
+ - `What is secure gateway?`
+ - `When to use secure gateway?`
+ - `How to create a gateway?`
+ - `Why do you need a gateway client On-Prem?`
+ - How to run a Security Gateway Client On-Prem
+ - `What is a Secure Gateway Endpoint on Bluemix?`
+ - How to setup an Secure Gateway Endpoint on Bluemix
+ - How to protect the Secure Gateway Tunnel between Bluemix and On-Prem -> Link
  - How to test the Tunnel
 
 ## Requirement of this guide
