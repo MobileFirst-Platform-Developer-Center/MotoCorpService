@@ -34,8 +34,9 @@ It is a service available on bluemix that allows you to access On-Prem Services 
 
 Another possibility is to access a Bluemix Application on your On-Prem Daatacenter, but this second use case will not be explored on this guide.
 
-> [read more here](https://console.ng.bluemix.net/docs/services/SecureGateway/secure_gateway.html)
-> [what is On-Prem?](https://en.wikipedia.org/wiki/On-premises_software)
+> [Read more about Secure Gateway here](https://console.ng.bluemix.net/docs/services/SecureGateway/secure_gateway.html)
+>
+> ["What is On-Prem?"  - Read about here](https://en.wikipedia.org/wiki/On-premises_software)
 
 #### When to use IBM Secure Gateway?
 
