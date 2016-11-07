@@ -20,6 +20,7 @@ Your route below is `mobilefoundation-qc-ih-server.mybluemix.net`
 ![route](server-route.png)
 
 2 - Install [Node](https://nodejs.org/en/) 
+
 3 - Install [Cordova](https://cordova.apache.org/docs/en/latest/guide/cli/)
 ```
 npm install -g cordova
