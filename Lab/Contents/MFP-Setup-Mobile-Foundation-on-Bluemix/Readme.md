@@ -31,19 +31,19 @@ npm install -g cordova
 npm install -g cordova ionic@1.x
 ```
 
-3 - Install the MobileFirst CLI
+5 - Install the MobileFirst CLI
 ```bash
 npm install -g mfpdev-cli
 ```
 
-5 - Make sure to either by using JVM 1.7 or 1.8. You can check your java version in the CLI with
+6 - Make sure to either by using JVM 1.7 or 1.8. You can check your java version in the CLI with
 ```bash
 java -version
 ```
 
-6 - Download and Install [Maven](https://maven.apache.org/install.html)
+7 - Download and Install [Maven](https://maven.apache.org/install.html)
 
-7 - Configure you mfpdev-cli to point to your Foundation Bluemix server
+8 - Configure you mfpdev-cli to point to your Foundation Bluemix server
 Included are the default settings for username/passwords.
 Replace <server> with the server route you recorded in step 1.
 
