@@ -4,8 +4,8 @@ This CRM is a NodeJS mockup of a potential on-premise CRM for demo purposes.
 
 ## What you will learn on this guide
 
- - How to setup DashDB config on CRM Mockup
- - How to run the Mockup CRM on your Machine
+ - How to setup DashDB config in the Mock CRM
+ - How to run the Mock CRM on your Machine
  - How to test CRM
 
 ## Requirement of this guide
