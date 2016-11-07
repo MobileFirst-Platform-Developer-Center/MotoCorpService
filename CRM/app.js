@@ -25,16 +25,24 @@ var dashDBConfig = (function () {
 })();
 
 var app = express(),
-	appEnv = cfenv.getAppEnv(), // get the app environment from Cloud Foundry
-	dashDB = new DashDB(ibmdb, dashDBConfig);
+    port = 8000,
+    appEnv = null,
+    dashDB = new DashDB(ibmdb, dashDBConfig);
+
+try {
+    appEnv = cfenv.getAppEnv(); // get the app environment from Cloud Foundry
+    port = appEnv.port;
+} catch (e){
+    console.log('Running locally');
+}
 
 app.use(bodyParser.json());
 
 
 // start server on the specified port and binding host
-app.listen(appEnv.port, '0.0.0.0', function () {
+app.listen(port, '0.0.0.0', function () {
 	// print a message when the server starts listening
-	console.log("server starting on " + appEnv.url);
+	console.log("server starting on " + (appEnv ?  appEnv.url : 'localhost:'+port));
 });
 
 

@@ -16,6 +16,7 @@
 package com.motorcorp.messagehub.consumer;
 
 import com.motorcorp.messagehub.consumer.config.EnvLoader;
+import com.motorcorp.messagehub.consumer.config.EnvLoader.MissingConfigurationException;
 import com.motorcorp.messagehub.consumer.config.KafkaConfig;
 import com.motorcorp.messagehub.consumer.config.MessageHubProperties;
 import com.motorcorp.messagehub.consumer.receiver.CustomerMessageReceiver;
@@ -44,7 +45,10 @@ public class ConsumerInstance {
 
     private ArrayList<String> topics = new ArrayList<>();
 
-    public ConsumerInstance() {
+    public ConsumerInstance() {    	
+		setupSecureGatewayFirewall();
+
+    	
         topics.add("new-customer");
         topics.add("new-visit");
 
@@ -55,9 +59,32 @@ public class ConsumerInstance {
         }
     }
 
-    protected void initConsumer(List<String> topics) throws EnvLoader.MissingConfigurationException {
-        Properties properties = EnvLoader.load();
+	private void setupSecureGatewayFirewall() {
+		Properties sgwProperties;
+		try {
+			sgwProperties = EnvLoader.load("SGW_CONFIG");
+	    	logger.log(Level.WARNING, "Consumer App:" );
+	    	logger.info("CF_INSTANCE_IP PRE:");
+	    	logger.info("CF_INSTANCE_IP:" + System.getenv("CF_INSTANCE_IP"));
+	    	logger.info("CF_INSTANCE_INDEX:" + System.getenv("CF_INSTANCE_INDEX"));
+	    	logger.info("CF_INSTANCE_PORT:" + System.getenv("CF_INSTANCE_PORT"));    	    	
+	    	logger.info("sgw-token:" + sgwProperties.getProperty("sgw-token"));
+	    	logger.info("gateway-id:" + sgwProperties.getProperty("gateway-id"));
+	    	logger.info("destination-id:" + sgwProperties.getProperty("destination-id"));
+	    	String sgwTest = "/v1/sgconfig/"+ sgwProperties.getProperty("gateway-id") + "/destinations/"+ sgwProperties.getProperty("destination-id") + "/ipTableRule";
+	    	logger.info("sgwTest:" + sgwTest);
+	    	//put.addHeader("Authorization", "Bearer "+sgwProperties.getProperty("sgwToken"));
+		} catch (MissingConfigurationException e1) {
+			logger.log(Level.SEVERE, e1.getMessage());
+		}
+	}
 
+    protected void initConsumer(List<String> topics) throws EnvLoader.MissingConfigurationException {
+    	logger.info("properties" + System.getenv("APP_CONFIG") );
+    	Properties properties = EnvLoader.load();
+        
+        logger.info("properties" + Arrays.toString(properties.values().toArray()));
+        		
         String crmEndpoint = properties.getProperty("crm-endpoint");
 
         receivers.put("new-customer", new CustomerMessageReceiver(crmEndpoint));

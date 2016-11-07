@@ -36,6 +36,29 @@ curl -X POST --header 'Content-Type: application/json' --header 'Accept: */*' -d
 ```
 
 
+*notes*
+```
+# Message Hub Bluemix
+- create the instance of message hub(screenshot)_
+- get credentials of message hub service(screnshot)
+
+# Message Hub Adpater
+- go to  the adapter folder 
+- go to adapter.xml and update the default properties. (screenshots)
+> provide a link on the docs how to do this via foundation console. 
+- mfpdev adapter build 
+- mfpdev adapter deploy or deploy manually (screenshots)
+> you can only deploy manually due to a limitation of the size of the adpater. 
+
+- how to test if the adapter deploy(swagger test - screenshot or video)
+(we assume we can test)
+
+- Swagger tests -> sample endpoint and sample result screen
+- Check the topic on messageHub check if the topic was created. 
+- Sample payload to creat a customer and sample payload to create a visit
+
+```
+
 
 ## Next guide
 

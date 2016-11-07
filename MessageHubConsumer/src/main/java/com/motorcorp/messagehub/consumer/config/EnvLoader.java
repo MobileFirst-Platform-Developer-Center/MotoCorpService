@@ -23,10 +23,10 @@ import java.util.Properties;
 
 public class EnvLoader {
 
-    public static Properties load() throws MissingConfigurationException {
+    public static Properties load(String envProperty) throws MissingConfigurationException {
 
         try {
-            String configString = System.getenv("APP_CONFIG");
+            String configString = System.getenv(envProperty);
 
             if(configString == null) {
                 throw new JSONException("missing environment variable");
@@ -46,8 +46,11 @@ public class EnvLoader {
             return props;
 
         } catch (JSONException e) {
-            throw new MissingConfigurationException("Missing `APP_CONFIG` environment variable");
+            throw new MissingConfigurationException("Missing or Error processing `"+envProperty+"` environment variable");
         }
+    }
+    public static Properties load() throws MissingConfigurationException {
+    	return load("APP_CONFIG");
     }
 
     public static class MissingConfigurationException extends Exception {
