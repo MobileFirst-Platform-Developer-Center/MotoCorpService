@@ -1,6 +1,6 @@
 #  Setting Up Foundation on Bluemix
 
-In this tutorial, we will be showing how to 
+This tutorial will demonstrate how to setup the Foundation on Bluemix service.
 
 ## What you will learn in this guide
 
@@ -8,25 +8,27 @@ In this tutorial, we will be showing how to
  - How to setup Mobile Foundation CLI and configure it to your Foundation instance
  - How to setup the Ionic CLI
 
-
-## Requirement of this guide
+## Requirements of this guide
 
 - No requirements
-
 
 ## Guide
 
 1 - Instantiate [MobileFirst Foundation](https://console.ng.bluemix.net/catalog/services/mobile-foundation/) on Bluemix
-> TODO: Add a screenshot and point out host name
+Once you do so, please make a note of your server route as you will need to configure your route later.
+Your route below is `mobilefoundation-qc-ih-server.mybluemix.net`
+![route](server-route.png)
 
 2 - Install [Node](https://nodejs.org/en/) 
-4 - Install [Ionic CLI](http://ionicframework.com/getting-started/)
-```bash
-npm install -g cordova ionic@1.X
+3 - Install [Cordova](https://cordova.apache.org/docs/en/latest/guide/cli/)
 ```
-> This project is based on ionic 1.X(to go on details on this - 1.6 or 1.7)
-> TODO: to test how to install ionic
+npm install -g cordova
+```
 
+4 - Install [Ionic 1 CLI](http://ionicframework.com/getting-started/)
+```bash
+npm install -g cordova ionic@1.x
+```
 
 3 - Install the MobileFirst CLI
 ```bash
@@ -42,7 +44,7 @@ java -version
 
 7 - Configure you mfpdev-cli to point to your Foundation Bluemix server
 Included are the default settings for username/passwords.
-Replace <server> with your server.
+Replace <server> with the server route you recorded in step 1.
 
 ```bash
 mfpdev server add 
@@ -56,42 +58,11 @@ mfpdev server add
 ? Make this server the default?: (Y/n) Y
 ```
 
-
-
-# Notes
-
-```bash
-# We tested this at
-#test 1
-javac 1.7.0_80
-mvpdev -v 8.0.0-2016080322
-ionic 1.7.15
-cordova 6.2.0
-
-# test 2
-Java version: 1.8.0_66
-ionic 2.1.0
-cordova 6.4.0
-mfpdev 8.0.0-2016101416
-
-# How to install cloud foundry?
-(not required here)
-
-how to install maven?
-https://maven.apache.org/
-
-To add steps: 
-- install git(just in casE)
-- clone the project (move ot the first guide)
-- setup foudnation on bluemix(screenshots)
-- get the URL to deploy on bluemix(sample screenshot)
-- register a new server(mfedev server create)
-
-
-```
-   
-# Reference
-[mfp install](https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/adapters/creating-adapters/#install-maven)
+## Supported Versions
+- Java - 1.7 and 1.8
+- mfpdev -v 8.0.0-2016101416 and earlier
+- Cordova 6.2-6.4
+- Ionic 1.7-2.1
 
 ## Next guide
 

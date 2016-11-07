@@ -18,7 +18,7 @@ Checklist for completing
 |:------:|:---------------------------------------------------------------------------------------------------------|:-----:|:----------:|:----------------:|:-----------|:-------|
 |   1    | [Overview](/Lab/Contents/Sample/Readme.md)                                                               |   X   |     ?      |        ?         |            |        |
 |   2    | [Quickstart](/Lab/Contents/Quickstart/Readme.md)                                                         |   X   |     ?      |        ?         |            |        |
-|   3    | [MFP-Setup-Mobile-Foundation-on-Bluemix](/Lab/Contents/MFP-Setup-Mobile-Foundation-on-Bluemix/Readme.md) |   X   |     ?      |        no        |            |        |
+|   3    | [MFP-Setup-Mobile-Foundation-on-Bluemix](/Lab/Contents/MFP-Setup-Mobile-Foundation-on-Bluemix/Readme.md) |   X   |    dora      |        no        |            |        |
 |   4    | [MFP-Security-Implement-Login](/Lab/Contents/MFP-Security-Implement-Login/Readme.md)                     |   X   |    dora    |        no        |            |        |
 |   5    | [MFP-MessageHub-Adapter](/Lab/Contents/MFP-MessageHub-Adapter/Readme.md)                                 |  R6   |    yoel    |        no        |            |        |
 |   6    | [MFP-DashDB-Adapter](/Lab/Contents/MFP-DashDB-Adapter/Readme.md)                                         |   X   |     ?      |        no        |            |        |

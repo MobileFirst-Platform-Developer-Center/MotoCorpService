@@ -18,6 +18,7 @@ npm install -g mfpdev-cli
 ```bash
 java -version
 ```
+- [X] Install [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 - [X] Optional for Secure Gateway - [Install Docker](https://docs.docker.com/engine/installation/)
 
 - [X] Register with Bluemix: Check out the services [MobileFirst Foundation](https://console.ng.bluemix.net/catalog/services/mobile-foundation/) and [SecureGateway](https://console.ng.bluemix.net/catalog/services/secure-gateway/)
