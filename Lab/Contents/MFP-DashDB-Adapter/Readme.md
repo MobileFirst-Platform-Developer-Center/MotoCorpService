@@ -45,7 +45,6 @@ CREATE TABLE VISITS (
  "Date" DATE,
  "Type" VARCHAR(13),
  "Comments" VARCHAR(256),
- "Model" VARCHAR(31),
  "VISITID" INTEGER
 );
 ```
