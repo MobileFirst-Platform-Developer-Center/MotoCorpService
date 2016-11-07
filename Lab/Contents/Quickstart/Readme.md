@@ -45,7 +45,7 @@ mfpdev server add
 ### 2 - git clone this repo
 ```bash
 mkdir MobileFirstLab
-cd MobileFirstLabnot
+cd MobileFirstLab
 git init
 git clone https://github.ibm.com/cord-americas/MotoCorpService.git
 git remote add origin https://github.ibm.com/cord-americas/MotoCorpService.git
