@@ -21,7 +21,7 @@ Checklist for completing
 |   3    | [MFP-Setup-Mobile-Foundation-on-Bluemix](/Lab/Contents/MFP-Setup-Mobile-Foundation-on-Bluemix/Readme.md) |   X   |    dora      |        no        |            |        |
 |   4    | [MFP-Security-Implement-Login](/Lab/Contents/MFP-Security-Implement-Login/Readme.md)                     |   X   |    dora    |        no        |            |        |
 |   5    | [MFP-MessageHub-Adapter](/Lab/Contents/MFP-MessageHub-Adapter/Readme.md)                                 |  R6   |    yoel    |        no        |            |        |
-|   6    | [MFP-DashDB-Adapter](/Lab/Contents/MFP-DashDB-Adapter/Readme.md)                                         |   X   |     ?      |        no        |            |        |
+|   6    | [MFP-DashDB-Adapter](/Lab/Contents/MFP-DashDB-Adapter/Readme.md)                                         |   X   |    dora      |        no        |            |        |
 |   7    | [NodeJS-CRM-OnPrem](/Lab/Contents/NodeJS-CRM-OnPrem/Readme.md)                                           |  R1   |     ?      |        no        |            |        |
 |   8    | [BMX-SecureGateway](/Lab/Contents/BMX-SecureGateway/Readme.md)                                           |   -   |  cesarlb   |        no        |            |        |
 |   9    | [BMX-Java-Message-Hub-Consumer](/Lab/Contents/BMX-Java-Message-Hub-Consumer/Readme.md)                   | R2-R7 |     -      |      yes-B1      |            |        |
