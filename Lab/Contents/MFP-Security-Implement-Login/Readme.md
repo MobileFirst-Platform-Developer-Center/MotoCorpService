@@ -1,5 +1,4 @@
-#  Mobile Foundation - Implement Login(Security)
-> TODO: Discuss cannot test login adapter no swagger
+#  Mobile Foundation - Implement Login (Security)
 
 ## What you will learn in this guide
 
