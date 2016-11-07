@@ -118,7 +118,8 @@ This is optional to getting this app up and running, but without this service wi
 ```bash
 #go back to project main folder, then:
 cd MotoCorpService/MotoCorp/
-ionic emulate ios
+cordova build ios
+cordova emulate ios
 ```
 ### 14 - Login to the app with the same username/password (at least 4 characters, pre-populated).
 You will now be able to search customers, add new customers, add new visits.
