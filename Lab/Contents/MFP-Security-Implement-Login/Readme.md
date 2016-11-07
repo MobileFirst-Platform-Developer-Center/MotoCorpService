@@ -4,6 +4,7 @@
 
 - How to use to use the Mobile Foundation Security Check
 - How to implement OAuth in your mobile application
+- How to create a client secret
 
 ## Requirements of this guide
 
@@ -116,6 +117,20 @@ cordova emulate ios
 To login, use the same username/password (pre-populated). Once successfully logged in, you will be directed to the next page.
 
 ![Login](login.gif)
+
+### Creating a Client Secret
+
+For future testing in other protected adapters, create a client secret. 
+This will allow you to test adapters in swagger within any scope.
+
+> Learn more about client secrets [here](https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/authentication-and-security/confidential-clients/)
+
+1 - Go to your Runtime Settings > Confidential Clients in your mfp console
+
+2 - Create a confidential client with id "test", secret "test", and scope "*"
+
+![confidential-client](confidential-client.png)
+
 
 ## Next guide
 

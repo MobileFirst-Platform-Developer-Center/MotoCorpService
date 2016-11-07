@@ -1,5 +1,7 @@
 #  OnPrem - NodeJS Mock CRM
 
+> TODO: TEST CRM Curls
+
 This CRM is a NodeJS mockup of a potential on-premise CRM for demo purposes.
 
 ## What you will learn on this guide
