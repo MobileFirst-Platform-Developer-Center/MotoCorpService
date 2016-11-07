@@ -23,8 +23,9 @@ public class MessageHubProperties implements ConfigurationLoader {
     public static MessageHubProperties getInstance(ConfigurationAPI config) {
         if (instance == null) {
             instance = new MessageHubProperties();
-            instance.loadConfig(config);
         }
+
+        instance.loadConfig(config);
 
         return instance;
     }
@@ -47,7 +48,8 @@ public class MessageHubProperties implements ConfigurationLoader {
         props.put("security.protocol", "SASL_SSL");
         props.put("sasl.mechanism", "PLAIN");
         props.put("ssl.protocol", "TLSv1.2");
-        props.put("ssl.enabled.protocols", "TLSv1.2");;
+        props.put("ssl.enabled.protocols", "TLSv1.2");
+        ;
         props.put("ssl.truststore.location", config.getPropertyValue("truststore-path"));
         props.put("ssl.truststore.password", config.getPropertyValue("truststore-password"));
         props.put("ssl.truststore.type", config.getPropertyValue("truststore-type"));
