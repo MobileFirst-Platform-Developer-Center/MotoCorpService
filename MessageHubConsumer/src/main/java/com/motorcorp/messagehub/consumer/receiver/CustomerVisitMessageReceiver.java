@@ -36,8 +36,13 @@ public class CustomerVisitMessageReceiver implements MessageReceiver {
     public void receiveMessage(byte[] payload) {
         try {
             JSONObject json = new JSONObject(new String(payload));
+            String requestUrl = endpoint + "/customers/" + json.optInt("CustomerId") + "/visits/";
 
-            HttpClient.getInstance().post(endpoint + "/customers/" + json.optInt("CustomerId") + "/visits/", json.optJSONObject("CustomerVisit"));
+            logger.log(Level.INFO, "Sending New Customer Visit Request");
+            logger.log(Level.INFO, "Endpoint: " + requestUrl);
+            logger.log(Level.INFO, "Payload: " + json.optJSONObject("CustomerVisit"));
+
+            HttpClient.getInstance().post(requestUrl, json.optJSONObject("CustomerVisit"));
 
         } catch (JSONException | IOException e) {
             logger.log(Level.SEVERE, e.getMessage());

@@ -34,6 +34,11 @@ public class CustomerMessageReceiver implements MessageReceiver {
     @Override
     public void receiveMessage(byte[] payload) {
         try {
+
+            logger.log(Level.INFO, "Sending New Customer Request");
+            logger.log(Level.INFO, "Endpoint: " + endpoint + "/customers");
+            logger.log(Level.INFO, "Payload: " + new String(payload));
+
             HttpClient.getInstance().post(endpoint + "/customers", new String(payload));
         } catch (IOException e) {
             logger.log(Level.SEVERE, e.getMessage());

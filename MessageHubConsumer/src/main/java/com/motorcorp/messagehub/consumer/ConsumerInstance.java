@@ -45,7 +45,8 @@ public class ConsumerInstance {
 
     private ArrayList<String> topics = new ArrayList<>();
 
-    public ConsumerInstance() {    	
+    public ConsumerInstance() {
+
 		setupSecureGatewayFirewall();
 
     	
@@ -106,6 +107,7 @@ public class ConsumerInstance {
     public void checkForIncomingMessagesEverySecond() {
         if (consumer == null) {
             try {
+                logger.log(Level.INFO, "Initializing consumer instance");
                 initConsumer(topics);
             } catch (EnvLoader.MissingConfigurationException e) {
                 // consumer could not initialize due to missing `APP_CONFIG` env variable.
@@ -115,6 +117,9 @@ public class ConsumerInstance {
         }
 
         for (ConsumerRecord<byte[], byte[]> message : consumer.poll(1000)) {
+            logger.log(Level.INFO, "Received Message");
+            logger.log(Level.INFO, "Topic: " + message.topic());
+            logger.log(Level.INFO, "Payload: " + new String(message.value()));
             handleMessage(message.topic(), message.value());
         }
     }
