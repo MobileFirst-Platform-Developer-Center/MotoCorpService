@@ -1,33 +1,30 @@
 #  Mobile Foundation - Implement Login(Security)
 > TODO: Discuss cannot test login adapter no swagger
 
-## What you will learn on this guide
-- How to use  Mobile Foundation Security Check
+## What you will learn in this guide
 
- `move the text bellow to the guide part`
+- How to use to use the Mobile Foundation Security Check
+- How to implement OAuth in your mobile application
 
-
- In this section you will learn how to implement a secure login for your application.
-  
- It is important to authenticate a user before they can access sensitive customer information. 
- We will do this by using the MobileFirst security framework to easily implement the OAuth2 protocol to do a handshake with the server for a live token every time a resource request is made via the adapter.
-
- When the app is first launched, it will take you to a login screen where you can sign into the app.
- In our example, the username and password used in the security adapter logic is such that the user name and password are the same values.
-
- In this lab you will explore the **Auth** service that will communicate between the **login controller** and the **security adapter**.
-
- Let's take a look at how this works.
- 
- ![Login](login.png)
-
-
-## Requirement of this guide
+## Requirements of this guide
 
 - [Mobile Foundation Setup](/Lab/Contents/MFP-Setup-Mobile-Foundation-on-Bluemix/Readme.md)
 
-
 ## Guide
+
+In this section you will learn how to implement a secure login for your application.
+  
+It is important to authenticate a user before they can access sensitive customer information. 
+We will do this by using the MobileFirst security framework to easily implement the OAuth2 protocol to do a handshake with the server for a live token every time a resource request is made via the adapter.
+
+When the app is first launched, it will take you to a login screen where you can sign into the app.
+In our example, the username and password used in the security adapter logic is such that the user name and password are the same values.
+
+In this lab you will explore the **Auth** service that will communicate between the **login controller** and the **security adapter**.
+
+Let's take a look at how this works.
+ 
+![Login](login.png)
 
 ### Server Side Configuration
 
@@ -54,7 +51,7 @@ By adding `user-restricted` scope to a resource (in this lab, `CustomerAdapter`)
 
 #### Auth Service
 
-In the services/auth.js file, the following The *login()* function uses the username and password that you type in and sends it to the UserLogin security adapter via the `WLAuthorizationManager.login` function to validate the credentials (if username and password are the same).
+In the services/auth.js file, the following *login()* function uses the username and password that you type in and sends it to the UserLogin security adapter via the `WLAuthorizationManager.login` function to validate the credentials (if username and password are the same).
 
 ```js
 login: function ($scope, username, password) {
@@ -107,6 +104,19 @@ Once authenticated, you will be redirected to the customer search page.
 If the login credentials are invalid, you will receive a popup describing the error.
 Additionally, the MobileFirst security framework handles the time-to-live of the OAuth token so that when the token's life expires, a user will be redirected to the login page.
 
+### Testing
+
+To to test the login, build, deploy, and emulate the app from the cli.
+
+```
+mfpdev app register
+cordova build ios
+cordova emulate ios
+``` 
+
+To login, use the same username/password (pre-populated). Once successfully logged in, you will be directed to the next page.
+
+![Login](login.gif)
 
 ## Next guide
 
