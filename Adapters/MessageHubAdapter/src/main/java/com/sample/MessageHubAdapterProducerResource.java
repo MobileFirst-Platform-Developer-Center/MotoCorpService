@@ -94,9 +94,11 @@ public class MessageHubAdapterProducerResource {
         createTopicIfNeeded(MessageHubAdapterProducerResource.NEW_VISIT_TOPIC);
 
         JSONObject newVisit = new JSONObject();
-
         newVisit.put("CustomerId", id);
-        newVisit.put("CustomerVisit", objectMapper.writerWithType(JSONObject.class));
+
+        JSONObject visitData = JSONObject.parse(objectMapper.writeValueAsString(customerVisit));
+
+        newVisit.put("CustomerVisit", visitData);
 
         producer.send(produce(MessageHubAdapterProducerResource.NEW_VISIT_TOPIC, id, newVisit.toString().getBytes()));
 
