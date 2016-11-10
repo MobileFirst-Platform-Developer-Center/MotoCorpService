@@ -32,7 +32,7 @@ In this lab you will be able to create new customers and new visits (for that cu
  - DashDB adapter queries DashDB for that specific visit (DashDB Adapter)
  - DashDB runs the query and returns the result back to the DashDB Adapter (DashDB)
 
-# Mobile App
+# Foundation Features
   - User Authentication: Login/Logout of the app & user identity. More details in the [Security Lab](/MFP-Security-Implement-Login/Readme.md)
   - Adapter mashup so you can easily change the backend source of your data. More details in the [Customer Adapters Lab](/MFP-Customer-Adapter/Readme.md)
   - Easily Update of your API parameters. More details in the [Config API at Adapters Lab](/MFP-DashDB-Adapter/Readme.md####Deploying-the -DashDB-Adapter)
@@ -41,7 +41,7 @@ In this lab you will be able to create new customers and new visits (for that cu
   - Collecting app usage metrics in the [Analytics lab](Bluemix-Mobile-Analytics/Readme.md)
   - Exploring MobileFirst Platform on Bluemix in the [Foundation Lab](MFP-Setup-Mobile-Foundation-on-Bluemix/Readme.md)
 
-# Backend
+# Backend Services
   - Mock CRM: A NodeJS based Application that will act as a fake CRM to allow you easily replicate the content of this sample, and      mimic an on-prem system of record.
   - Secure Gateway: A set of guides on how to expose your OnPrem CRM to a bluemix Based service in way that can be only be consumed by your Bluemix based apps.
   - DashDB: Using this data store service to act as a mirror of some data in your CRM to reduce the pressure of consuming it online from your onPrem Enviroment and also improve the responsiveness of your mobile app.
