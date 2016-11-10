@@ -1,43 +1,52 @@
 # Introduction
 
-Imagine you are an Enterprise that owns car service centers. You want to equip service center employees with tablets, and build an app that will help them coordinate activities in the service center to improve service times and quality of service.
+Imagine you are an Enterprise that owns car service centers. You want to equip service center employees with apps that will help them coordinate activities in the service center to improve service times and quality of service.
 
 One important element in this solution it is to allow your employees to have access to the most accurate data about your customer. As a customer can engage with your Enterprise via multiple channels.
 
-![Demo Map](/Lab/img/Overview-CRM.png)
-
 > CRM: For this example we will use the CRM idea to be central place to store/retrieve the most updated information about a customer information and to open and post tickets [Read more about here](https://en.wikipedia.org/wiki/Customer_relationship_management)
 
+So through this example we will explore a possible architecture that would allow an Enterprise that already has an OnPrem CRM solution, to expose the CRM data to a mobile app for its Service Centers employees, so they can deliver better customer service.
 
-So through this example we will explore a possible architecture that would allow a Enterprise that already has an OnPrem CRM solution, to expose the CRM data to a mobile app for its Service Centers employees, so they can deliver better customer service.
+This example will cover how to do this asynchronously. The mobile app will be reading from a cached data repository (DashDB) which will be updated as frequently and possibly. The mobile app will also be writing (creating new customers/visits) via a messaging system (MessageHub). This allows the CRM to consume updates in a more controlled flow, mitigating the peaks and valleys of a service center working day. So if needed, more resources can be added to the CRM to support more load trough the day, to keep data updated with less latency.
 
-This Example will cover two main ways to do this:
+## Data Flow 
 
-- **Online/Synchronous**: When you have a mobile app reading and writing to the backend via the CRM apis, as a traditional OLAP database. In this scenario, it would require more from the CRM solution to support peaks and valleys of demand from the service center customer flows or the other supported channels.  
+![Demo Map](diagram.png)
 
+In this lab you will be able to create new customers and new visits (for that customer) within the mobile app. We will be following the diagram below in explaining how the process flow is for creating a new visit.
 
-- **Streams/Asynchronous**: When you have a mobile app reading from a cache data repository updated as frequently as possible, and writing via an messaging system. This allows the CRM to consume updates in a more controlled flow, mitigating the peaks and valleys of a service center working day. So if required, more resource can be added to the CRM to support more load trough the day, to keep data updated with less latency.
+1. Write
+ - User creates a new visit in the mobile app (Mobile App)
+ - Login adapter validates that the OAuth token for that user is valid (Login Adapter)
+ - Customer Adapter is the main adapter for requests and forwards it to the MessageHub Adapter (Customer Adapter)
+ - MessageHub Adapter creates a new visit (topic) request to MessageHub (MessageHub Adapter)
+ - MessageHub creates a new visit topic (MessageHub)
+ - MessageHub Consumer subscribes to the visit topic and receives the new visit topic and updates the CRM (MessageHub Consumer)
+ - SecureGateway creates a tunnel through the firewall so that the consumer can reach the onPrem CRM (SecureGateway)
+ - The OnPremCRM receives the new visit and syncs with DashDB by replicating the new visit (DashDB)
+2. Read
+ - User requests to view information on a specific visit (Mobile App)
+ - Login adapter validates that the OAuth token for that user is valid (Login Adapter)
+ - Customer adapter forwards that request to the DashDB Adapter (Customer Adapter)
+ - DashDB adapter queries DashDB for that specific visit (DashDB Adapter)
+ - DashDB runs the query and returns the result back to the DashDB Adapter (DashDB)
 
-Topics that will be explored on this solution:
-
-- **MobileApp**:
-  - User Authentication: Login/Logout of the app & user identity. More details at the [Security Lab](/Lab/5.%20security.md)
-  - Exposing APIs to your mobile clients. More details in the  [Adapters Lab](/Lab/3.%20adapters.md)
-  - Easy Update of your API parameters(Zero Code Conf). More details in the [Config API at Adapters Lab](/Lab/3.%20adapters.md#configuration-api)
+# Mobile App
+  - User Authentication: Login/Logout of the app & user identity. More details in the [Security Lab](/MFP-Security-Implement-Login/Readme.md)
+  - Adapter mashup so you can easily change the backend source of your data. More details in the [Customer Adapters Lab](/MFP-Customer-Adapter/Readme.md)
+  - Easily Update of your API parameters. More details in the [Config API at Adapters Lab](/MFP-DashDB-Adapter/Readme.md####Deploying-the -DashDB-Adapter)
   - API Protection: Only an authorized user can consume a given service, exposed to the mobile app.
-  - Exploring Ionic for User Interface (mobile app)
-  - Collecting app usage metrics
-  - App Lifecycle Management
-  - Exploring Bluemix based deployment of MobileFirst Platform
+  - Exploring Ionic for User Interface (mobile app) in the [Ionic lab](MFP-Ionic-MobileApp Lab/Readme.md)
+  - Collecting app usage metrics in the [Analytics lab](Bluemix-Mobile-Analytics/Readme.md)
+  - Exploring MobileFirst Platform on Bluemix in the [Foundation Lab](MFP-Setup-Mobile-Foundation-on-Bluemix/Readme.md)
 
-
-- **Backend**:
-  - Mockup CRM: An NodeJS based Application that will act as a fake CRM to allow you easily replicate the content of this sample, and      mimic an on-prem system of record.
+# Backend
+  - Mock CRM: A NodeJS based Application that will act as a fake CRM to allow you easily replicate the content of this sample, and      mimic an on-prem system of record.
   - Secure Gateway: A set of guides on how to expose your OnPrem CRM to a bluemix Based service in way that can be only be consumed by your Bluemix based apps.
   - DashDB: Using this data store service to act as a mirror of some data in your CRM to reduce the pressure of consuming it online from your onPrem Enviroment and also improve the responsiveness of your mobile app.
   - MessageHub: A service to allow a better pipeline to allow a more asynchronous data propagation of the data from your mobile app to an OnPrem CRM.
-
-
+  
 # Scenario Considerations
 
 - Replacing a desktop user interface to a system to a mobile based can bring the following challenges to be handled:
