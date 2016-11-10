@@ -141,14 +141,14 @@ public class DashDBResource {
 
 				result.put("CustomerID", data.getInt("CustomerID"));
 				result.put("Name", data.getString("Name"));
-				result.put("LicensePlate", data.getString("LicensePlate"));
+				result.put("LicensePlate", data.getString("LICENSEPLATE"));
 				result.put("Make", data.getString("Make"));
 				result.put("Model", data.getString("Model"));
 				result.put("Vin", data.getString("Vin"));
 
 				// get visits
 				JSONArray customerVisits = new JSONArray();
-				PreparedStatement getVisits = con.prepareStatement("Select \"Date\", \"Type\" , \"Comments\" from VISITS WHERE \"CustomerID\" = ?");
+				PreparedStatement getVisits = con.prepareStatement("Select \"DATE\", \"TYPE\" , \"COMMENTS\" from VISITS WHERE \"CUSTOMERID\" = ?");
 				getVisits.setInt(1, customerId);
 				ResultSet visits = getVisits.executeQuery();
 
@@ -156,9 +156,9 @@ public class DashDBResource {
 
 					// build each visit
 						JSONObject visit = new JSONObject();
-						visit.put("Date", visits.getString("Date"));
-						visit.put("Type", visits.getString("Type"));
-						visit.put("Comments", visits.getString("Comments") );
+						visit.put("Date", visits.getString("DATE"));
+						visit.put("Type", visits.getString("TYPE"));
+						visit.put("Comments", visits.getString("COMMENTS") );
 						customerVisits.add(visit);
 				}
 				result.put("Visits", customerVisits);

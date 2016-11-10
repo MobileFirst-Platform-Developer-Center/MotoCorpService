@@ -1,2 +1,18 @@
 [
+    {
+        "Name": "Thursday morning",
+        "LicensePlate": "ABC-123",
+        "Make": "2015",
+        "Model": "Accord",
+        "VIN": "21312411",
+        "id": 1
+    },
+    {
+        "Name": "Me",
+        "LicensePlate": "MONGO",
+        "Make": "Honda",
+        "Model": "Accord",
+        "VIN": "1234",
+        "id": 2
+    }
 ]
