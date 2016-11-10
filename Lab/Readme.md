@@ -17,17 +17,16 @@ Checklist for completing
 |   #    | Name/Link                                                                                                | Code  | Doc Author | Has Blocker(Doc) | Doc Review | Closed |
 |:------:|:---------------------------------------------------------------------------------------------------------|:-----:|:----------:|:----------------:|:-----------|:-------|
 |   1    | [Overview](/Lab/Contents/Sample/Readme.md)                                                               |   X   |     ?      |        ?         |            |        |
-|   2    | [Quickstart](/Lab/Contents/Quickstart/Readme.md)                                                         |   X   |     ?      |        ?         |            |        |
-|   3    | [MFP-Setup-Mobile-Foundation-on-Bluemix](/Lab/Contents/MFP-Setup-Mobile-Foundation-on-Bluemix/Readme.md) |   X   |    dora      |        no        |            |        |
-|   4    | [MFP-Security-Implement-Login](/Lab/Contents/MFP-Security-Implement-Login/Readme.md)                     |   X   |    dora    |        no        |            |        |
-|   5    | [MFP-MessageHub-Adapter](/Lab/Contents/MFP-MessageHub-Adapter/Readme.md)                                 |  R6   |    yoel    |        no        |            |        |
-|   6    | [MFP-DashDB-Adapter](/Lab/Contents/MFP-DashDB-Adapter/Readme.md)                                         |   X   |    dora      |        no        |            |        |
-|   7    | [NodeJS-CRM-OnPrem](/Lab/Contents/NodeJS-CRM-OnPrem/Readme.md)                                           |  R1   |    dora      |        no        |            |        |
-|   8    | [BMX-SecureGateway](/Lab/Contents/BMX-SecureGateway/Readme.md)                                           |   -   |  cesarlb   |        no        |            |        |
-|   9    | [BMX-Java-Message-Hub-Consumer](/Lab/Contents/BMX-Java-Message-Hub-Consumer/Readme.md)                   | R2-R7 |     -      |      yes-B1      |            |        |
-|   10   | [MFP-Customer-Adapter](/Lab/Contents/MFP-Customer-Adapter/Readme.md)                                     |  R6   |     dora      |        B2        |            |        |
-|   11   | [MFP-Ionic-MobileApp](/Lab/Contents/MFP-Ionic-MobileApp/Readme.md)                                       |  R4   |    rob     |        no        |            |        |
-| NOT 12 | [Bluemix-Mobile-Analytics](/Lab/Contents/Bluemix-Mobile-Analytics/Readme.md)                             |  R5   |     ?      |       yes        |            |        |
+|   2    | [MFP-Setup-Mobile-Foundation-on-Bluemix](/Lab/Contents/MFP-Setup-Mobile-Foundation-on-Bluemix/Readme.md) |   X   |    dora      |        no        |            |        |
+|   3    | [MFP-Security-Implement-Login](/Lab/Contents/MFP-Security-Implement-Login/Readme.md)                     |   X   |    dora    |        no        |            |        |
+|   4    | [MFP-MessageHub-Adapter](/Lab/Contents/MFP-MessageHub-Adapter/Readme.md)                                 |  R6   |    yoel    |        no        |            |        |
+|   5    | [MFP-DashDB-Adapter](/Lab/Contents/MFP-DashDB-Adapter/Readme.md)                                         |   X   |    dora      |        no        |            |        |
+|   6    | [NodeJS-CRM-OnPrem](/Lab/Contents/NodeJS-CRM-OnPrem/Readme.md)                                           |  R1   |    dora      |        no        |            |        |
+|   7    | [BMX-SecureGateway](/Lab/Contents/BMX-SecureGateway/Readme.md)                                           |   -   |  cesarlb   |        no        |            |        |
+|   8    | [BMX-Java-Message-Hub-Consumer](/Lab/Contents/BMX-Java-Message-Hub-Consumer/Readme.md)                   | R2-R7 |     -      |      yes-B1      |            |        |
+|   9   | [MFP-Customer-Adapter](/Lab/Contents/MFP-Customer-Adapter/Readme.md)                                     |  R6   |     dora      |        B2        |            |        |
+|   10   | [MFP-Ionic-MobileApp](/Lab/Contents/MFP-Ionic-MobileApp/Readme.md)                                       |  R4   |    rob     |        no        |            |        |
+| NOT 11 | [Bluemix-Mobile-Analytics](/Lab/Contents/Bluemix-Mobile-Analytics/Readme.md)                             |  R5   |     ?      |       yes        |            |        |
 
 
 ```

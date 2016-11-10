@@ -48,7 +48,7 @@ In the command line, you can test the CRM.
 1 - To create a customer
 
 ```bash
-curl -X PUT -H "Content-Type: application/json" -d '{ "name": "New Name - B", "LicensePlate": "ABC-123", "Make":"Honda", "Model":"CRV", "VIN":"12345667" }' "http://localhost:8000/customers/" -vv
+curl -X POST -H "Content-Type: application/json" -d '{ "Name": "John Doe", "LicensePlate": "ABC-123","Make":"Honda", "Model":"CRV", "VIN":"12345667" }' "http://localhost:8000/customers/" -vv
 ```
 
 2 - To create a visit
