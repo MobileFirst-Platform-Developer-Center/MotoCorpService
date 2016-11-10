@@ -93,11 +93,11 @@ app.post('/customers', function (req, res) {
 	// synchronize data with dashdb
 	dashDB.connect().then(function () {
 		return dashDB.create('CUSTOMERS', {
-			CustomerID: body.id,
-			Name: body.Name,
-			LicensePlate: body.LicensePlate,
-			Make: body.Make,
-			Model: body.Model,
+			CUSTOMERID: body.id,
+			NAME: body.Name,
+			LICENSEPLATE: body.LicensePlate,
+			MAKE: body.Make,
+			MODEL: body.Model,
 			VIN: body.VIN
 		});
 	}).then(function () {
