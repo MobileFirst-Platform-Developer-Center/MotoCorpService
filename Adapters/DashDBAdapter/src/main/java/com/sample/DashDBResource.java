@@ -128,7 +128,7 @@ public class DashDBResource {
 		Connection con = getSQLConnection();
 
 		// get customers
-		PreparedStatement getUser = con.prepareStatement("SELECT * FROM CUSTOMERS WHERE \"LICENSEPLATE\" = ?");
+		PreparedStatement getUser = con.prepareStatement("SELECT * FROM CUSTOMERS WHERE \"LicensePlate\" = ?");
 
 		try{
 			JSONObject result = new JSONObject();
@@ -141,14 +141,14 @@ public class DashDBResource {
 
 				result.put("CustomerID", data.getInt("CustomerID"));
 				result.put("Name", data.getString("Name"));
-				result.put("LicensePlate", data.getString("LICENSEPLATE"));
+				result.put("LicensePlate", data.getString("LicensePlate"));
 				result.put("Make", data.getString("Make"));
 				result.put("Model", data.getString("Model"));
 				result.put("Vin", data.getString("Vin"));
 
 				// get visits
 				JSONArray customerVisits = new JSONArray();
-				PreparedStatement getVisits = con.prepareStatement("Select \"DATE\", \"TYPE\" , \"COMMENTS\" from VISITS WHERE \"CUSTOMERID\" = ?");
+				PreparedStatement getVisits = con.prepareStatement("Select \"Date\", \"Type\" , \"Comments\" from VISITS WHERE \"CustomerID\" = ?");
 				getVisits.setInt(1, customerId);
 				ResultSet visits = getVisits.executeQuery();
 
@@ -156,9 +156,9 @@ public class DashDBResource {
 
 					// build each visit
 						JSONObject visit = new JSONObject();
-						visit.put("Date", visits.getString("DATE"));
-						visit.put("Type", visits.getString("TYPE"));
-						visit.put("Comments", visits.getString("COMMENTS") );
+						visit.put("Date", visits.getString("Date"));
+						visit.put("Type", visits.getString("Type"));
+						visit.put("Comments", visits.getString("Comments") );
 						customerVisits.add(visit);
 				}
 				result.put("Visits", customerVisits);
@@ -203,13 +203,13 @@ public class DashDBResource {
 
 		//plate,name,vin -> returns name/licenseplate
 		if (Objects.equals(type, new String("plate"))) {
-			searchCustomer = con.prepareStatement("SELECT \"NAME\",\"LICENSEPLATE\" FROM CUSTOMERS WHERE \"LICENSEPLATE\" = ?");
+			searchCustomer = con.prepareStatement("SELECT \"Name\",\"LicensePlate\" FROM CUSTOMERS WHERE \"LicensePlate\" = ?");
 
 		} else if (Objects.equals(type, new String("VIN"))) {
-			searchCustomer = con.prepareStatement("SELECT \"NAME\",\"LICENSEPLATE\" FROM CUSTOMERS WHERE \"VIN\" = ?");
+			searchCustomer = con.prepareStatement("SELECT \"Name\",\"LicensePlate\" FROM CUSTOMERS WHERE \"VIN\" = ?");
 
 		} else if (Objects.equals(type, new String("name"))) {
-			searchCustomer = con.prepareStatement("SELECT \"NAME\",\"LICENSEPLATE\" FROM CUSTOMERS WHERE \"NAME\" = ?");
+			searchCustomer = con.prepareStatement("SELECT \"Name\",\"LicensePlate\" FROM CUSTOMERS WHERE \"Name\" = ?");
 		} else {
 			return Response.status(Status.NOT_FOUND).entity("User information not found...").build();
 		}

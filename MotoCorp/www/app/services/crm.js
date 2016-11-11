@@ -29,18 +29,14 @@ app.factory('CRM', function () {
       return sendRequest('/adapters/CustomerAdapter/resource/newCustomer', WLResourceRequest.POST, customer);
     },
     newVisit: function (customerId, visit) {
-
       return sendRequest('/adapters/CustomerAdapter/resource/' + customerId + '/newVisit', WLResourceRequest.POST, visit).then(function (response) {
         if (activeCustomer !== null) {
           if (!(activeCustomer.visits instanceof Array)) {
             activeCustomer.visits = [];
           }
-
           activeCustomer.visits.push(visit);
         }
-
         return response;
-
       });
     }
   };

@@ -1,6 +1,6 @@
 [
     {
-        "Name": "Thursday morning",
+        "Name": "Fred Rogers",
         "LicensePlate": "ABC-123",
         "Make": "2015",
         "Model": "Accord",
@@ -8,11 +8,11 @@
         "id": 1
     },
     {
-        "Name": "Me",
-        "LicensePlate": "MONGO",
-        "Make": "Honda",
+        "Name": "Fred Rogers",
+        "LicensePlate": "ABC-123",
+        "Make": "2015",
         "Model": "Accord",
-        "VIN": "1234",
+        "VIN": "21312411",
         "id": 2
     }
 ]

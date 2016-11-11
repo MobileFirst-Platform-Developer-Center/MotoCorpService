@@ -15,6 +15,23 @@
  */
 package com.motorcorp.messagehub.consumer;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import javax.ejb.Schedule;
+import javax.ejb.Singleton;
+
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.apache.kafka.clients.consumer.KafkaConsumer;
+
+
 import com.motorcorp.messagehub.consumer.config.EnvLoader;
 import com.motorcorp.messagehub.consumer.config.EnvLoader.MissingConfigurationException;
 import com.motorcorp.messagehub.consumer.config.KafkaConfig;
@@ -22,16 +39,8 @@ import com.motorcorp.messagehub.consumer.config.MessageHubProperties;
 import com.motorcorp.messagehub.consumer.receiver.CustomerMessageReceiver;
 import com.motorcorp.messagehub.consumer.receiver.CustomerVisitMessageReceiver;
 import com.motorcorp.messagehub.consumer.receiver.MessageReceiver;
+import com.motorcorp.messagehub.consumer.util.HttpClient;
 import com.motorcorp.messagehub.consumer.util.MessageHubConsumer;
-import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.apache.kafka.clients.consumer.KafkaConsumer;
-
-import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import javax.ejb.Schedule;
-import javax.ejb.Singleton;
 
 
 @Singleton
@@ -68,16 +77,31 @@ public class ConsumerInstance {
 	    	logger.info("CF_INSTANCE_IP PRE:");
 	    	logger.info("CF_INSTANCE_IP:" + System.getenv("CF_INSTANCE_IP"));
 	    	logger.info("CF_INSTANCE_INDEX:" + System.getenv("CF_INSTANCE_INDEX"));
-	    	logger.info("CF_INSTANCE_PORT:" + System.getenv("CF_INSTANCE_PORT"));    	    	
+	    	logger.info("CF_INSTANCE_PORT:" + System.getenv("CF_INSTANCE_PORT"));
+	    	logger.info("sgw-api-host:" + sgwProperties.getProperty("api-host"));
 	    	logger.info("sgw-token:" + sgwProperties.getProperty("sgw-token"));
 	    	logger.info("gateway-id:" + sgwProperties.getProperty("gateway-id"));
 	    	logger.info("destination-id:" + sgwProperties.getProperty("destination-id"));
 	    	String sgwTest = "/v1/sgconfig/"+ sgwProperties.getProperty("gateway-id") + "/destinations/"+ sgwProperties.getProperty("destination-id") + "/ipTableRule";
 	    	logger.info("sgwTest:" + sgwTest);
-	    	//put.addHeader("Authorization", "Bearer "+sgwProperties.getProperty("sgwToken"));
+	    	
+	    	//String host = "https://sgmanager.ng.bluemix.net";
+	    	String payload = "{"
+	    			+ "src:" +  System.getenv("CF_INSTANCE_IP") + ","
+	    			+ "app: " + "JAVA_CONSUMER_" +  System.getenv("CF_INSTANCE_INDEX")
+	    			+ "}";
+	    		    
+	    	 String payloadRAW = "{\"src\":\"" + System.getenv("CF_INSTANCE_IP") + "\",\"app\":\"" + "JAVA_CONSUMER_" +  System.getenv("CF_INSTANCE_INDEX")+ "\"}";
+			HttpClient.getInstance().putSGW(sgwProperties.getProperty("api-host") + sgwTest, payloadRAW,sgwProperties.getProperty("sgw-token") );
+
+			//put.addHeader("Authorization", "Bearer "+sgwProperties.getProperty("sgwToken"));
 		} catch (MissingConfigurationException e1) {
 			logger.log(Level.SEVERE, e1.getMessage());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			logger.log(Level.SEVERE, e.getMessage());
 		}
+    	//
 	}
 
     protected void initConsumer(List<String> topics) throws EnvLoader.MissingConfigurationException {
