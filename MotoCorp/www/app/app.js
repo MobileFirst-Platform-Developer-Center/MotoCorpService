@@ -39,7 +39,7 @@ app.config(function ($stateProvider) {
       }
     }
   }).state('app.customer', {
-    url: '/customer/:id',
+    url: '/customer/:plate',
     views: {
       'menuContent': {
         templateUrl: 'app/views/view-customer.html',
