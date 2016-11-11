@@ -22,8 +22,12 @@ import okhttp3.Response;
 
 
 import java.io.IOException;
+import java.util.logging.Logger;
+
+import com.motorcorp.messagehub.consumer.ConsumerInstance;
 
 public class HttpClient {
+	static Logger logger = Logger.getLogger(ConsumerInstance.class.getName());
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
     private static HttpClient instance;
@@ -52,4 +56,24 @@ public class HttpClient {
             return response.body().string();
         }
     }
+    
+    public String putSGW(String endpoint, String payloadJSON, String sgwToken) throws IOException {
+        RequestBody body = RequestBody.create(JSON,payloadJSON);
+    	//RequestBody body = RequestBody.create(JSON, "{\"src\":\"169.55.202.1\",\"app\":\"MobileDev-bo-Server\"}");
+    	
+
+        logger.info("putSGW - url:(NEW) " + endpoint);
+        logger.info("putSGW - payload: " + payloadJSON);
+        Request request = new Request.Builder()
+        		.addHeader("Content-Type", "application/json")
+        		.addHeader("Authorization", "Bearer "+sgwToken)
+                .url(endpoint)
+                .put(body)
+                .build();
+        try (Response response = httpClient.newCall(request).execute()) {
+        	logger.info("putSGW - response:" + response.body().string().toString());
+            return response.body().toString();
+        }
+    }
+
 }
