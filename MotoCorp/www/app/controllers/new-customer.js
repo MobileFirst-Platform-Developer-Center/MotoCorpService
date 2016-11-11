@@ -17,6 +17,7 @@ app.controller('NewCustomerCtrl', function ($scope, $state, CRM) {
       var plate = {
         id: $scope.customer.LicensePlate
       };
+      
       $state.go('app.customer', plate);
     });
 

@@ -13,7 +13,7 @@ app.controller('NewVisitCtrl', function($scope, $state, CRM, $ionicHistory){
       /* Custom analytics tracking how many new visits created in app */
       WL.Analytics.log({ NewVisit: '1' }, response);
       WL.Analytics.send();
-
+      $ionicHistory.clearCache();
       $ionicHistory.goBack();
     }).fail(function(error){
       alert(error);

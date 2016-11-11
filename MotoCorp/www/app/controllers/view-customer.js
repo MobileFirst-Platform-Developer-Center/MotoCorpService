@@ -1,5 +1,5 @@
 app.controller('ViewCustomerCtrl', function ($scope, $state, CRM) {
-  var plate = $state.params.plate;
+  var plate = $state.params.id;
   var customer = {};
 
   $scope.addVisit = function () {
