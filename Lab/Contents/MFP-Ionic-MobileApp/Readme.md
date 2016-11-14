@@ -198,7 +198,7 @@ The **search** variable gets the type of search you want from the UI (name, plat
 ## Customer Details
 When the search completes, you will see the response under the search bar. The user can touch the results to take you to the customer detail screen. Let's see how it works now.
 
-![Details](/img/profile.png)
+![Details](img/profile.png)
 
 In **crm.js**, the **getCustomer** function takes a **plate** argument and sends it to the CustomerAdapter adapter and returns the customer with the specific license plate.
 
@@ -229,7 +229,7 @@ CRM.getCustomer(plate).then(function (customer) {
 ## New Customer Visit
 At the top right hand corner of the customer detail view, there is a plus button to add a new customer visit. We first need to return to the CRM service to call the adapter.
 
-![NewVisit](/img/newVisit.png)
+![NewVisit](img/newVisit.png)
 
 In **crm.js** you can see the **newVisit** function which takes a **customerId** and **visit object** parameter and sends it to the CustomerAdapter adapter and posts it to the customer object.
 
@@ -274,7 +274,7 @@ CRM.newVisit(id, {date: $scope.visit.date,type: $scope.visit.type,
 ## New Customer
 If a customer isn't in the database, you will first need to add them. On the search screen, you can touch the plus button in the upper right hand corner to add a new customer. You will be able to add their name, plate, make, model, and vin.
 
-![NewCustomer](/img/newCustomer.png)
+![NewCustomer](img/newCustomer.png)
 
 In **crm.js** you see the **newCustomer** function that sends the new customer payload to the CustomerAdapter.
 
