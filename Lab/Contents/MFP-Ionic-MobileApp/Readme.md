@@ -36,7 +36,7 @@ The first thing you will need to do is go to the correct folder where the app is
 
   > Currently Android platform has not been tested.
 
-  ## Adding the MobileFirst Cordova SDK
+## Adding the MobileFirst Cordova SDK
 
   The MobileFirst Cordova SDK is provided as a set of Cordova plug-ins and can be installed by running:
 
@@ -44,7 +44,7 @@ The first thing you will need to do is go to the correct folder where the app is
   cordova plugin add cordova-plugin-mfp
   ```
 
-  ## Register your app with your MobileFirst Server
+## Register your app with your MobileFirst Server
 
   Make sure that your MFP server is running and enter the command below to register the app.
 
@@ -55,7 +55,7 @@ The first thing you will need to do is go to the correct folder where the app is
   Open your MobileFirst Console and confirm that your app has been registered.
 
 
-  ## Build and run the app
+## Build and run the app
 
   Build the iOS platform. You will need to do this every time you make a change in the app.
 
@@ -66,7 +66,7 @@ The first thing you will need to do is go to the correct folder where the app is
   cordova emulate ios
   ```
 
-  ## Testing
+## Testing
 
   Follow the following steps to test the functionality of the app:
 
