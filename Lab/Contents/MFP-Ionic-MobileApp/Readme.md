@@ -34,11 +34,7 @@ The first thing you will need to do is go to the correct folder where the app is
   ionic platform add ios
   ```
 
-  If you want to add the android platform, you can add it with:
-
-  ```bash
-  ionic platform add android
-  ```
+  > Currently Android platform has not been tested.
 
   ## Adding the MobileFirst Cordova SDK
 
