@@ -16,6 +16,9 @@
 - [Bluemix Message Hub Setup](/Lab/Contents/MFP-MessageHub-Adapter/Readme.md)
 
 
+
+
+
 ## Guide
 
 ```
@@ -28,6 +31,8 @@
     4. How to test that it works
         1. calling the message hub adapter to create new visit/customer…should see new customer/visit in dashdb table)
 ```
+
+- [Setup of access to a protected gateway](/Lab/Contents/BMX-Java-Message-Hub-Consumer/Segure-Gateway-Protection.md)
 
 Notes:
 ```

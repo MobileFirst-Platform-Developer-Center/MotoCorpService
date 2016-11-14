@@ -9,15 +9,17 @@
 
 ## What you will learn on this guide
 
- - `What is secure gateway?` - ok
- - `When to use secure gateway?` - ok
- - `How to create a gateway?` - ok
- - `Why do you need a gateway client On-Prem?` - ok
- - How to run a Security Gateway Client On-Prem - ok
- - `What is a Secure Gateway Endpoint on Bluemix?` - ?
- - How to setup an Secure Gateway Endpoint on Bluemix  - ok
- - How to protect the Secure Gateway Tunnel between Bluemix and On-Prem - ok
- - How to test the Tunnel - Missing
+ - What is secure gateway;
+ - When to use secure gateway;
+ - How to create a gateway;
+ - Why do you need a gateway client On-Prem;
+ - How to run a Security Gateway Client On-Prem;
+ - What is a Secure Gateway Endpoint on Bluemix;
+ - How to setup an Secure Gateway Endpoint on Bluemix;
+ - How to protect the Secure Gateway Tunnel between Bluemix and On-Prem;
+> TODO Link
+ - How to test the Tunnel;
+ > TODO
 
 ## Requirement of this guide
 
@@ -32,7 +34,7 @@
 
 It is a service available on bluemix that allows you to access On-Prem Services of your data center(eg: an web service) on a IBM Bluemix Application(eg: [NodeJS](https://console.ng.bluemix.net/catalog/starters/sdk-for-nodejs/) or [Java Runtime](https://console.ng.bluemix.net/catalog/starters/liberty-for-java/)).  
 
-Another possibility is to access a Bluemix Application on your On-Prem Daatacenter, but this second use case will not be explored on this guide.
+Another possibility is to access a Bluemix Application on your On-Prem Datacenter, but this second use case will not be explored on this guide.
 
 > [Read more about Secure Gateway here](https://console.ng.bluemix.net/docs/services/SecureGateway/secure_gateway.html)
 >
@@ -40,13 +42,13 @@ Another possibility is to access a Bluemix Application on your On-Prem Daatacent
 
 #### When to use IBM Secure Gateway?
 
-On this guide we will explore an IBM Secure Gateway as an way to expose our sample CRM API that will run on your machine(not on bluemix) and allow our  [BMX-Java-Message-Hub-Consumer](/Lab/Contents/BMX-Java-Message-Hub-Consumer/Readme.md) to send updates commands to the CRM.
+Here we will explore an IBM Secure Gateway as a way to expose our sample CRM API that will run on your machine(not on bluemix) and allow our  [BMX-Java-Message-Hub-Consumer](/Lab/Contents/BMX-Java-Message-Hub-Consumer/Readme.md) to send updates commands to the CRM.
 
 #### How IBM Secure Gateway works?
 
 To expose an On-Prem Service(our CRM) to Bluemix we will need the following elements:
 - An `Gateway` on Bluemix Secure Gateway;
-- An `Gateway Client` running on your On-Prem network ;
+- An `Gateway Client` running on your On-Prem network(eg: your machine);
 - An `Destination on Secure Gateway` on Bluemix pointing to your On-Prem Software;
 - An `On-Prem Service` running, for this something that listen a TCP or UDP port to serve some content;
 
