@@ -149,7 +149,7 @@ The **WLResourceRequest** class handles resource requests to the CustomerAdapter
 ## Customer Search
 Let's look at the search function in the CRM service that our app will use to call the adapter.
 
-![Search](/img/customerSearch.png)
+![Search](img/customerSearch.png)
 
 In **crm.js** you will see the search function:
 
