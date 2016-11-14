@@ -92,7 +92,7 @@ public class CustomerAdapterResource {
 	@GET
 	@Path("/customers")
 	@Produces("application/json")
-	@OAuthSecurity(enabled = false)
+	@OAuthSecurity(scope = "user-restricted")
 	public Response customers()  throws IOException{
 
 		String JavaSQLURL = "/DashDB/getAllUsers";
@@ -109,7 +109,7 @@ public class CustomerAdapterResource {
 	@GET
 	@Path("/customers/{plate}")
 	@Produces("application/json")
-	@OAuthSecurity(enabled = false)
+	@OAuthSecurity(scope = "user-restricted")
 	public Response customers(@PathParam("plate") String plate) throws IOException{
 
 		String JavaSQLURL = "/DashDB/" + plate + "/Customer";
@@ -133,7 +133,7 @@ public class CustomerAdapterResource {
 	@Consumes("application/json")
 	@Produces("application/json")
 	@Path("/newCustomer")
-	@OAuthSecurity(enabled = false)
+	@OAuthSecurity(scope = "user-restricted")
 	public Response newCustomer(JSONObject customer) throws IOException{
 
 		String MessageHubURL = "/MessageHubAdapter/resource/newCustomer";
@@ -161,7 +161,7 @@ public class CustomerAdapterResource {
 	@POST
 	@Consumes("application/json")
     @Path("/{id}/newVisit")
-	@OAuthSecurity(enabled = false)
+	@OAuthSecurity(scope = "user-restricted")
 	public Response newVisit(JSONObject visit, @PathParam("id") String id) throws IOException{
 
         String MessageHubURL = "/MessageHubAdapter/resource/" + id + "/newVisit";
@@ -192,7 +192,7 @@ public class CustomerAdapterResource {
 	@Path("/searchCustomer")
 	@Produces("application/json")
 	@Consumes("application/json")
-	@OAuthSecurity(enabled = false)
+	@OAuthSecurity(scope = "user-restricted")
 	public Response searchCustomer(JSONObject searchPayload)  throws IOException{
 
 		String JavaSQLURL = "/DashDB/customer";
