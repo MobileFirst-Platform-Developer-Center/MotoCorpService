@@ -34,13 +34,9 @@ The first thing you will need to do is go to the correct folder where the app is
   ionic platform add ios
   ```
 
-  If you want to add the android platform, you can add it with:
+  > Currently Android platform has not been tested.
 
-  ```bash
-  ionic platform add android
-  ```
-
-  ## Adding the MobileFirst Cordova SDK
+## Adding the MobileFirst Cordova SDK
 
   The MobileFirst Cordova SDK is provided as a set of Cordova plug-ins and can be installed by running:
 
@@ -48,7 +44,7 @@ The first thing you will need to do is go to the correct folder where the app is
   cordova plugin add cordova-plugin-mfp
   ```
 
-  ## Register your app with your MobileFirst Server
+## Register your app with your MobileFirst Server
 
   Make sure that your MFP server is running and enter the command below to register the app.
 
@@ -59,7 +55,7 @@ The first thing you will need to do is go to the correct folder where the app is
   Open your MobileFirst Console and confirm that your app has been registered.
 
 
-  ## Build and run the app
+## Build and run the app
 
   Build the iOS platform. You will need to do this every time you make a change in the app.
 
@@ -70,7 +66,7 @@ The first thing you will need to do is go to the correct folder where the app is
   cordova emulate ios
   ```
 
-  ## Testing
+## Testing
 
   Follow the following steps to test the functionality of the app:
 
@@ -153,7 +149,7 @@ The **WLResourceRequest** class handles resource requests to the CustomerAdapter
 ## Customer Search
 Let's look at the search function in the CRM service that our app will use to call the adapter.
 
-![Search](/img/customerSearch.png)
+![Search](img/customerSearch.png)
 
 In **crm.js** you will see the search function:
 
@@ -202,7 +198,7 @@ The **search** variable gets the type of search you want from the UI (name, plat
 ## Customer Details
 When the search completes, you will see the response under the search bar. The user can touch the results to take you to the customer detail screen. Let's see how it works now.
 
-![Details](/img/profile.png)
+![Details](img/profile.png)
 
 In **crm.js**, the **getCustomer** function takes a **plate** argument and sends it to the CustomerAdapter adapter and returns the customer with the specific license plate.
 
@@ -233,7 +229,7 @@ CRM.getCustomer(plate).then(function (customer) {
 ## New Customer Visit
 At the top right hand corner of the customer detail view, there is a plus button to add a new customer visit. We first need to return to the CRM service to call the adapter.
 
-![NewVisit](/img/newVisit.png)
+![NewVisit](img/newVisit.png)
 
 In **crm.js** you can see the **newVisit** function which takes a **customerId** and **visit object** parameter and sends it to the CustomerAdapter adapter and posts it to the customer object.
 
@@ -278,7 +274,7 @@ CRM.newVisit(id, {date: $scope.visit.date,type: $scope.visit.type,
 ## New Customer
 If a customer isn't in the database, you will first need to add them. On the search screen, you can touch the plus button in the upper right hand corner to add a new customer. You will be able to add their name, plate, make, model, and vin.
 
-![NewCustomer](/img/newCustomer.png)
+![NewCustomer](img/newCustomer.png)
 
 In **crm.js** you see the **newCustomer** function that sends the new customer payload to the CustomerAdapter.
 

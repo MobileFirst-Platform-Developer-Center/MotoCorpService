@@ -6,9 +6,11 @@
 
 #### Creating a gateway to allow cloud to reach on OnPrem data
 
-> **Before Proceding:**   This tutorial will require you have a service to be exposed in a tcp port, then expose it via Secure Gateway Bluemix service. To help you with that, we provide the CRM Mockup as a sample of service to be exposed.
->
-> **Before Proceding:**   This tutorial will also assumes you have `docker` installed on your machine. More about docker at [here](https://www.docker.com)
+
+##### Before we continue:
+ 1. This guide will require you have a service to be exposed in a tcp port, then expose it via Secure Gateway Bluemix service. To help you with that, we provide the CRM Mockup as a sample of service to be exposed.
+
+ 1. This tutorial will also assumes you have `docker` installed on your machine. More about docker at [here](https://www.docker.com)
 
 
 Let's start:
@@ -42,7 +44,7 @@ Let's start:
 >  - past on your terminal command line and press run.
 
 &nbsp;
->**Observation:**   To this to run properly you need to have docker installed and ready to run on your machine.
+>**Observation:**   To this to run properly you need to have `docker` installed and ready to run on your machine.
 
 ![Instructions](/Lab/img/SGW_Setup03-AddingClient.gif)
 
@@ -52,12 +54,13 @@ Let's start:
 >  Secure Gateway is a unidirectional bridge between 2 networks. To allow it to work properly you need a client that is in an "OnPrem" network to allow the Bluemix environment to reach it. So, for this example we will have a endpoint on bluemix that will receive the requests and tunnel it to the Secure Gateway client tp call the resource in the OnPrem network.
 
   ![Demo Map](/Lab/img/SGW_Client.png)
+
 > The Secure Gateway client and the service/resource you want to reach in the OnPrem network do not need to be on the same machine, as long as the client machine can reach the service desired, it will do the proper routing to it.
 
 ##### Creating a Destination
 > - Enter in your gateway on the Service Dashboard.
 > - Click on Add a destination
-> - Select "On-Premesis" -> This will create a destination from a bluemix endpoint to a service on your OnPrem netowrk.
+> - Select "On-Premesis" -> This will create a destination from a bluemix endpoint to a service on your OnPrem network.
 > - Press Next
 > - Provide the Resource Hostname and Port of the Resource you want to expose to bluemix.
 > - Select the protocol **TCP** and press Next
