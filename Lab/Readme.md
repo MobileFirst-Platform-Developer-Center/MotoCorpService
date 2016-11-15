@@ -23,7 +23,7 @@ Checklist for completing
 |   5    | [MFP-DashDB-Adapter](/Lab/Contents/MFP-DashDB-Adapter/Readme.md)                                         |   X   |    dora      |        no        |            |        |
 |   6    | [NodeJS-CRM-OnPrem](/Lab/Contents/NodeJS-CRM-OnPrem/Readme.md)                                           |  R1   |    dora      |        no        |            |        |
 |   7    | [BMX-SecureGateway](/Lab/Contents/BMX-SecureGateway/Readme.md)                                           |   -   |  cesarlb   |        no        |            |        |
-|   8    | [BMX-Java-Message-Hub-Consumer](/Lab/Contents/BMX-Java-Message-Hub-Consumer/Readme.md)                   | R2-R7 |     -      |      yes-B1      |            |        |
+|   8    | [BMX-Java-Message-Hub-Consumer](/Lab/Contents/BMX-Java-Message-Hub-Consumer/Readme.md)                   | R2-R7 |     yoel      |      yes-B1      |            |        |
 |   9   | [MFP-Customer-Adapter](/Lab/Contents/MFP-Customer-Adapter/Readme.md)                                     |  R6   |     dora      |        B2        |            |        |
 |   10   | [MFP-Ionic-MobileApp](/Lab/Contents/MFP-Ionic-MobileApp/Readme.md)                                       |  R4   |    rob     |        no        |            |        |
 | NOT 11 | [Bluemix-Mobile-Analytics](/Lab/Contents/Bluemix-Mobile-Analytics/Readme.md)                             |  R5   |     ?      |       yes        |            |        |

@@ -15,6 +15,9 @@
 - Maven. To install visit Maven [Installation](https://maven.apache.org/install.html) page
 
 
+
+
+
 ## Guide
 
 ### Pushing the consumer application to Bluemix
@@ -231,6 +234,8 @@ public void receiveMessage(byte[] payload) {
     4. How to test that it works
         1. calling the message hub adapter to create new visit/customer…should see new customer/visit in dashdb table)
 ```
+
+- [Setup of access to a protected gateway](/Lab/Contents/BMX-Java-Message-Hub-Consumer/Segure-Gateway-Protection.md)
 
 Notes:
 ```
