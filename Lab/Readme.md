@@ -16,7 +16,7 @@ Checklist for completing
 
 |   #    | Name/Link                                                                                                | Code  | Doc Author | Has Blocker(Doc) | Doc Review | Closed |
 |:------:|:---------------------------------------------------------------------------------------------------------|:-----:|:----------:|:----------------:|:-----------|:-------|
-|   1    | [Overview](/Lab/Contents/Sample/Readme.md)                                                               |   X   |     ?      |        ?         |            |        |
+|   1    | [Overview](/Lab/Contents/Overview/overview.md)                                                               |   X   |     ?      |        ?         |            |        |
 |   2    | [MFP-Setup-Mobile-Foundation-on-Bluemix](/Lab/Contents/MFP-Setup-Mobile-Foundation-on-Bluemix/Readme.md) |   X   |    dora      |        no        |            |        |
 |   3    | [MFP-Security-Implement-Login](/Lab/Contents/MFP-Security-Implement-Login/Readme.md)                     |   X   |    dora    |        no        |            |        |
 |   4    | [MFP-MessageHub-Adapter](/Lab/Contents/MFP-MessageHub-Adapter/Readme.md)                                 |  R6   |    yoel    |        no        |            |        |
