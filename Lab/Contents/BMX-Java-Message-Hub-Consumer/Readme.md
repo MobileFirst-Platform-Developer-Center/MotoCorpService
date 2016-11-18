@@ -260,7 +260,7 @@ Notes:
 
 *extra step - after the setup worked*
 - adding protection secure gateway
-- test the CRM enpoint via secure gateay(curl on CRM Setup - link ot guide)
+- test the CRM enpoint via secure gateway(curl on CRM Setup - link to guide)
 
 
 Troubleshooting:
