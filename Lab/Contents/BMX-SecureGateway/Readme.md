@@ -1,5 +1,6 @@
 #  Bluemix - Setup of Secure Gateway Tunnel
 
+Here will do an overview of Bluemix Secure Gateway Service and then a step-by-step guide on how to setup it for this lab sample. 
 
 ## What you will learn on this guide
 
