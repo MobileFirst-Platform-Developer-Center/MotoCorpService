@@ -35,7 +35,7 @@ In this lab you will be able to create new customers and new visits (for that cu
  - DashDB runs the query and returns the result back to the DashDB Adapter (DashDB)
 
 # Foundation Features
-  - User Authentication: Login/Logout of the app & user identity. More details in the [Security Lab][MFP-Security-Implement-Login](/Lab/Contents/MFP-Security-Implement-Login/Readme.md)
+  - User Authentication: Login/Logout of the app & user identity. More details in the [MFP-Security-Implement-Login](/Lab/Contents/MFP-Security-Implement-Login/Readme.md)
   - Adapter mashup so you can easily change the backend source of your data. More details in the 
 [MFP Customer Adapter](/Lab/Contents/MFP-Customer-Adapter/Readme.md)
   - Easily update your API parameters. More details in the 
