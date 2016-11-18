@@ -32,20 +32,20 @@ The MessageHub Adapter creates topics that are written to MessageHub instead of 
 
 1 - Build the adapter
 ```bash
-cd ./Adapters/MessageHubAdapter
+cd ../Adapters/MessageHubAdapter/
 mfpdev adapter build
 ```
 2 - Deploy the adapter in the console, by uploading the `MessageHubAdapter.adapter` file.
 
 3 - Set your credentials for your MessageHub service in the mfp console.
 The following properties only need to be changed if they don't match your credentials or if you want to use a specific TrustStore other than the default:
-  - `kafka-rest-url`
-  - `message-hub-servers`
-  - `truststore-password`
-  - `truststore-path`
-  - `truststore-type`
+  - `messagehub-api-key`
+  - `messagehub-password`
+  - `messagehub-username`
 
 > You can also set these credentials `MotoCorpService/Adapters/MessageHubAdapter/src/main/adapter-resources` in your `adapter.xml`.
+
+> If you are running this adapter on a local instance of MobileFirst Foundation, you will need to import MessageHub certificate to your truststore as can be seen [here](https://docs.oracle.com/cd/E19830-01/819-4712/ablqw/index.html)
 
 ![configure-credentials](messagehub-adapter-configuration.png)
 
@@ -149,31 +149,31 @@ public Response newCustomer(Customer customer) throws Exception {
 }
 ```
 
-1. Check if the `new-customer` topic exists
+1 - Check if the `new-customer` topic exists
 
 ```
 createTopicIfNeeded(MessageHubAdapterProducerResource.NEW_CUSTOMER_TOPIC);
 ```
 
-2. Create a random `messageKey`. This is needed to identify the message.
+2 - Create a random `messageKey`. This is needed to identify the message.
 
 ```
 String messageKey = Integer.toString((int)(Math.random()*10000F));
 ```
 
-3. Use the object mapper to convert the customer object to a stringified JSON object represented as a byte array.
+3 - Use the object mapper to convert the customer object to a stringified JSON object represented as a byte array.
 
 ```
 byte[] payload  = objectMapper.writeValueAsBytes(customer);
 ```
 
-4. Send the customer data to the `new-customer` topic
+4 - Send the customer data to the `new-customer` topic
 
 ```
 producer.send(produce(MessageHubAdapterProducerResource.NEW_CUSTOMER_TOPIC, messageKey, payload));
 ```
 
-5. Return a successful response
+5 - Return a successful response
 
 ```
 return okResponse();
@@ -246,6 +246,7 @@ To test the adapter, go into Swagger.
 2. Click on the `Model` on the right to populate the request payload
 3. Update the payload
 4. Click `Try it out!`
+5. If the topic is successfully created, you will be able to go into your MessageHub instance and see a "new-customer" topic created.
 
 #### Create new visit
 
@@ -254,6 +255,9 @@ To test the adapter, go into Swagger.
 3. Click on the `Model` on the right to populate the request payload
 4. Update the payload
 5. Click `Try it out!`
+6. If the topic is successfully created, you will be able to go into your MessageHub instance and see a "new-visit" topic created.
+
+![messagehub-topics](messagehub.png)
 
 ## Next guide
 

@@ -1,4 +1,6 @@
-#  Mobile Foundation - Implement Login (Security)
+#  MobileFirst Foundation - Implement Login (Security)
+
+In this section you will learn how to quickly implement a secure login for your application using the MobileFirst Foundation security framework.
 
 ## What you will learn in this guide
 
@@ -11,8 +13,6 @@
 - [Mobile Foundation Setup](/Lab/Contents/MFP-Setup-Mobile-Foundation-on-Bluemix/Readme.md)
 
 ## Guide
-
-In this section you will learn how to quickly implement a secure login for your application.
   
 It is important to authenticate a user before they can access sensitive customer information. 
 We will do this by using the MobileFirst security framework to easily implement the OAuth2 protocol to do a handshake with the server for a live token every time a resource request is made via the adapter.
