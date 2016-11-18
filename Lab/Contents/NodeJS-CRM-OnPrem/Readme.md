@@ -1,8 +1,8 @@
 #  OnPrem - NodeJS Mock CRM
 
-> TODO: TEST CRM Curls
-
 This CRM is a NodeJS mockup of a potential on-premise CRM for demo purposes.
+The CRM is updated when the MessageHub consumer calls the rest api's to create the new customers and visits.
+It then syncs with DashDB by immediately writing the new customers and visits to DashDB.
 
 ## What you will learn on this guide
 

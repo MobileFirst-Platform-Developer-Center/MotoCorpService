@@ -12,7 +12,7 @@
 
 ## Guide
 
-In this section you will learn how to implement a secure login for your application.
+In this section you will learn how to quickly implement a secure login for your application.
   
 It is important to authenticate a user before they can access sensitive customer information. 
 We will do this by using the MobileFirst security framework to easily implement the OAuth2 protocol to do a handshake with the server for a live token every time a resource request is made via the adapter.
@@ -22,13 +22,15 @@ In our example, the username and password used in the security adapter logic is 
 
 In this lab you will explore the **Auth** service that will communicate between the **login controller** and the **security adapter**.
 
+> To learn more about the security adapter please see our getting started labs [here](https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/authentication-and-security/creating-a-security-check/).
+
 Let's take a look at how this works.
  
 ![Login](login.png)
 
 ### Server Side Configuration
 
-1 - Go to your UserLogin Adapter folder and build the adapter
+1 - Go to your UserLogin Adapter folder and build the javascript adapter
 ```bash
 cd ./MotoCorpServer/Adapters/UserLogin
 mfpdev adapter build
@@ -37,7 +39,7 @@ mfpdev adapter build
 ![Deploy Adapter](upload-login-adapter.png)
 3 - Map the `user-restricted` scope to the UserLogin security check inside the application security settings in the MobileFirst Foundation Operations Console.
 
-The security framework ensures that only a client that passes all of the security checks of the protecting scope is granted access to the resource.
+The security framework ensures that only a client that passes all of the security checks of the protecting scope is granted access to the resource. A security check is a server-side entity that implements a specific authorization logic, such as obtaining and validating client credentials.
 
 ![Map user-restricted scope](login-security-check.png)
 
@@ -46,6 +48,10 @@ By adding `user-restricted` scope to a resource (in this lab, `CustomerAdapter`)
 ```bash
 @OAuthSecurity(scope = "user-restricted")
 ```
+
+4 - To configure how long before a token expires (when a user is logged out), configure the `successStateExpirationSec`*[]: 
+
+![Token](token.png)
 
 ### Client Side Configuration 
 

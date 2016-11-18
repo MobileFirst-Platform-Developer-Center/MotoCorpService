@@ -1,5 +1,7 @@
 #  Mobile Foundation - MessageHub Adapter
 
+MessageHub is a scalable, distributed, high throughput message bus in the cloud, available as a fully managed Bluemix service.
+The MessageHub Adapter creates topics that are written to MessageHub instead of directly to the CRM to lighten the load on the CRM.
 
 ## What you will learn on this guide
 
@@ -49,7 +51,9 @@ The following properties only need to be changed if they don't match your creden
 
 ### MessageHub Adapter - How it Works
 
-In the `pom.xml` there are dependencies for the MessageHub Client (`org.apache.kafka.kafka-clients`), logger (`org.slf4j.slf4j-log4j12`), and Java object mapper (`com.fasterxml.jackson.core.ackson-databind`
+The next section of the lab explains how the adapter was written.
+
+In the `pom.xml` there are dependencies for the MessageHub Client (`org.apache.kafka.kafka-clients`), logger (`org.slf4j.slf4j-log4j12`), and Java object mapper (`com.fasterxml.jackson.core.ackson-databind`)
 
 ```xml
 <dependencies>
@@ -72,11 +76,7 @@ In the `pom.xml` there are dependencies for the MessageHub Client (`org.apache.k
     </dependencies>
 ```
 
-`MessageHubAdapterProducerResource`
-
-
-
-#### Load configuration, initialize the MessageHub (Kafka) REST client and producer, and instantiate the object mapper.
+#### Configure, initialize the MessageHub (Kafka) REST client and producer, and instantiate the object mapper.
 
 ```
 public MessageHubAdapterProducerResource(@Context ConfigurationAPI configurationAPI) {
@@ -235,8 +235,6 @@ producer.send(produce(MessageHubAdapterProducerResource.NEW_VISIT_TOPIC, id, new
 ```
 return okResponse();
 ```
-
-
 
 ### Testing in Swagger
 

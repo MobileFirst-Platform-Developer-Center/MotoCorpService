@@ -1,5 +1,6 @@
 #  Message Hub Consumer
 
+The MessageHub consumer is a Java runtime app that consumes the topics "Customers" and "Visits" and posts (creates) them to the CRM.
 
 ## What you will learn on this guide
 
@@ -13,10 +14,6 @@
 - [Secure Gateway tunnel setup](/Lab/Contents/BMX-SecureGateway/Readme.md)
 - [Bluemix Message Hub Setup](/Lab/Contents/MFP-MessageHub-Adapter/Readme.md)
 - Maven. To install visit Maven [Installation](https://maven.apache.org/install.html) page
-
-
-
-
 
 ## Guide
 
