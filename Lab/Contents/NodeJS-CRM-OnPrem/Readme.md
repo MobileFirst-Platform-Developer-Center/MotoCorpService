@@ -16,12 +16,11 @@ It then syncs with DashDB by immediately writing the new customers and visits to
 
 ## Guide
 
-### Configure DashDB CRM
+### Configure OnPrem CRM
 
-1 - Go to dasdhdb-credentials.json
+1 - Open the `dasdhdb-credentials.json` file
 ```bash
 cd MotoCorpService/CRM
-open dashdb-credentials.json
 ```
 
 2 - Set DashDB credentials as found in your Bluemix instance
@@ -51,11 +50,19 @@ In the command line, you can test the CRM.
 curl -X POST -H "Content-Type: application/json" -d '{ "Name": "John Doe", "LicensePlate": "ABC-123","Make":"Honda", "Model":"CRV", "VIN":"12345667" }' "http://localhost:8000/customers/" -vv
 ```
 
+Go into your DashDB Customer table to confirm a customer record was created.
+
+![customer table](customer-table.png)
+
 2 - To create a visit
 
 ```bash
 curl -X POST -H "Content-Type: application/json" -d '{  "date": "2016-06-23",  "type": "oil visit",  "comment": "hello this is a comment"}' "http://localhost:8000/customers/1/visits" -vv
 ```
+
+Go into your DashDB Customer table to confirm a visit record was created.
+
+![visit table](visit-table.png)
 
 3 - To list all customers
 

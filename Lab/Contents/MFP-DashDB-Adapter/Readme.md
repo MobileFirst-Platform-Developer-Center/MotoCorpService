@@ -2,7 +2,7 @@
 
 This lab will demonstrate how to create a DashDB java sql adapter to read information from a DashDB database.
 DashDB is DB2 cloud database hosted on Bluemix.
-By reading from DashDB instead of directly from the on-prem CRM, you lower the load on the CRM and read your "cached" data in DashDB.
+By reading from DashDB instead of directly from the OnPrem CRM, you lower the load on the CRM and read your replicated data in DashDB.
 
 ## What you will learn on this guide
 
@@ -61,7 +61,7 @@ CREATE TABLE VISITS (
 
 1 - Build the adapter 
 ```bash
-cd ./Adapters/DashDBAdapter
+cd ../DashDBAdapter/
 mfpdev adapter build
 ```
 2 - Deploy the adapter in the console, by uploading the `DashDbAdapter.adapter` file.
