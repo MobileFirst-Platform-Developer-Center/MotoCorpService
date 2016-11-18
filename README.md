@@ -1,3 +1,18 @@
+## License
+ Copyright 2016 IBM Corp.
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+ http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+
 ## Overview
 This car service center app demonstrates multiple Foundation features coupled with Bluemix services to create an app that works seamlessly for the customer.
 
@@ -16,30 +31,3 @@ This car service center app demonstrates multiple Foundation features coupled wi
 | Developer | Cesar Lourenco Botti Filho | cesarlb@br.ibm.com |
 | Developer | Rob Puryear | sdpuryea@us.ibm.com |
 | Developer | Yoel Nunez | ynunez@us.ibm.com |
-
---------------------------------
-
-## Development Environment Setup
-
-1. Install [mfpdev cli](npm install -g mfpdev-cli) `$ npm install -g mfpdev-cli`
-2. Install [node.js](https://nodejs.org/en/)
-2. Install [ionic](http://ionicframework.com/getting-started/) on the command line `$ npm install -g cordova ionic`
-3. `$ git clone git@github.ibm.com:cord-americas/MotoCorpService.git` this repository
-4. `$ cd MotoCorp` into the app folder
-5. `$ cordova platform add ios` add the ios platform
-6. `$ cordova plugin add cordova-plugin-mfp` add the mfp plugin
-7. `$ cordova build ios; cordova emulate ios` build ios platform and emulate
-
---------------------------------
-
-## Pushing Changes
-
-1.  Make sure this meets the definition of done (in task)
-2.  Do a code review
-3.  Check your branch with `$git branch`
-3. `$ git status` to see what files were changes
-4. `$ git add` relevant files
-4. `$ git commit -m "issue number as well as significant message (i.e. #1 adding jsonstore integration) "`
-5. `$ git push` to your branch
-6.  Do a pull request into master branch when all necessary changes are added
-7.  Review task with team to close the issue
