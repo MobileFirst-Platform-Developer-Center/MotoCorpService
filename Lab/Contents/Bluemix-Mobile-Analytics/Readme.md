@@ -23,13 +23,24 @@ Im this lab, we will be exploring MobileFirst Foundation Analytics on Bluemix, a
 1 - Create a container to setup your namespace if you do not already have a container in your space. 
 If you have setup a container previously you can skip this step. 
 
+![Container](Container.png)
+
 > After creating a container it can take some time to for the namespace to be created.
 
-2 - In your Foundation service, select "Create Analytics Server", this can take some time.
+2 - In your Foundation service, select "Add Analytics", this can take some time.
 
-3 - Once created, it will show up in your space as ""
+![Add Analytics](add-analytics.png)
 
-4 - Go to the url `https://<host>.com/analytics/console` there you will see the analytics console
+3 - Once created, it will show up in your space as "mobilefoundation-g5-a...". 
+
+![Analytics Container](analytics-container.png)
+
+![Analytics URL](analytics-url.png)
+
+4 - Go to the url `https://mobilefoundation-g5-analytics.mybluemix.net/analytics/console` there you will see the analytics console.
+Use the same username/password found in your MobileFirst Foundation service.
+
+![Analytics Console](analytics-console.png)
 
 ### Infrastructure Tab
 Let's say you notice that some apps are starting to have a slow loading time either to search a customer or view customer details.
