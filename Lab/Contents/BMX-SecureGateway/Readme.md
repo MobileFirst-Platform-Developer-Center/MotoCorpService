@@ -1,25 +1,14 @@
 #  Bluemix - Setup of Secure Gateway Tunnel
 
-```
-6. SecureGateway (for message hub consumer)
-    1. Create SecureGateway instance on blue mix
-    2. set up secure gateway
-```
-
 
 ## What you will learn on this guide
 
  - What is secure gateway;
- - When to use secure gateway;
  - How to create a gateway;
- - Why do you need a gateway client On-Prem;
  - How to run a Security Gateway Client On-Prem;
- - What is a Secure Gateway Endpoint on Bluemix;
- - How to setup an Secure Gateway Endpoint on Bluemix;
- - How to protect the Secure Gateway Tunnel between Bluemix and On-Prem;
-> TODO Link
- - How to test the Tunnel;
- > TODO
+ - How to setup a Secure Gateway Destination on Bluemix;
+ - How to protect the Secure Gateway Tunnel between Bluemix and On-Prem will be covered on [this other guide](/Lab/Contents/BMX-Java-Message-Hub-Consumer/Segure-Gateway-Protection.md);
+ - How to test the just create gateway;
 
 ## Requirement of this guide
 

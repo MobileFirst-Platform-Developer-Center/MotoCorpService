@@ -7,20 +7,20 @@ applications:
   host: javaconsumer010101
   disk_quota: 1024M
   env:
-    APP_CONFIG: '{ 
-                    "kafka-rest-url":"https://kafka-rest-prod01.messagehub.services.us-south.bluemix.net:443", 
-                    "messagehub-api-key":"hSY6UHY2iRc3HZBa1NFfPDoGSU64vww65h2K4nWYImU2mEMZ", 
-                    "messagehub-username":"hSY6UHY2iRc3HZBa", 
-                    "messagehub-password":"1NFfPDoGSU64vww65h2K4nWYImU2mEMZ", 
-                    "message-hub-servers":"kafka01-prod01.messagehub.services.us-south.bluemix.net:9093,kafka02-prod01.messagehub.services.us-south.bluemix.net:9093,kafka03-prod01.messagehub.services.us-south.bluemix.net:9093,kafka04-prod01.messagehub.services.us-south.bluemix.net:9093,kafka05-prod01.messagehub.services.us-south.bluemix.net:9093", 
-                    "truststore-path":"/home/vcap/app/.java/jre/lib/security/cacerts", 
-                    "truststore-password":"changeit", 
-                    "truststore-type":"JKS", 
-                    "crm-endpoint":"http://unbreakable-rob.mybluemix.net/" 
+    APP_CONFIG: '{
+                    "kafka-rest-url":"https://kafka-rest-prod01.messagehub.services.us-south.bluemix.net:443",
+                    "messagehub-api-key":"${YOUR_MESSAGE_HUB_APY_KEY}",
+                    "messagehub-username":"${YOUR_MESSAGE_HUB_USERNAME}",
+                    "messagehub-password":"${YOUR_MESSAGE_HUB_PASSWORD}",
+                    "message-hub-servers":"kafka01-prod01.messagehub.services.us-south.bluemix.net:9093,kafka02-prod01.messagehub.services.us-south.bluemix.net:9093,kafka03-prod01.messagehub.services.us-south.bluemix.net:9093,kafka04-prod01.messagehub.services.us-south.bluemix.net:9093,kafka05-prod01.messagehub.services.us-south.bluemix.net:9093",
+                    "truststore-path":"/home/vcap/app/.java/jre/lib/security/cacerts",
+                    "truststore-password":"changeit",
+                    "truststore-type":"JKS",
+                    "crm-endpoint":"${YOUR_CRM_DESTINATION}"
                  }'
     SGW_CONFIG: '{
-                    "destination-id":"ly3A8CIpcCC_oQq",
-                    "api-host":"https://sgmanager.ng.bluemix.net",
-                    "gateway-id":"ly3A8CIpcCC_prod_ng",
-                    "sgw-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb25maWd1cmF0aW9uX2lkIjoibHkzQThDSXBjQ0NfcHJvZF9uZyIsInJlZ2lvbiI6InVzLXNvdXRoIiwiaWF0IjoxNDc0MzkzNTIzLCJleHAiOjE0ODIxNjk1MjN9.Xm4RIfw2SF9MEBIEzPRR2hcwd1ZHB6sWUHACFm3ppXk"
+                    "destination-id":"${YOUR_SECURE_GATEWAY_DESTINATION_ID}",
+                    "api-host":"${YOUR_SECURE_GATEWAY_HOST_URL}",
+                    "gateway-id":"${YOUR_SECURE_GATEWAY_ID}",
+                    "sgw-token":"${YOUR_SECURE_GATEWAY_SECURE_TOKEN}"
                  }'

@@ -1,3 +1,55 @@
+
+
+## How to Enable Java Message Hub Consumer to Access a Protected Secure Gateway
+
+This is a continuation of the [Secure Gateway Setup Guide](Lab/Contents/BMX-SecureGateway/Sample-Setup.md).
+
+### What you will learn on this guide
+
+- How to protect your secure gateway `destination`;
+- How to configure your `java message hub consumer` to grant itself access to your destination automatically;
+- How to clean your destination firewall table;
+
+### Protecting your destination
+
+- Go to your `gateway` dashboard at your secure gateway service and press on the gray area with your destination title;
+
+  ![Instructions](img/SGW_21.png)
+
+- Mark the check box `Restrict cloud access to this destination with iptable rules` and press `UPDATE DESTINATION`;
+
+  ![Instructions](img/SGW_22.png)
+
+After this point you will not be able to reach your gateway from your browser, the only machines able to reach it will be the ones with the IP and PORT on the iptables list;
+
+### Updating your java message hub consumer properties
+
+Your Message Hub Java Consumer has a yml file with all the properties need to setup your firewall access, they are part of the property `SGW_CONFIG`. [Manifest File](/MessageHubConsumer/manifest.yml)
+
+Sample:
+```
+SGW_CONFIG: '{
+                "destination-id":"${YOUR_SECURE_GATEWAY_DESTINATION_ID}",
+                "api-host":"${YOUR_SECURE_GATEWAY_HOST_URL}",
+                "gateway-id":"${YOUR_SECURE_GATEWAY_ID}",
+                "sgw-token":"${YOUR_SECURE_GATEWAY_SECURE_TOKEN}"
+             }'
+```
+> Observe that this file is very sensitive to tabs and space, if you are having problems when running the Message Hub Consumer ensure you have the same file layout as provided on this sample.
+
+
+**STOPED HERE - need to continue after this point**
+
+How to get the credentials:
+
+"destination-id":"${YOUR_SECURE_GATEWAY_DESTINATION_ID}",
+"api-host":"${YOUR_SECURE_GATEWAY_HOST_URL}",
+"gateway-id":"${YOUR_SECURE_GATEWAY_ID}",
+"sgw-token":"${YOUR_SECURE_GATEWAY_SECURE_TOKEN}"
+
+
+How to update the java consumer / observation about updating propertis after deployed.  
+
 ```
 - Enter your Secure gateway destination
 - Enable protection

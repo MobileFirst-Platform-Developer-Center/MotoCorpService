@@ -1,5 +1,5 @@
 
-[Return to BMX-SecureGateway](/Lab/Contents/BMX-SecureGateway/Readme.md)   
+[Return to Secure Gateway Introduction](/Lab/Contents/BMX-SecureGateway/Readme.md)   
 
 
 ### Setup steps for the Sample CRM Secure Gateway
@@ -12,8 +12,6 @@
 
  1. This tutorial will also assumes you have `docker` installed on your machine. More about docker at [here](https://www.docker.com)
 
-
-Let's start:
 
 ##### Adding Secure Gateway Service on bluemix account
 
@@ -234,4 +232,4 @@ This will be covered on [this guide](/Lab/Contents/BMX-Java-Message-Hub-Consumer
 
 ## Next guide
 
-[BMX-Java-Message-Hub-Consumer](/Lab/Contents/BMX-Java-Message-Hub-Consumer/Readme.md)   
+[Bluemix Java Message Hub Consumer](/Lab/Contents/BMX-Java-Message-Hub-Consumer/Readme.md)   
