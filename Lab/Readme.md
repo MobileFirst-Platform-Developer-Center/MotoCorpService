@@ -3,7 +3,7 @@
 The general idea of this lab it is the following:
 > Imagine you are an Enterprise that owns car service centers. You want to equip service center employees with tablets, and build an app that will help them coordinate activities in the service center to improve service times and quality of service.
 
-> More  detailed description [here](/Lab/Contents/Sample/overview.md).
+> More  detailed description [here](/Lab/Contents/Overview/overview.md).
 
 ![Lab 2 - Map](/Lab/img/Lab2-Map.png)
 
@@ -16,7 +16,7 @@ Checklist for completing
 
 |   #    | Name/Link                                                                                                | Code  | Doc Author | Has Blocker(Doc) | Doc Review | Closed |
 |:------:|:---------------------------------------------------------------------------------------------------------|:-----:|:----------:|:----------------:|:-----------|:-------|
-|   1    | [Overview](/Lab/Contents/Sample/Readme.md)                                                               |   X   |     ?      |        ?         |            |        |
+|   1    | [Overview](/Lab/Contents/Overview/overview.md)                                                               |   X   |     ?      |        ?         |            |        |
 |   2    | [MFP-Setup-Mobile-Foundation-on-Bluemix](/Lab/Contents/MFP-Setup-Mobile-Foundation-on-Bluemix/Readme.md) |   X   |    dora      |        no        |            |        |
 |   3    | [MFP-Security-Implement-Login](/Lab/Contents/MFP-Security-Implement-Login/Readme.md)                     |   X   |    dora    |        no        |            |        |
 |   4    | [MFP-MessageHub-Adapter](/Lab/Contents/MFP-MessageHub-Adapter/Readme.md)                                 |  R6   |    yoel    |        no        |            |        |
