@@ -14,13 +14,14 @@ This is a continuation of the [Secure Gateway Setup Guide](Lab/Contents/BMX-Secu
 
 - Go to your `gateway` dashboard at your secure gateway service and press on the gray area with your destination title;
 
-  ![Instructions](img/SGW_21.png)
+  ![Instructions](/Lab/Contents/BMX-SecureGateway/img/SGW_21.png)
 
 - Mark the check box `Restrict cloud access to this destination with iptable rules` and press `UPDATE DESTINATION`;
 
-  ![Instructions](img/SGW_22.png)
+  ![Instructions](/Lab/Contents/BMX-SecureGateway/img/SGW_22.png)
 
 After this point you will not be able to reach your gateway from your browser, the only machines able to reach it will be the ones with the IP and PORT on the iptables list;
+
 
 ### Updating your java message hub consumer properties
 
@@ -35,55 +36,59 @@ SGW_CONFIG: '{
                 "sgw-token":"${YOUR_SECURE_GATEWAY_SECURE_TOKEN}"
              }'
 ```
-> Observe that this file is very sensitive to tabs and space, if you are having problems when running the Message Hub Consumer ensure you have the same file layout as provided on this sample.
+> :warning: Observation: this file is very sensitive to tabs and space, if you are having problems when running the Message Hub Consumer ensure you have the same file layout as provided on this sample.
+
+#### How to collected the required properties
+
+`${YOUR_SECURE_GATEWAY_HOST_URL}` - Check table below, to know what address to use accordingly your `region`.
+
+| Region         | Value                               |
+|:---------------|:------------------------------------|
+| US South       | https://sgmanager.ng.bluemix.net    |
+| Sydney         | https://sgmanager.eu-gb.bluemix.net |
+| United Kingdom | http://sgmanager.au-syd.bluemix.net |
+
+`${YOUR_SECURE_GATEWAY_ID}` - To get this property access your `gateway` dashboard and press the `engine icon` in the top left, value of the `gateway ID` will be on the popup opened.
+
+  ![Instructions](/Lab/Contents/BMX-SecureGateway/img/SGW_19.png)
+
+  ![Instructions](/Lab/Contents/BMX-SecureGateway/img/SGW_20_2.png)
+
+`${YOUR_SECURE_GATEWAY_SECURE_TOKEN}` -At the same popup you have the gateway ID, you also have your `secure token` on the line marked by the key icon, just press the clipboard icon to copy it.
+
+  ![Instructions](/Lab/Contents/BMX-SecureGateway/img/SGW_20.png)
+
+`${YOUR_SECURE_GATEWAY_DESTINATION_ID}` - To get the destination use go back to you `gateway` dashboard and press over the engine icon of your destination. Then, collect the property at the `destination id` field.
+
+  ![Instructions](/Lab/Contents/BMX-SecureGateway/img/SGW_16_2.png)
+
+  ![Instructions](/Lab/Contents/BMX-SecureGateway/img/SGW_17_2.png)
 
 
-**STOPED HERE - need to continue after this point**
+Once you collect all you can update your `manifest.yml`, it would be something like this:
 
-How to get the credentials:
-
-"destination-id":"${YOUR_SECURE_GATEWAY_DESTINATION_ID}",
-"api-host":"${YOUR_SECURE_GATEWAY_HOST_URL}",
-"gateway-id":"${YOUR_SECURE_GATEWAY_ID}",
-"sgw-token":"${YOUR_SECURE_GATEWAY_SECURE_TOKEN}"
-
-
-How to update the java consumer / observation about updating propertis after deployed.  
+```json
+SGW_CONFIG: '{
+                "destination-id":"7XdvxXADqW4_PLC",
+                "api-host":"https://sgmanager.ng.bluemix.net",
+                "gateway-id":"7XdvxXADqW4_prod_ng",
+                "sgw-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb25maWd1cmF0aW9uX2lkIjoiN1hkdnhYQURxVzRfcHJvZF9uZyIsInJlZ2lvbiI6InVzLXNvdXRoIiwiaWF0IjoxNDc5NDAyNzA4LCJleHAiOjE0ODcxNzg3MDh9.HWCLA-RbJvq3MT0dg-7IHiaA1fdEjXsPZaR9vdVVSKA"
+             }'
 
 ```
-- Enter your Secure gateway destination
-- Enable protection
-- Collect credentials
-- Update credentials on your java consumer yml
-- Push
-> If this was already pushed before, update via bluemix console, to ensure new values are reflected on the app
-- Restart the java consumer
--
-```
+
+#### Update you message hub properties
+
+No that you have your connection properties for you secure gateway API, we can update the [Manifest File](/MessageHubConsumer/manifest.yml) on your Java Message Hub Consumer.
+
+Just need to replace the place holder variables by your `SGW_CONFIG` properties.
+
+ After data you can do a `cf push` to run your Message Hub Consumer on bluemix or just update your properties via your bluemix console.
+
+:warning:  TODO ADD screenshot
 
 
-
-##### Edit a Destination
-> - Enter in your gateway on the Service Dashboard.
-> - Click on Add a destination
-> - Select "On-Premesis" -> This will create a destination from a bluemix endpoint to a service on your OnPrem network.
-> - Press Next
-> - Provide the Resource Hostname and Port of the Resource you want to expose to bluemix.
-> - Select the protocol **TCP** and press Next
-> - On **What kind of authentication does your destination enforce?** select **None** and then press next
-> - On **If you would like to make your destination private, add IP table rules below** you don't have fill this values for now, just press next.  
-> - On **"What would you like to name this destination?"** provide a name for your destination, eg: "My OnPrem Server". Then press "finish"
-
-
-
-##### Protecting your resource destination on Secure Gateway
-> On your gateway page, where you have the list of destinations.
-> Click on the gateway name, the grey big box.
-> Expand the "advanced" area.
-> Check the box at **"Restrict network access to cloud destination"**
-> Now you gateway will only allow access for the incoming IPs and Ports allowed in the list.
-
-![Instructions](/Lab/img/SGW_3_Step1_EnableProtectedEndpoint.gif)
+> :warning: If you already deployed your message hub consumer previously on your account, following pushes will only update the WAR file, so to update  the  `SGW_CONFIG` you will need to go to your bluemix console at the app properties and update this runtime variable and restart your app.
 
 
 > :memo: Check our [Java Message Hub Consumer](/Lab/Contents/BMX-Java-Message-Hub-Consumer/Readme.md) code, it has a special Java code to allow it to add itself on the gateway whitelist. As described [here](https://console.ng.bluemix.net/docs/services/SecureGateway/sg_023.html#sg_033).
@@ -91,7 +96,9 @@ How to update the java consumer / observation about updating propertis after dep
 
 #### Learning more about cloudfoundry apps and secure gateway IP Tables.
 
-> :books: To learn more about this access [this link](https://console.ng.bluemix.net/docs/services/SecureGateway/sg_023.html#sg_033)
+> :books: To learn more about this access:
+> <https://console.ng.bluemix.net/docs/services/SecureGateway/sg_023.html#sg_033>
+> <https://console.ng.bluemix.net/apidocs/25?&language=node#introduction>
 
 #### Troubleshooting Secure Gateway
 
@@ -99,12 +106,23 @@ How to update the java consumer / observation about updating propertis after dep
 If for some reason you want to wipe out the list of IP/Ports from the Secure Gateway restricted list to prevent all servers to access your endpoint you can run the following command:
 
 ```bash
-curl -X DELETE "https://sgmanager.ng.bluemix.net/v1/sgconfig/$GATEWAY_ID/destinations/$Ddestination_id/ipTableRule"    -H "Authorization: Bearer $SECURE_TOKEN" -H "Content-type:  application/json" -d     '{"all":true}'  -k
+curl -X DELETE "https://sgmanager.ng.bluemix.net/v1/sgconfig/$GATEWAY_ID/destinations/$Ddestination_id/ipTableRule?all=true""    -H "Authorization: Bearer $SECURE_TOKEN" -H "Content-type:  application/json" -d     '{"all":true}'  -k
 
 
 #For exmaple
-curl -X DELETE "https://sgmanager.ng.bluemix.net/v1/sgconfig/mO6CsJObK7T_prod_ng/destinations/mO6CsJObK7T_rnS/ipTableRule"    -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9**longtoken**DnRkAed-m8x7xbiTxs6wGTgzeXL2Gv-sKzCov5Fcr5U" -H "Content-type:  application/json" -d     '{"all":true}'  -k
+curl -X DELETE "https://sgmanager.ng.bluemix.net/v1/sgconfig/7XdvxXADqW4_prod_ng/destinations/7XdvxXADqW4_PLC/ipTableRule?all=true"    -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb25maWd1cmF0aW9uX2lkIjoiN1hkdnhYQURxVzRfcHJvZF9uZyIsInJlZ2lvbiI6InVzLXNvdXRoIiwiaWF0IjoxNDc5NDAyNzA4LCJleHAiOjE0ODcxNzg3MDh9.HWCLA-RbJvq3MT0dg-7IHiaA1fdEjXsPZaR9vdVVSKA" -H "Content-type:  application/json" -d     '{"all":true}'  -k
 ```
 
 > By invoking a **DELETE** call to "https://sgmanager.ng.bluemix.net/v1/sgconfig/$GATEWAY_ID/destinations/$Ddestination_id/ipTableRule" using your Secure Token as the Bearer token with  the payload **'{"all":true}'** you will ask the selected destination to wipe its list of ips.
 > To information used here it is the same one used on step 3, deploying your SecureGatewayAdapter.
+
+
+
+
+## References
+
+<https://console.ng.bluemix.net/apidocs/25?&language=node#introduction>
+
+## Next guide
+
+[MFP-Customer-Adapter](/Lab/Contents/MFP-Customer-Adapter/Readme.md)

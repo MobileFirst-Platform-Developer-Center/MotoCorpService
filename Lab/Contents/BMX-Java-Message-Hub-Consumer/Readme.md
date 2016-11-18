@@ -278,4 +278,6 @@ Side note: to add java code for secure gateway at `  public ConsumerInstance() `
 
 ## Next guide
 
-[MFP-Customer-Adapter](/Lab/Contents/MFP-Customer-Adapter/Readme.md)
+[Protecting Secure Gateway Destination](/Lab/Contents/BMX-Java-Message-Hub-Consumer/Segure-Gateway-Protection.md)
+
+[MFP Customer Adapter](/Lab/Contents/MFP-Customer-Adapter/Readme.md)
