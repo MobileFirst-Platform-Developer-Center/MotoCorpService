@@ -29,12 +29,20 @@ Let's take a look at how this works.
 ![Login](login.png)
 
 ### Server Side Configuration
+1 - Register and push your app to your MobileFirst console
+```bash
+cd ./MotoCorp
+cordova platform add ios
+mfpdev app register bluemix-server
+cordova prepare
+```
 
 1 - Go to your UserLogin Adapter folder and build the javascript adapter
 ```bash
-cd ./MotoCorpServer/Adapters/UserLogin
+cd ./Adapters/UserLogin
 mfpdev adapter build
 ```
+
 2 - Upload the adapter to your MobileFirst console by selecting "Deploy Adapter" and uploading the `UserLogin.adapter` file.
 ![Deploy Adapter](upload-login-adapter.png)
 3 - Map the `user-restricted` scope to the UserLogin security check inside the application security settings in the MobileFirst Foundation Operations Console.
@@ -115,7 +123,6 @@ Additionally, the MobileFirst security framework handles the time-to-live of the
 To to test the login, build, deploy, and emulate the app from the cli.
 
 ```
-mfpdev app register
 cordova build ios
 cordova emulate ios
 ``` 
