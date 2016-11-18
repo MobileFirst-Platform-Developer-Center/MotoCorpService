@@ -14,8 +14,8 @@ Im this lab, we will be exploring MobileFirst Foundation Analytics on Bluemix, a
 
 ## Requirement of this guide
 
-- Setup your MobileFirst Foundation service on Bluemix from the first lab
-- Have your Ionic lab up and running
+  - [MFP-Security-Implement-Login](/Lab/Contents/MFP-Security-Implement-Login/Readme.md)
+  - [MFP-Ionic-MobileApp](/Lab/Contents/MFP-Ionic-MobileApp/Readme.md) 
 
 ## Guide
 
@@ -23,7 +23,7 @@ Im this lab, we will be exploring MobileFirst Foundation Analytics on Bluemix, a
 1 - Create a container to setup your namespace if you do not already have a container in your space. 
 If you have setup a container previously you can skip this step. 
 
-![Container](Container.png)
+![Container](container.png)
 
 > After creating a container it can take some time to for the namespace to be created.
 
