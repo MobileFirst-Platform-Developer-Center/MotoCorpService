@@ -18,7 +18,7 @@ We will be going over basic Ionic terms as well as how we can easily and quickly
   - [Login Security Test](/Lab/Contents/MFP-Security-Implement-Login/Readme.md)  
   - [Customer Adapter](/Lab/Contents/MFP-Customer-Adapter/Readme.md)
 
-# Setup the app
+# Guide
 
 ## Add the iOS Platform
 
