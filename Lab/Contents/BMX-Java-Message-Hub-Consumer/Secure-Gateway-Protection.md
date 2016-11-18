@@ -117,9 +117,6 @@ curl -X DELETE "https://sgmanager.ng.bluemix.net/v1/sgconfig/7XdvxXADqW4_prod_ng
 > By invoking a **DELETE** call to "https://sgmanager.ng.bluemix.net/v1/sgconfig/$GATEWAY_ID/destinations/$Ddestination_id/ipTableRule" using your Secure Token as the Bearer token with  the payload **'{"all":true}'** you will ask the selected destination to wipe its list of ips.
 > To information used here it is the same one used on step 3, deploying your SecureGatewayAdapter.
 
-
-
-
 ## References
 
 <https://console.ng.bluemix.net/apidocs/25?&language=node#introduction>

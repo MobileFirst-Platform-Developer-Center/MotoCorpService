@@ -50,7 +50,7 @@ Now, that you have Secure Gateway on your account let's add a gateway on it.
 
 
 > :memo: **What is a gateway?:**  
-> The gateway is a collection of destinations, it has secure token that allows it to be customized by the users.
+> The gateway is a collection of destinations, it has a secure token that allows it to be customized by the users.
 >
 > For details check: [Return to Secure Gateway intro](/Lab/Contents/BMX-SecureGateway/Readme.md)
 

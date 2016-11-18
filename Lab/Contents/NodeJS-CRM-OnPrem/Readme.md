@@ -60,7 +60,7 @@ Go into your DashDB Customer table to confirm a customer record was created.
 curl -X POST -H "Content-Type: application/json" -d '{  "date": "2016-06-23",  "type": "oil visit",  "comment": "hello this is a comment"}' "http://localhost:8000/customers/1/visits" -vv
 ```
 
-Go into your DashDB Customer table to confirm a visit record was created.
+Go into your DashDB Visit table to confirm a visit record was created.
 
 ![visit table](visit-table.png)
 

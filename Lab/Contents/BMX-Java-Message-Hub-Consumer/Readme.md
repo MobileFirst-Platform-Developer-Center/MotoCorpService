@@ -14,6 +14,7 @@ The MessageHub consumer is a Java runtime app that consumes the topics "Customer
 - [Secure Gateway tunnel setup](/Lab/Contents/BMX-SecureGateway/Readme.md)
 - [Bluemix Message Hub Setup](/Lab/Contents/MFP-MessageHub-Adapter/Readme.md)
 - Maven. To install visit Maven [Installation](https://maven.apache.org/install.html) page
+- Setup [CloudFoundry CLI](https://console.ng.bluemix.net/docs/starters/install_cli.html)
 
 ## Guide
 
@@ -21,17 +22,15 @@ The MessageHub consumer is a Java runtime app that consumes the topics "Customer
 
 >> **NOTE:** Before pushing the application to Bluemix using the cli, make sure the the route in the `manifest.yml` file is reserved or it's owned by you.
 
-1. Update the `manifest.yml` file with your route as `host` and give it a `name`
-2. Update the `APP_CONFIG` with the credentials obtained when creating the MessageHub instance on Bluemix.
-  The following properties only need to be changed if they don't match your credentials or if you want to use a specific TrustStore other than the default:
-    - `kafka-rest-url`
-    - `message-hub-servers`
-    - `truststore-password`
-    - `truststore-path`
-    - `truststore-type`
-3. **TODO:** @cesarlb Secure Gateway
-4. Build the application by running `mvn install`
-5. Deploy to Bluemix using `cf push`
+1 - Update the `manifest.yml` file with your route as `host` and give it a `name`
+   - `${YOUR_MESSAGE_HUB_APY_KEY}`
+   - `${YOUR_MESSAGE_HUB_USERNAME}`
+   - `${YOUR_MESSAGE_HUB_PASSWORD}`
+   - `${YOUR_CRM_DESTINATION}`
+   > Make sure not to add a `/` to the end of your CRM destination which is found in your SecureGateway service
+2 - To use protected SecureGateway Destination go to the [lab](Secure-Gateway-Protection.md)
+3 - Build the application by running `mvn install`
+4 - Deploy to Bluemix using `cf push`
 
 ### MessageHub Consumer - How it Works
 
@@ -217,64 +216,17 @@ public void receiveMessage(byte[] payload) {
 
 ## Testing
 
-> **TODO:**
+To test if the consumer is working, go into your MessageHub Adapter Swagger docs as you did in the MessageHub Adapter lab and create a new customer. If the consumer works, you will see logs like below in your CF app in your Bluemix instance of the consumer.
 
-
-
+```bash
+App/0[INFO ] Payload: {"Name":"string","LicensePlate":"string","Make":"string","Model":"string","VIN":"string"}2016-11-18T19:10:49.837-0200
+App/0[INFO ] Endpoint: http://cap-sg-prd-2.integration.ibmcloud.com:16384/customers2016-11-18T19:10:49.837-0200
+App/0[INFO ] Payload: {"Name":"string","LicensePlate":"string","Make":"string","Model":"string","VIN":"string"}2016-11-18T19:10:49.837-0200
+App/0[INFO ] Received Message2016-11-18T19:10:49.837-0200
+App/0[INFO ] Sending New Customer Request2016-11-18T19:10:49.837-0200
+App/0[INFO ] Topic: new-customer2016-11-18T19:10:49.837-0200
 ```
-7. Message Hub Consumer
-    1. Create Liberty cf
-        1. Bind Liberty consumer to MessagHub Service
-        2. talk about how to setup consumer
-    2. Config with SecureGateway Firewall
-    3. how it works (code snippets)
-    4. How to test that it works
-        1. calling the message hub adapter to create new visit/customer…should see new customer/visit in dashdb table)
-```
-
-- [Setup of access to a protected gateway](/Lab/Contents/BMX-Java-Message-Hub-Consumer/Segure-Gateway-Protection.md)
-
-Notes:
-```
-
-- go to the folder of the Consumer
-- update to route properties
-
-  - domain: mybluemix.net
-  - name: JavaConsumer
-  - host: javaconsumer
-  - >to avoid error: The route javaconsumer.mybluemix.net is already in use.
-- update the yml to add your MessageHub credentials(screenshots)
-- update the yml to add your SecureGateway credentials(TBD)(screenshots)
-- build WAR:
-  mvn -B package
-- cf push
-> Message Hub is a "public service" - to be confirmed if message hub is visible outside of your account.
-- how to test MessageHub consumer?
--> sending our very special payload to the MessageHub Adapter at the guide(link to the guide)
--> CRM logs will show when new data arrived
-->
-
-*extra step - after the setup worked*
-- adding protection secure gateway
-- test the CRM enpoint via secure gateway(curl on CRM Setup - link to guide)
-
-
-Troubleshooting:
-- SGW endpoint is ok
-
-- MessageHub - check logs from Consume Runtime for SEVERE on setup issues
--> check if there is proper logs:
-https://github.ibm.com/cord-americas/MotoCorpService/blob/master/MessageHubConsumer/src/main/java/com/motorcorp/messagehub/consumer/ConsumerInstance.java
-
-
-
-Side note: to add java code for secure gateway at `  public ConsumerInstance() ` of https://github.ibm.com/cord-americas/MotoCorpService/blob/master/MessageHubConsumer/src/main/java/com/motorcorp/messagehub/consumer/ConsumerInstance.java
-```
-
 
 ## Next guide
 
-[Protecting Secure Gateway Destination](/Lab/Contents/BMX-Java-Message-Hub-Consumer/Segure-Gateway-Protection.md)
-
-[MFP Customer Adapter](/Lab/Contents/MFP-Customer-Adapter/Readme.md)
+[Protecting Secure Gateway Destination](/Lab/Contents/BMX-Java-Message-Hub-Consumer/Secure-Gateway-Protection.md)
