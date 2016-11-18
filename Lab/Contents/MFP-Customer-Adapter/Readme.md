@@ -1,9 +1,8 @@
 #  Customer Adapter
 
-> TODO: Show turning off scope
-> TODO: Add security to customer adapter and clean up comments, etc
+> TODO: Show turning off scope at bottom of lab
 
-The purpose of the customer adapter is to call the MessageHub and DashDB adapter. This is so that the 
+The purpose of the customer adapter is to call the MessageHub and DashDB adapter. This is so that if any server side changes are made they are easily changed without having to create a new service in the Ionic app. By having one point of entry, the client side of the app will not have to change if a resource changes on the backend.
 
 ## What you will learn in this guide
 
@@ -80,7 +79,7 @@ public Response customers()  throws IOException{
 To test the customer adapter, you can go into Swagger and turn off the security and use username "test" and password "test" from the confidential client you create in the security login lab.
 
 1 - How to turn off scope using confidential client
-> TODO: Gif here
+> TODO: gif here
 
 2 - Testing with MessageHub
 You should see a 200 response status showing that you posted a new customer or visit to the MessageHub adapter.
