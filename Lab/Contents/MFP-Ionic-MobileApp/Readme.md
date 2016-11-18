@@ -49,7 +49,8 @@ The first thing you will need to do is go to the correct folder where the app is
   Make sure that your MFP server is running and enter the command below to register the app.
 
   ```bash
-  mfpdev app register mybluemixmfp
+  mfpdev app register bluemix-server
+  cordova prepare
   ```
 
   Open your MobileFirst Console and confirm that your app has been registered.
@@ -61,8 +62,6 @@ The first thing you will need to do is go to the correct folder where the app is
 
   ```bash
   cordova build
-  ```
-  ```bash
   cordova emulate ios
   ```
 
@@ -70,7 +69,7 @@ The first thing you will need to do is go to the correct folder where the app is
 
   Follow the following steps to test the functionality of the app:
 
-  - When the app starts it will ask for you to log in. You can use the default credentials or use “demo” for both the username and password.
+  - When the app starts it will ask for you to log in. You can use the default credentials or use the same username and password.
   - Create a new customer - on the search screen, you can touch the plus button in the upper right hand corner to add a new customer. You will be able to add their name, plate, make, model, and vin.
   - On the search screen, press the search button with no filter and no text and you will see the new customer you created.
   - If you select the customer on the search screen, it will take you to the customer detail screen. You can add a customer visit to the customer by pressing the plus button.
@@ -106,22 +105,9 @@ The value of the customer variable can be displayed in the html like this:
 {{customer}}
 ```
 
-
-
-## Lab Requirements
-
-Before we start, make sure that you start your **Nodejs backend server** that you setup in a
-[previous lab](https://github.ibm.com/cord-americas/MotoCorpService/blob/master/Lab/Contents/NodeJS-CRM-OnPrem/Readme.md).
-
-> To test that your server is up and running, you should see a json response when you run:
-
-> ```bash
-curl -XGET http://localhost:8080/customers
-```
-
 ### CRM Service
 
-Let’s take a look at the CRM service where the MFP magic happens. These are the functions that will call the CustomerAdapter adapter that we made in the [CustomerAdapters](https://github.ibm.com/cord-americas/MotoCorpService/blob/master/Lab/Contents/MFP-Customer-Adapter/Readme.md) lab.
+Let’s take a look at the CRM service where the MFP magic happens. These are the functions that will call the CustomerAdapter adapter that we made in the [CustomerAdapters](/Lab/Contents/MFP-Customer-Adapter/Readme.md) lab.
 
 Open **crm.js** located in the **/MotoCorp/www/app/services** directory.
 
@@ -270,7 +256,6 @@ CRM.newVisit(id, {date: $scope.visit.date,type: $scope.visit.type,
 ```
 
 
-
 ## New Customer
 If a customer isn't in the database, you will first need to add them. On the search screen, you can touch the plus button in the upper right hand corner to add a new customer. You will be able to add their name, plate, make, model, and vin.
 
@@ -295,3 +280,7 @@ CRM.newCustomer(myCustomer).then(function () {
   $state.go('app.customer', plate);
 });
 ```
+
+## Next guide
+
+[Bluemix Mobile Analytics](/Lab/Contents/Bluemix-Mobile-Analytics/Readme.md)   
