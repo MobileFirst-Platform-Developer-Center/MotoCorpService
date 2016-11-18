@@ -15,8 +15,7 @@ This tutorial will demonstrate how to setup the Foundation on Bluemix service.
 ## Guide
 
 1 - Instantiate [MobileFirst Foundation](https://console.ng.bluemix.net/catalog/services/mobile-foundation/) on Bluemix
-
-Once you do so, make sure to start your server.
+and start your server.
 ![start-server](start-server.png)
 
 Once you do so, please make a note of your server route as you will need to configure your route later.
