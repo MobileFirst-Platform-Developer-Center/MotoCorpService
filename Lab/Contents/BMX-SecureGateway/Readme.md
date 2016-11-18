@@ -25,9 +25,9 @@ It is a service available on bluemix that allows you to access On-Prem Services 
 
 Another possibility is to access a Bluemix Application on your On-Prem Datacenter, but this second use case will not be explored on this guide.
 
-> [Read more about Secure Gateway here](https://console.ng.bluemix.net/docs/services/SecureGateway/secure_gateway.html)
->
-> ["What is On-Prem?"  - Read about here](https://en.wikipedia.org/wiki/On-premises_software)
+- [Read more about Secure Gateway here](https://console.ng.bluemix.net/docs/services/SecureGateway/secure_gateway.html)
+
+- ["What is On-Prem?"  - Read about here](https://en.wikipedia.org/wiki/On-premises_software)
 
 #### When to use IBM Secure Gateway?
 
@@ -57,9 +57,9 @@ The general setup is the following:
 
 > *Don't worry* the gateway client has an internal firewall, so you will have control on what is exposed. And also, you can protect the Bluemix Secure Gateway `destination` with a set of layers of protections.
 
-### Setup steps for the CRM Sample Secure Gateway
+### Step by Step Guide to setup Secure Gateway for the CRM Sample
 
-For step-by-step guide on how to setup the Secure gateway guide check [this page](/Lab/Contents/BMX-SecureGateway/Sample-Setup.md).
+[Secure Gateway Setup Guide](/Lab/Contents/BMX-SecureGateway/Sample-Setup.md).
 
 ## Next guide
 
