@@ -76,20 +76,7 @@ public Response customers()  throws IOException{
 
 ### Testing the Customer Adapter
 
-To test the customer adapter, you can go into Swagger and turn off the security and use username "test" and password "test" from the confidential client you create in the security login lab.
-
-1 - How to turn off scope using confidential client
-> TODO: gif here
-
-2 - Testing with MessageHub
-You should see a 200 response status showing that you posted a new customer or visit to the MessageHub adapter.
-
-> TODO: Screenshot swagger here
-
-3 - Testing with DashDB
-You should be able to see any customer or visit records (if there are any) in the response.
-
-> TODO: Screenshot swagger here
+We will be testing the customer adapter functionality in the next lab [MFP Ionic MobileApp](/Lab/Contents/MFP-Ionic-MobileApp/Readme.md).
 
 ## Next guide
 
