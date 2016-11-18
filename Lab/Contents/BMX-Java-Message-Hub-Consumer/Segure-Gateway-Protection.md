@@ -85,8 +85,9 @@ Just need to replace the place holder variables by your `SGW_CONFIG` properties.
 
  After data you can do a `cf push` to run your Message Hub Consumer on bluemix or just update your properties via your bluemix console.
 
-:warning:  TODO ADD screenshot
+If all worked fine, after java app starts to run on your `gateway destination` at table of the IPs you will see with a new IP that was set by the Java Message Consumer Consumer App.
 
+  ![Instructions](/Lab/Contents/BMX-SecureGateway/img/SGW_23.png)
 
 > :warning: If you already deployed your message hub consumer previously on your account, following pushes will only update the WAR file, so to update  the  `SGW_CONFIG` you will need to go to your bluemix console at the app properties and update this runtime variable and restart your app.
 

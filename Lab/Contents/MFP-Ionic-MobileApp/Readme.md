@@ -1,10 +1,10 @@
 #  Mobile Foundation - Ionic Mobile App
 
-## Overview
 In this lab we will be going over how to integrate MobileFirst Foundation adapters with our Ionic app.
 We will be going over basic Ionic terms as well as how we can easily and quickly implement the adapters with the UI. At the end of this lab, you will be able to search customers, see customer profiles, add new customers, and add new customer visits by utilizing MobileFirst adapters.
 
-### Outline:
+## What you will learn on this guide
+
 - Setup the app
 - Review the basic structure of our **Ionic app**
 - **Integrate adapters** into the app to setup the following functionality:
@@ -18,7 +18,7 @@ We will be going over basic Ionic terms as well as how we can easily and quickly
   - [Login Security Test](/Lab/Contents/MFP-Security-Implement-Login/Readme.md)  
   - [Customer Adapter](/Lab/Contents/MFP-Customer-Adapter/Readme.md)
 
-# Setup the app
+# Guide
 
 ## Add the iOS Platform
 
