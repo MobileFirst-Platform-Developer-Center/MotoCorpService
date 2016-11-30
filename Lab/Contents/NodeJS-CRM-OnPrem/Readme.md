@@ -24,7 +24,7 @@ cd MotoCorpService/CRM
 ```
 
 2 - Set DashDB credentials as found in your Bluemix instance
-![dashdb-credentials](dashdb-credentials.png)
+![dashdb-credentials](img/dashdb-credentials.png)
 
 ### Running the NodeJS CRM locally
 
@@ -52,7 +52,7 @@ curl -X POST -H "Content-Type: application/json" -d '{ "Name": "John Doe", "Lice
 
 Go into your DashDB Customer table to confirm a customer record was created.
 
-![customer table](customer-table.png)
+![customer table](img/customer-table.png)
 
 2 - To create a visit
 
@@ -62,7 +62,7 @@ curl -X POST -H "Content-Type: application/json" -d '{  "date": "2016-06-23",  "
 
 Go into your DashDB Visit table to confirm a visit record was created.
 
-![visit table](visit-table.png)
+![visit table](img/visit-table.png)
 
 3 - To list all customers
 

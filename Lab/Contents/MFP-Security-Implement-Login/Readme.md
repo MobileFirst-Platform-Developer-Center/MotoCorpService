@@ -26,7 +26,7 @@ In this lab you will explore the **Auth** service that will communicate between 
 
 Let's take a look at how this works.
  
-![Login](login.png)
+![Login](img/login.png)
 
 ### Server Side Configuration
 1 - Register and push your app to your MobileFirst console
@@ -44,12 +44,12 @@ mfpdev adapter build
 ```
 
 2 - Upload the adapter to your MobileFirst console by selecting "Deploy Adapter" and uploading the `UserLogin.adapter` file.
-![Deploy Adapter](upload-login-adapter.png)
+![Deploy Adapter](img/upload-login-adapter.png)
 3 - Map the `user-restricted` scope to the UserLogin security check inside the application security settings in the MobileFirst Foundation Operations Console.
 
 The security framework ensures that only a client that passes all of the security checks of the protecting scope is granted access to the resource. A security check is a server-side entity that implements a specific authorization logic, such as obtaining and validating client credentials.
 
-![Map user-restricted scope](login-security-check.png)
+![Map user-restricted scope](img/login-security-check.png)
 
 By adding `user-restricted` scope to a resource (in this lab, `CustomerAdapter`), MobileFirst allows you to easily map security scopes into each resource request so that the security frameworks triggers the mapped security checks.
 
@@ -59,7 +59,7 @@ By adding `user-restricted` scope to a resource (in this lab, `CustomerAdapter`)
 
 4 - To configure how long before a token expires (when a user is logged out), configure the `successStateExpirationSec`*[]: 
 
-![Token](token.png)
+![Token](img/token.png)
 
 ### Client Side Configuration 
 
@@ -129,7 +129,7 @@ cordova emulate ios
 
 To login, use the same username/password (pre-populated). Once successfully logged in, you will be directed to the next page.
 
-![Login](login.gif)
+![Login](img/login.gif)
 
 ### Creating a Client Secret
 
@@ -142,7 +142,7 @@ This will allow you to test adapters in swagger within any scope.
 
 2 - Create a confidential client with id "test", secret "test", and scope "*"
 
-![confidential-client](confidential-client.png)
+![confidential-client](img/confidential-client.png)
 
 
 ## Next guide

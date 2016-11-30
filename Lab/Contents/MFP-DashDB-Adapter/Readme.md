@@ -19,14 +19,14 @@ By reading from DashDB instead of directly from the OnPrem CRM, you lower the lo
 ### Instantiating the DashDB Service
 
 1 - Instantiate the [DashDB Service](https://console.ng.bluemix.net/catalog/services/dashdb/) by clicking `Create`.
-![DashDB Service](dashdb-service.png)
+![DashDB Service](img/dashdb-service.png)
 
 2 - In the Bluemix console, get your username and password from the location shown below.
 You will need these later to configure your adapter.
-![DashDB Credentials](dashdb-credentials.png)
+![DashDB Credentials](img/dashdb-credentials.png)
 
 3 - Open your DashDB console where you will see the following screen.
-![DashDB Console](dashdb-console.png)
+![DashDB Console](img/dashdb-console.png)
 
 ### Create Customer and Visit Tables
 
@@ -53,9 +53,9 @@ CREATE TABLE VISITS (
 
 2 - Once finished you will see your tables in "Tables"
 
-![customers-table](customers-table.png)
+![customers-table](img/customers-table.png)
 
-![visits-table](visits-table.png)
+![visits-table](img/visits-table.png)
 
 ### Deploying the DashDB Adapter
 
@@ -70,7 +70,7 @@ mfpdev adapter build
 The database url is already set to the default url on bluemix.
 > You can also set these credentials `MotoCorpService/Adapters/DashDBAdapter/src/main/adapter-resources` in your `adapter.xml`.
 
-![configure-credentials](configure-dashdb-adapter.png)
+![configure-credentials](img/configure-dashdb-adapter.png)
 
 ### DashDB Adapter - How it Works
 
@@ -147,7 +147,7 @@ Select [GET] /getAllUsers and you will see all the data in your table.
 Since your table does not have any data yet, you should see a 200 status with no response.
 Below is an example of what the result would look like when there is data in your Customers table.
 
-![swagger-test](swagger-test.png)
+![swagger-test](img/swagger-test.png)
 
 
 ## Next guide

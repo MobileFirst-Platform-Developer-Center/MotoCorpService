@@ -19,13 +19,13 @@ The MessageHub Adapter creates topics that are written to MessageHub instead of 
 ### Creating the Message Hub Service
 
 1 - Instantiate the [Message Hub Service](https://console.ng.bluemix.net/catalog/services/message-hub/) by clicking `Create`.
-![Message Hub Service](messagehub-create-instance.png)
+![Message Hub Service](img/messagehub-create-instance.png)
 
 2 - In the Bluemix console, save the credentials. You will need them later to configure your adapter.
-![MessageHub Credentials](messagehub-credentials.png)
+![MessageHub Credentials](img/messagehub-credentials.png)
 
 3 - Open your MessageHub console where you will see the following screen.
-![Message Hub Console](messagehub-console.png)
+![Message Hub Console](img/messagehub-console.png)
 
 
 ### Deploying the MessageHub Adapter
@@ -47,7 +47,7 @@ The following properties only need to be changed if they don't match your creden
 
 > If you are running this adapter on a local instance of MobileFirst Foundation, you will need to import MessageHub certificate to your truststore as can be seen [here](https://docs.oracle.com/cd/E19830-01/819-4712/ablqw/index.html)
 
-![configure-credentials](messagehub-adapter-configuration.png)
+![configure-credentials](img/messagehub-adapter-configuration.png)
 
 ### MessageHub Adapter - How it Works
 
@@ -257,7 +257,7 @@ To test the adapter, go into Swagger.
 5. Click `Try it out!`
 6. If the topic is successfully created, you will be able to go into your MessageHub instance and see a "new-visit" topic created.
 
-![messagehub-topics](messagehub.png)
+![messagehub-topics](img/messagehub.png)
 
 ## Next guide
 
