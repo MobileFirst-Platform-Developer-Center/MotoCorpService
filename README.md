@@ -26,4 +26,4 @@ The application has the following 5 screens and functionality.
 
 
 ## Labs
-Included in this project are some labs located [here](/Lab/Readme.md) where there is a detailed overview as well as steps on how to get the lab up and runnings.
+Included in this project are a set of labs located [here](/Lab/Readme.md) where there is a detailed overview as well as steps on how to get the lab up and runnings.
