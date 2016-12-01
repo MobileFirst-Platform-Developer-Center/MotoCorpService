@@ -13,16 +13,16 @@ The application has the following 5 screens and functionality.
 ![login](img/login.png)
 
 ### New Customer
-![customer search](img/customer-search.png)
-
-### New Visit
 ![new customer](img/new-customer.png)
 
+### New Visit
+![new visit](img/new-visit.png)
+
 ### Search Customers
-![customer profile](img/customer-profile.png)
+![customer profile](img/customer-search.png)
 
 ### Customer Profile
-![new visit](img/new-visit.png)
+![customer profile](img/customer-profile.png)
 
 
 ## Labs
