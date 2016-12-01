@@ -3,7 +3,7 @@
 Refer to License.md
 
 ## Overview
-This car service center app demonstrates multiple Foundation features coupled with Bluemix services to create an app that works seamlessly for the customer.
+This car service center app demonstrates multiple Foundation features coupled with Bluemix Services to create an app that works seamlessly for the customer.
 
 ## Mobile iOS Application
 
