@@ -5,7 +5,7 @@ In this lab, imagine you are an Enterprise that owns car service centers utlizin
 ## Guides
 
 |   #    | Lab    |  Description |                                                                                      
-|:------:|:------:|:-------:|
+|:------:|:------:|:-------|
 |   1    | [Overview](/Lab/Contents/Overview/overview.md) | This lab goes into detail about the data flow, how backend services are used, and what scenarios were considered. |                                                               
 |   2    | [Setup Mobile Foundation on Bluemix](/Lab/Contents/MFP-Setup-Mobile-Foundation-on-Bluemix/Readme.md) | This lab shows how to setup and configure a MobileFirst Foundation service on Bluemix.
 |   3    | [Security Implementation Login](/Lab/Contents/MFP-Security-Implement-Login/Readme.md)| This lab talks about how easy it is to integrate OAuth2 Security into your app.|
