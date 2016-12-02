@@ -4,7 +4,7 @@ In this lab, we will be utilizing the Bluemix services: MobileFirst Foundation, 
 
 Imagine you are an Enterprise that owns car service centers. You want to equip service center employees with apps that will help them coordinate activities in the service center to improve service times and quality of service.
 
-One important element in this solution it is to allow your employees to have access to the most accurate data about your customer. As a customer can engage with your Enterprise via multiple channels.
+One important element in this solution it is to allow your employees to have access to the most accurate data about your customer, as a customer can engage with your Enterprise via multiple channels.
 
 > CRM: For this example we will use the CRM idea to be a central place to store/retrieve the most updated information about a customer and to open and post tickets [Read more here](https://en.wikipedia.org/wiki/Customer_relationship_management)
 
