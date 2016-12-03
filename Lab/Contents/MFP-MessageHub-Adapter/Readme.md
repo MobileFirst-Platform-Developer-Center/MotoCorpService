@@ -200,25 +200,25 @@ public Response newCustomerVisit(@PathParam("id") String id, CustomerVisit custo
 }
 ```
 
-1. Check if the `new-visit` topic exists
+1 - Check if the `new-visit` topic exists
 
 ```
 createTopicIfNeeded(MessageHubAdapterProducerResource.NEW_VISIT_TOPIC);
 ```
 
-2. Create a new JSON object that includes the `CustomerId` and the `CustomerVisit` payload. This will be used by the consumer to map the visit record to the customer.
+2 - Create a new JSON object that includes the `CustomerId` and the `CustomerVisit` payload. This will be used by the consumer to map the visit record to the customer.
 
 ```
 JSONObject newVisit = new JSONObject();
 newVisit.put("CustomerId", id);
 ```
 
-3. Use the object mapper to convert the `CustomerVisit` object to a JSON object.
+3 - Use the object mapper to convert the `CustomerVisit` object to a JSON object.
 ```
 JSONObject visitData = JSONObject.parse(objectMapper.writeValueAsString(customerVisit));
 ```
 
-4. Add the visit JSONObject to the `newVisit` payload  
+4 - Add the visit JSONObject to the `newVisit` payload  
 
 ```
 newVisit.put("CustomerVisit", visitData);
