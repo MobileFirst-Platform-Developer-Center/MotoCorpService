@@ -224,13 +224,13 @@ JSONObject visitData = JSONObject.parse(objectMapper.writeValueAsString(customer
 newVisit.put("CustomerVisit", visitData);
 ```
 
-5. Send the visit data to the `new-visit` topic
+5 - Send the visit data to the `new-visit` topic
 
 ```
 producer.send(produce(MessageHubAdapterProducerResource.NEW_VISIT_TOPIC, id, newVisit.toString().getBytes()));
 ```
 
-6. Return a successful response
+6 - Return a successful response
 
 ```
 return okResponse();
