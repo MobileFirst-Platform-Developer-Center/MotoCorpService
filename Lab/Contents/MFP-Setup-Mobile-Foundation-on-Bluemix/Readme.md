@@ -22,7 +22,7 @@ Once you do so, please make a note of your server route as you will need to conf
 Your route below is `mobilefoundation-qc-ih-server.mybluemix.net`
 ![route](img/server-route.png)
 
-2 - Install [Node](https://nodejs.org/en/) 
+2 - Install [Node](https://nodejs.org/en/). Please make sure to install v6.x.
 
 3 - Install [Cordova](https://cordova.apache.org/docs/en/latest/guide/cli/)
 ```
