@@ -10,7 +10,7 @@
 	"cfenv": "1.0.x",
 	"body-parser": "^1.15.2",
 	"underscore": "^1.8.3",
-	"ibm_db": "0.0.19"
+	"ibm_db": ">=1.0.2"
   },
   "repository": {},
   "engines": {
